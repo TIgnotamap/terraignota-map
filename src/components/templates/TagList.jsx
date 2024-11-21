@@ -9,7 +9,8 @@ export default function TagList({ tags }) {
       <span>{tags.length > 1 ? "Tags: " : "Tag: "}</span>
       {tags.map((tag, index) => (
         <span key={tag._id}>
-          {tag.name[language]} {index < tags.length - 1 && ","}
+          {tag.name[language]}
+          {index < tags.length - 1 && ", "}
         </span>
       ))}
     </div>
