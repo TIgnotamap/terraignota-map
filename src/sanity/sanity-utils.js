@@ -134,7 +134,8 @@ export async function getItems() {
     text,
     url 
   },
-  condition
+  condition,
+  isHighlighted
 }`);
 }
 
