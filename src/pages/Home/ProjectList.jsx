@@ -1,5 +1,5 @@
 import { useContext } from "react";
-import { LanguageContext } from "../utils/LanguageContext";
+import { LanguageContext } from "../../utils/LanguageContext";
 
 export default function ProjectList({ projects, items }) {
   const { language } = useContext(LanguageContext);

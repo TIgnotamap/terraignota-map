@@ -1,7 +1,7 @@
 import { useContext } from "react";
 import { LanguageContext } from "../../utils/LanguageContext";
 import { PortableText } from "@portabletext/react";
-import TagList from "./TagList";
+import TagList from "../../components/ui/TagList";
 
 export default function DefaultItem({ item }) {
   const { language } = useContext(LanguageContext);
@@ -22,7 +22,7 @@ export default function DefaultItem({ item }) {
   const translate = (textKey) => translations[textKey]?.[language] || textKey;
 
   return (
-    <div className="border p-4">
+    <div>
       {/* project */}
       <p>{item.project.title[language]}</p>
 
@@ -216,6 +216,9 @@ export default function DefaultItem({ item }) {
           <span>{item.condition[language]}</span>
         </div>
       )}
+
+      {/* isHighlighted */}
+      {item.isHighlighted && <div>🕯️</div>}
     </div>
   );
 }

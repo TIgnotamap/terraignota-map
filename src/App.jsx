@@ -1,9 +1,9 @@
 import { useState, useEffect, useContext } from "react";
 import { fetchData } from "./sanity/sanity-utils";
 import { LanguageContext } from "./utils/LanguageContext";
-import ProjectList from "./components/ProjectList";
-import ReferenceList from "./components/ReferenceList";
-import DefaultItem from "./components/templates/DefaultItem";
+import ProjectList from "./pages/Home/ProjectList";
+import ReferenceList from "./pages/RefList/ReferenceList";
+import ItemContainer from "./pages/Item/ItemContainer";
 
 function App() {
   const [data, setData] = useState(null);
@@ -32,11 +32,11 @@ function App() {
   console.log(data);
   return (
     <div className="p-4">
-      <h1 className="py-4 font-thin">
+      <h1 className="py-4 text-xl font-thin">
         {data?.settings?.title[language] || "Terra Ignota Map"}
       </h1>
       <button
-        className="fixed right-4 top-4 border border-blue-500 px-2 py-1"
+        className="fixed right-4 top-4 border px-2 py-1"
         onClick={() => setLanguage(language === "es" ? "en" : "es")}
       >
         {language === "es" ? "English" : "Español"}
@@ -46,7 +46,7 @@ function App() {
       <hr className="my-4" />
       <h1 className="py-4 font-bold">Items:</h1>
       {data?.items.map((item) => (
-        <DefaultItem key={item._id} item={item} />
+        <ItemContainer key={item._id} item={item} />
       ))}
 
       <h1 className="py-4 font-bold">References:</h1>
