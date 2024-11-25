@@ -1,7 +1,8 @@
 import { useContext } from "react";
 import { LanguageContext } from "../../utils/LanguageContext";
+import { NavLink } from "react-router-dom";
 
-export default function ProjectList({ projects, items }) {
+export default function ProjectList({ projects, items, setCurrentItem }) {
   const { language } = useContext(LanguageContext);
   const translations = {
     title: {
@@ -23,7 +24,15 @@ export default function ProjectList({ projects, items }) {
                 .filter((item) => item.project._id === project._id)
                 .map((item) => (
                   <li className="pl-4 font-thin" key={item._id}>
-                    <h3>{item.code}</h3>
+                    <NavLink
+                      to={`/terraignota-map/${item.slug.current}`}
+                      onClick={() => setCurrentItem(item)}
+                      className={({ isActive }) =>
+                        isActive ? "underline" : "hover:underline"
+                      }
+                    >
+                      <h3>{item.code}</h3>
+                    </NavLink>
                   </li>
                 ))}
             </ul>
