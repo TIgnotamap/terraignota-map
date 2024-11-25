@@ -4,6 +4,8 @@ import { LanguageContext } from "./utils/LanguageContext";
 import ProjectList from "./pages/Home/ProjectList";
 import ReferenceList from "./pages/RefList/ReferenceList";
 import ItemContainer from "./pages/Item/ItemContainer";
+import TagList from "./components/ui/TagList";
+import Map from "./pages/Home/Map";
 
 function App() {
   const [data, setData] = useState(null);
@@ -41,6 +43,9 @@ function App() {
       >
         {language === "es" ? "English" : "Español"}
       </button>
+
+      <Map />
+      <TagList tags={data.tags} />
 
       <ProjectList projects={data?.projects} items={data?.items} />
       <hr className="my-4" />
