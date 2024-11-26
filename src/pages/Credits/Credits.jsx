@@ -7,7 +7,7 @@ export default function Credits({ people }) {
 
   return (
     <div className="fixed inset-0 flex h-screen flex-col gap-2 overflow-auto border bg-white p-2 dark:bg-black">
-      <NavLink to="/terraignota-map" className="self-end border px-2 font-mono">
+      <NavLink to="/" className="self-end border px-2 font-mono">
         X
       </NavLink>
 
