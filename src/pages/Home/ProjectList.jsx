@@ -25,7 +25,7 @@ export default function ProjectList({ projects, items, setCurrentItem }) {
                 .map((item) => (
                   <li className="pl-4 font-thin" key={item._id}>
                     <NavLink
-                      to={`/terraignota-map/${item.slug.current}`}
+                      to={`/${item.slug.current}`}
                       onClick={() => setCurrentItem(item)}
                       className={({ isActive }) =>
                         isActive ? "underline" : "hover:underline"

@@ -38,19 +38,19 @@ function App() {
   console.log(data);
 
   return (
-    <BrowserRouter>
+    <BrowserRouter basename="/terraignota-map">
       <div className="px-4">
         <header className="sticky top-0 flex items-center justify-between">
           <h1 className="py-4 text-xl font-thin">
-            <NavLink to="/terraignota-map">
+            <NavLink to="/">
               {data?.settings?.title[language] || "Terra Ignota Map"}
             </NavLink>
           </h1>
           <nav className="flex gap-2">
-            <NavLink to="/terraignota-map/info" className="border px-2 py-1">
+            <NavLink to="/info" className="border px-2 py-1">
               Info
             </NavLink>
-            <NavLink to="/terraignota-map/credits" className="border px-2 py-1">
+            <NavLink to="/credits" className="border px-2 py-1">
               Credits
             </NavLink>
             <button
@@ -71,19 +71,10 @@ function App() {
         />
 
         <Routes>
-          <Route path="/terraignota-map/" element={<></>} />
-          <Route
-            path="/terraignota-map/info"
-            element={<Info data={data?.settings} />}
-          />
-          <Route
-            path="/terraignota-map/credits"
-            element={<Credits people={data?.people} />}
-          />
-          <Route
-            path="/terraignota-map/:slug"
-            element={<ItemContainer item={currentItem} />}
-          />
+          <Route path="/" element={<></>} />
+          <Route path="/info" element={<Info data={data?.settings} />} />
+          <Route path="/credits" element={<Credits people={data?.people} />} />
+          <Route path="/:slug" element={<ItemContainer item={currentItem} />} />
         </Routes>
       </div>
     </BrowserRouter>
