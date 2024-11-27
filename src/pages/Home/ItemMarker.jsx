@@ -12,9 +12,7 @@ export default function ItemMarker({ item }) {
       anchor="bottom"
       mapStyle="/terraignota-map/styles/light.json"
     >
-      <div className="bg-[#00464F] text-xs text-white">
-        {item.code && <>{item.code}</>}
-      </div>
+      <div className="size-4 cursor-pointer border border-[#000] bg-[#0f0] p-[2px] text-xs text-[#00464F]" />
     </Marker>
   );
 }
