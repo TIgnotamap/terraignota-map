@@ -1,0 +1,50 @@
+{
+  "version": 8,
+  "id": "light",
+  "name": "Light",
+  "sources": {
+    "openmaptiles": {
+      "type": "vector",
+      "url": "https://tiles.openfreemap.org/planet"
+    }
+  },
+  "sprite": "https://tiles.openfreemap.org/sprites/ofm_f384/ofm",
+  "glyphs": "https://tiles.openfreemap.org/fonts/{fontstack}/{range}.pbf",
+  "layers": [
+    {
+      "id": "Water",
+      "type": "line",
+      "source": "openmaptiles",
+      "source-layer": "water",
+      "layout": { "visibility": "visible" },
+      "paint": {
+        "line-color": "black",
+        "line-opacity": ["match", ["get", "intermittent"], 1, 0.7, 1],
+        "line-width": 1
+      },
+      "filter": ["all", ["!=", "brunnel", "tunnel"]]
+    },
+    {
+      "id": "River",
+      "type": "line",
+      "source": "openmaptiles",
+      "source-layer": "waterway",
+      "layout": { "visibility": "visible" },
+      "paint": {
+        "line-color": "black",
+        "line-opacity": ["match", ["get", "brunnel"], "tunnel", 0.7, 1],
+        "line-width": {
+          "stops": [
+            [9, 1],
+            [18, 3]
+          ]
+        }
+      },
+      "filter": ["!=", "brunnel", "tunnel"]
+    }
+  ],
+  "bearing": 0,
+  "pitch": 0,
+  "center": [0, 0],
+  "zoom": 1
+}

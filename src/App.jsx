@@ -8,7 +8,7 @@ import Info from "./pages/Info/Info";
 import ItemContainer from "./pages/Item/ItemContainer";
 
 import TagList from "./components/ui/TagList";
-import Map from "./pages/Home/Map";
+import TerraIgnotaMap from "./pages/Home/TerraIgnotaMap";
 
 function App() {
   const [data, setData] = useState(null);
@@ -62,7 +62,7 @@ function App() {
           </nav>
         </header>
 
-        <Map />
+        <TerraIgnotaMap />
         <TagList tags={data.tags} />
         <ProjectList
           projects={data?.projects}
