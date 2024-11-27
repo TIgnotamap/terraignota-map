@@ -18,9 +18,9 @@
       "source-layer": "water",
       "layout": { "visibility": "visible" },
       "paint": {
-        "line-color": "black",
+        "line-color": "#666",
         "line-opacity": ["match", ["get", "intermittent"], 1, 0.7, 1],
-        "line-width": 1
+        "line-width": 0.5
       },
       "filter": ["all", ["!=", "brunnel", "tunnel"]]
     },
@@ -31,9 +31,9 @@
       "source-layer": "waterway",
       "layout": { "visibility": "visible" },
       "paint": {
-        "line-color": "black",
+        "line-color": "#666",
         "line-opacity": ["match", ["get", "brunnel"], "tunnel", 0.7, 1],
-        "line-width": 1
+        "line-width": 0.25
       },
       "filter": ["!=", "brunnel", "tunnel"]
     }
