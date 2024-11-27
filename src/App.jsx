@@ -62,7 +62,7 @@ function App() {
           </nav>
         </header>
 
-        <TerraIgnotaMap />
+        <TerraIgnotaMap data={data?.items} />
         <TagList tags={data.tags} />
         <ProjectList
           projects={data?.projects}
