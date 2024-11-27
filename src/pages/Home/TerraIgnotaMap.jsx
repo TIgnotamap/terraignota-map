@@ -1,9 +1,9 @@
 import { Map } from "@vis.gl/react-maplibre";
 import ItemMarker from "./ItemMarker";
 
-export default function TerraIgnotaMap({ data }) {
+export default function TerraIgnotaMap({ data, theme }) {
   return (
-    <div className="fixed inset-0 -z-10 h-screen w-full">
+    <div className="fixed inset-0 -z-10 h-screen w-full bg-white dark:bg-black">
       <Map
         initialViewState={{
           longitude: -67,
@@ -12,7 +12,11 @@ export default function TerraIgnotaMap({ data }) {
           bearing: 90,
           minZoom: 3,
         }}
-        mapStyle="/terraignota-map/styles/light.json"
+        mapStyle={
+          theme === "dark"
+            ? "/terraignota-map/styles/dark.json"
+            : "/terraignota-map/styles/light.json"
+        }
       >
         {data?.map((item) => (
           <ItemMarker

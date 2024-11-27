@@ -2,6 +2,8 @@ import { useState, useEffect, useContext } from "react";
 import { fetchData } from "./sanity/sanity-utils";
 import { LanguageContext } from "./utils/LanguageContext";
 import { NavLink, BrowserRouter, Routes, Route } from "react-router-dom";
+
+import useTheme from "./hooks/useTheme";
 import ProjectList from "./pages/Home/ProjectList";
 import Credits from "./pages/Credits/Credits";
 import Info from "./pages/Info/Info";
@@ -16,6 +18,7 @@ function App() {
   const [error, setError] = useState(null);
   const [currentItem, setCurrentItem] = useState(null);
   const { language, setLanguage } = useContext(LanguageContext);
+  const [theme, setTheme] = useTheme();
 
   useEffect(() => {
     const loadData = async () => {
@@ -39,7 +42,7 @@ function App() {
 
   return (
     <BrowserRouter basename="/terraignota-map">
-      <div className="px-4">
+      <div className="px-4 text-black dark:text-white">
         <header className="sticky top-0 flex items-center justify-between">
           <h1 className="py-4 text-xl font-thin">
             <NavLink to="/">
@@ -47,6 +50,19 @@ function App() {
             </NavLink>
           </h1>
           <nav className="flex gap-2">
+            <button
+              onClick={() => {
+                if (theme === "dark") {
+                  setTheme("light");
+                  document.documentElement.classList.toggle("dark");
+                } else {
+                  setTheme("dark");
+                  document.documentElement.classList.toggle("dark");
+                }
+              }}
+            >
+              ●
+            </button>
             <NavLink to="/info" className="border px-2 py-1">
               Info
             </NavLink>
@@ -62,7 +78,7 @@ function App() {
           </nav>
         </header>
 
-        <TerraIgnotaMap data={data?.items} />
+        <TerraIgnotaMap data={data?.items} theme={theme} />
         <TagList tags={data.tags} />
         <ProjectList
           projects={data?.projects}
