@@ -19,7 +19,7 @@ export default function ItemContainer({ item }) {
 
   return (
     <div
-      className={`m-4 ${item.isHighlighted ? "border-4 border-red-600" : "border"}`}
+      className={`bg-light dark:bg-dark fixed right-4 mt-2 h-[70vh] w-[400px] overflow-y-scroll border p-1 font-mono text-xs ${item.isHighlighted ? "border-red-600" : "border-gray"}`}
     >
       {renderTemplate()}
     </div>

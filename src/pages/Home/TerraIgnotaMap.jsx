@@ -34,7 +34,15 @@ export default function TerraIgnotaMap({ data, theme }) {
             // setCurrentItem={setCurrentItem}
           />
         ))}
-        <ScaleControl position="bottom-left" />
+        <ScaleControl
+          position="bottom-left"
+          style={{
+            borderWidth: "1px",
+            borderColor: theme === "dark" ? "white" : "black",
+            backgroundColor: "transparent",
+            color: theme === "dark" ? "white" : "black",
+          }}
+        />
         <NavigationControl
           position="bottom-left"
           showCompass={false}

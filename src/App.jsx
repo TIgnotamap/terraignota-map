@@ -42,14 +42,14 @@ function App() {
 
   return (
     <BrowserRouter basename="/terraignota-map">
-      <div className="px-4 text-black dark:text-white">
-        <header className="sticky top-0 flex items-center justify-between">
-          <h1 className="py-4 text-xl font-thin">
+      <div className="text-dark dark:text-light p-4">
+        <header className="sticky top-0 flex items-center justify-between font-serif">
+          <h1 className="border-gray bg-light dark:bg-dark dark:text-light border px-1 py-1 text-sm">
             <NavLink to="/">
               {data?.settings?.title[language] || "Terra Ignota Map"}
             </NavLink>
           </h1>
-          <nav className="flex gap-2">
+          <nav className="flex items-center gap-2">
             <button
               onClick={() => {
                 if (theme === "dark") {
@@ -63,17 +63,23 @@ function App() {
             >
               ●
             </button>
-            <NavLink to="/info" className="border px-2 py-1">
-              Info
+            <NavLink
+              to="/info"
+              className="bg-light dark:bg-dark dark:text-light border-darkGray size-6 rounded-full border p-1 text-center font-mono text-xs lowercase"
+            >
+              ?
             </NavLink>
-            <NavLink to="/credits" className="border px-2 py-1">
-              Credits
+            <NavLink
+              to="/credits"
+              className="bg-light dark:bg-dark dark:text-light border-darkGray rounded-full border px-2 py-1 font-mono text-xs lowercase"
+            >
+              Index
             </NavLink>
             <button
-              className="border px-2 py-1"
+              className="bg-light dark:bg-dark dark:text-light border-darkGray size-6 rounded-full border p-1 pt-[2px] text-center font-mono text-xs lowercase"
               onClick={() => setLanguage(language === "es" ? "en" : "es")}
             >
-              {language === "es" ? "English" : "Español"}
+              {language === "es" ? "EN" : "ES"}
             </button>
           </nav>
         </header>
