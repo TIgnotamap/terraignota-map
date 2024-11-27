@@ -1,4 +1,9 @@
-import { Map } from "@vis.gl/react-maplibre";
+import {
+  Map,
+  ScaleControl,
+  NavigationControl,
+  AttributionControl,
+} from "@vis.gl/react-maplibre";
 import ItemMarker from "./ItemMarker";
 
 export default function TerraIgnotaMap({ data, theme }) {
@@ -17,6 +22,10 @@ export default function TerraIgnotaMap({ data, theme }) {
             ? "/terraignota-map/styles/dark.json"
             : "/terraignota-map/styles/light.json"
         }
+        cursor="crosshair"
+        dragRotate={false}
+        touchZoomRotate={false}
+        attributionControl={false}
       >
         {data?.map((item) => (
           <ItemMarker
@@ -25,6 +34,19 @@ export default function TerraIgnotaMap({ data, theme }) {
             // setCurrentItem={setCurrentItem}
           />
         ))}
+        <ScaleControl position="bottom-left" />
+        <NavigationControl
+          position="bottom-left"
+          showCompass={false}
+          style={{
+            borderRadius: "0px",
+            border: "1px solid black",
+            boxShadow: "none",
+            backgroundColor: "white",
+          }}
+        />
+
+        <AttributionControl customAttribution="" compact={true} />
       </Map>
     </div>
   );
