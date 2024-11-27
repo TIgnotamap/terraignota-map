@@ -33,12 +33,7 @@
       "paint": {
         "line-color": "black",
         "line-opacity": ["match", ["get", "brunnel"], "tunnel", 0.7, 1],
-        "line-width": {
-          "stops": [
-            [9, 1],
-            [18, 3]
-          ]
-        }
+        "line-width": 1
       },
       "filter": ["!=", "brunnel", "tunnel"]
     }
