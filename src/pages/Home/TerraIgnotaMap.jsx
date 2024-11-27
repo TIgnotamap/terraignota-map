@@ -8,8 +8,9 @@ export default function TerraIgnotaMap({ data }) {
         initialViewState={{
           longitude: -67,
           latitude: -57,
-          zoom: 3,
+          zoom: 3.5,
           bearing: 90,
+          minZoom: 3,
         }}
         mapStyle="/terraignota-map/styles/light.json"
       >
