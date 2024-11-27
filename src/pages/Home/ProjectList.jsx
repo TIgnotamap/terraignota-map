@@ -4,21 +4,13 @@ import { NavLink } from "react-router-dom";
 
 export default function ProjectList({ projects, items, setCurrentItem }) {
   const { language } = useContext(LanguageContext);
-  const translations = {
-    title: {
-      en: "Projects",
-      es: "Proyectos",
-    },
-  };
-  const translate = (textKey) => translations[textKey]?.[language] || textKey;
 
   return (
-    <div>
-      <h1 className="py-4 font-bold">{translate("title")}:</h1>
+    <div className="absolute mt-2 max-w-[180px] border bg-[#ffffffee] p-2 text-black dark:bg-[#000000cc] dark:text-white">
       <ul>
         {projects?.map((project) => (
-          <li key={project._id} className="pl-4">
-            <h2 className="underline">{project.title[language]}</h2>
+          <li key={project._id}>
+            <h2 className="">{project.title[language]}</h2>
             <ul>
               {items
                 .filter((item) => item.project._id === project._id)
