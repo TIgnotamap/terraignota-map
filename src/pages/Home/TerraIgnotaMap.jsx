@@ -10,6 +10,7 @@ export default function TerraIgnotaMap({ data, theme }) {
   return (
     <div className="fixed inset-0 -z-10 h-screen w-full bg-white dark:bg-black">
       <Map
+        id="terraIgnotaMap"
         initialViewState={{
           longitude: -67,
           latitude: -57,

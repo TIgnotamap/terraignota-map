@@ -4,11 +4,14 @@ import "maplibre-gl/dist/maplibre-gl.css";
 import "./index.css";
 import App from "./App.jsx";
 import { LanguageProvider } from "./utils/LanguageContext.jsx";
+import { MapProvider } from "@vis.gl/react-maplibre";
 
 createRoot(document.getElementById("root")).render(
   <StrictMode>
     <LanguageProvider>
-      <App />
+      <MapProvider>
+        <App />
+      </MapProvider>
     </LanguageProvider>
   </StrictMode>,
 );
