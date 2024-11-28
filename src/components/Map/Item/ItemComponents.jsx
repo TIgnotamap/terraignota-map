@@ -1,6 +1,6 @@
-import { LanguageContext } from "../../utils/LanguageContext";
+import { LanguageContext } from "../../../utils/LanguageContext";
 import { useContext } from "react";
-import Subject from "../../components/Subject";
+import Subject from "../../Subject";
 import { PortableText } from "@portabletext/react";
 
 export function Code({ code }) {

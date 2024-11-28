@@ -1,11 +1,11 @@
 import { useContext } from "react";
-import { LanguageContext } from "../../utils/LanguageContext";
+import { LanguageContext } from "../../../utils/LanguageContext";
 
-import TagList from "../../components/ui/TagList";
-import Date from "../../components/ui/Date";
-import ImageContainer from "../../components/ui/ImageContainer";
-import Video from "../../components/ui/Video";
-import PeopleAndOrganizationsList from "../../components/PeopleAndOrganizationsList";
+import TagList from "../../ui/TagList";
+import Date from "../../ui/Date";
+import ImageContainer from "../../ui/ImageContainer";
+import Video from "../../ui/Video";
+import PeopleAndOrganizationsList from "../../PeopleAndOrganizationsList";
 
 import RockProperties from "./RockProperties";
 import {

@@ -1,4 +1,4 @@
-import { LanguageContext } from "../../utils/LanguageContext";
+import { LanguageContext } from "../../../utils/LanguageContext";
 import { useContext } from "react";
 
 export default function RockProperties({ properties }) {

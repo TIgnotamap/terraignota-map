@@ -1,5 +1,5 @@
 import { useContext } from "react";
-import { LanguageContext } from "../../utils/LanguageContext";
+import { LanguageContext } from "../utils/LanguageContext";
 import { NavLink } from "react-router";
 
 export default function Credits({ people }) {

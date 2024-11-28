@@ -3,13 +3,13 @@ import { fetchData } from "./sanity/sanity-utils";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 import useTheme from "./hooks/useTheme";
-import ProjectList from "./pages/Home/ProjectList";
-import Credits from "./pages/Credits/Credits";
-import Info from "./pages/Info/Info";
-import ItemContainer from "./pages/Item/ItemContainer";
+import ProjectList from "./components/Map/ProjectList";
+import Credits from "./components/Credits";
+import Info from "./components/Info";
+import ItemContainer from "./components/Map/Item/ItemContainer";
 
 import TagList from "./components/ui/TagList";
-import TerraIgnotaMap from "./pages/Home/TerraIgnotaMap";
+import TerraIgnotaMap from "./components/Map/TerraIgnotaMap";
 import Header from "./components/Header";
 
 function App() {

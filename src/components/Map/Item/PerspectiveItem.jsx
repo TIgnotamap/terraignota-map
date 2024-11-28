@@ -1,22 +1,19 @@
 import { useContext } from "react";
-import { LanguageContext } from "../../utils/LanguageContext";
+import { LanguageContext } from "../../../utils/LanguageContext";
 
-import TagList from "../../components/ui/TagList";
-import Date from "../../components/ui/Date";
-import ImageContainer from "../../components/ui/ImageContainer";
-import Video from "../../components/ui/Video";
+import TagList from "../../ui/TagList";
+import Date from "../../ui/Date";
+import Video from "../../ui/Video";
 
 import {
   Code,
   Coordinates,
   Location,
-  ItemText,
   ItemProject,
   ItemCredits,
-  ItemLinks,
 } from "./ItemComponents";
 
-export default function OscItem({ item }) {
+export default function PerspectiveItem({ item }) {
   const { language } = useContext(LanguageContext);
   const translations = {
     date: {
@@ -40,11 +37,8 @@ export default function OscItem({ item }) {
       <Coordinates lat={item.lat} long={item.long} gps={item.gps} />
 
       {item.video && <Video video={item.video} />}
-      {item.text && <ItemText text={item.text} />}
-      {item.images && <ImageContainer images={item.images} />}
-      {item.credits && <ItemCredits credits={item.credits} />}
 
-      {item.links && <ItemLinks links={item.links} />}
+      {item.credits && <ItemCredits credits={item.credits} />}
     </div>
   );
 }
