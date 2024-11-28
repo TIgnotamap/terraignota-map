@@ -37,17 +37,13 @@ function App() {
   if (loading) return <div className="py-4 font-thin">Loading...</div>;
   if (error) return <div className="py-4 font-thin text-red-500">{error}</div>;
 
-  // console.log(data);
-
   return (
     <BrowserRouter basename="/terraignota-map">
-      <div className="text-dark dark:text-light p-4">
+      <div className="p-4 text-dark dark:text-light">
         <Header data={data?.settings} theme={theme} setTheme={setTheme} />
-        <TerraIgnotaMap data={data?.items} theme={theme} />
-        <TagList tags={data.tags} />
-        <ProjectList
-          projects={data?.projects}
-          items={data?.items}
+        <TerraIgnotaMap
+          data={data}
+          theme={theme}
           setCurrentItem={setCurrentItem}
         />
         <Routes>
