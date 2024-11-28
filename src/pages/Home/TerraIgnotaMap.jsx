@@ -44,7 +44,7 @@ export default function TerraIgnotaMap({ data, theme }) {
             color: theme === "dark" ? "white" : "black",
           }}
         />
-        <NavigationControl
+        {/* <NavigationControl
           position="bottom-left"
           showCompass={false}
           style={{
@@ -53,7 +53,7 @@ export default function TerraIgnotaMap({ data, theme }) {
             boxShadow: "none",
             backgroundColor: "white",
           }}
-        />
+        /> */}
 
         <AttributionControl customAttribution="" compact={true} />
       </Map>
