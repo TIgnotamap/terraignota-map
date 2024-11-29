@@ -1,10 +1,5 @@
 import { useState, useEffect } from "react";
-import {
-  Map,
-  ScaleControl,
-  NavigationControl,
-  AttributionControl,
-} from "@vis.gl/react-maplibre";
+import { Map, ScaleControl, NavigationControl } from "@vis.gl/react-maplibre";
 import TagList from "../ui/TagList";
 import ProjectList from "./ProjectList";
 import ItemMarker from "./ItemMarker";
@@ -65,7 +60,7 @@ export default function TerraIgnotaMap({ data, theme, setCurrentItem }) {
             />
           ))}
           <ScaleControl
-            position="bottom-left"
+            position="bottom-right"
             style={{
               borderWidth: "1px",
               borderColor: theme === "dark" ? "white" : "black",
@@ -83,7 +78,6 @@ export default function TerraIgnotaMap({ data, theme, setCurrentItem }) {
               backgroundColor: "white",
             }}
           /> */}
-          <AttributionControl customAttribution="" compact={true} />
         </Map>
       </div>
     </div>
