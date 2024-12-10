@@ -1,7 +1,6 @@
 import { useContext } from "react";
 import { LanguageContext } from "../../utils/LanguageContext";
 import { NavLink } from "react-router-dom";
-import { useMap } from "@vis.gl/react-maplibre";
 
 export default function ProjectList({
   projects,
@@ -9,7 +8,6 @@ export default function ProjectList({
   setCurrentItem,
   filteredItems,
 }) {
-  const { terraIgnotaMap } = useMap();
   const { language } = useContext(LanguageContext);
 
   return (
@@ -28,10 +26,6 @@ export default function ProjectList({
                         to={`/${item.slug.current}`}
                         onClick={() => {
                           setCurrentItem(item);
-                          terraIgnotaMap?.flyTo({
-                            center: [item.long, item.lat],
-                            zoom: 8,
-                          });
                         }}
                         className={({ isActive }) =>
                           isActive ? "underline" : "hover:underline"

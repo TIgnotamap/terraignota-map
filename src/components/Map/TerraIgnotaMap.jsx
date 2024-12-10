@@ -1,12 +1,23 @@
 import { useState, useEffect } from "react";
-import { Map, ScaleControl, NavigationControl } from "@vis.gl/react-maplibre";
+import {
+  useMap,
+  Map,
+  ScaleControl,
+  NavigationControl,
+} from "@vis.gl/react-maplibre";
 import TagList from "./TagList";
 import ProjectList from "./ProjectList";
 import ItemMarker from "./ItemMarker";
 
-export default function TerraIgnotaMap({ data, theme, setCurrentItem }) {
+export default function TerraIgnotaMap({
+  data,
+  theme,
+  setCurrentItem,
+  currentItem,
+}) {
   const [selectedTags, setSelectedTags] = useState([]);
   const [filteredItems, setFilteredItems] = useState(data.items);
+  const { terraIgnotaMap } = useMap();
 
   useEffect(() => {
     if (selectedTags.length > 0) {
@@ -18,6 +29,13 @@ export default function TerraIgnotaMap({ data, theme, setCurrentItem }) {
       setFilteredItems(data.items);
     }
   }, [selectedTags, data.items]);
+
+  useEffect(() => {
+    terraIgnotaMap?.flyTo({
+      center: [currentItem.long, currentItem.lat],
+      zoom: 8,
+    });
+  }, [currentItem, terraIgnotaMap]);
 
   return (
     <div>

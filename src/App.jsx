@@ -43,6 +43,7 @@ function App() {
         data={data}
         theme={theme}
         setCurrentItem={setCurrentItem}
+        currentItem={currentItem}
       />
 
       <Routes>
