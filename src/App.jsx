@@ -1,6 +1,6 @@
 import { useState, useEffect, useContext } from "react";
 import { fetchData } from "./sanity/sanity-utils";
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, useLocation } from "react-router-dom";
 
 import useTheme from "./hooks/useTheme";
 import ProjectList from "./components/Map/ProjectList";
@@ -17,6 +17,7 @@ function App() {
   const [error, setError] = useState(null);
   const [currentItem, setCurrentItem] = useState(null);
   const [theme, setTheme] = useTheme();
+  const { pathname } = useLocation();
 
   useEffect(() => {
     const loadData = async () => {
@@ -35,6 +36,14 @@ function App() {
 
   if (loading) return <div className="py-4 font-thin">Loading...</div>;
   if (error) return <div className="py-4 font-thin text-red-500">{error}</div>;
+  if (
+    currentItem === null &&
+    (pathname !== "/" || pathname !== "/info" || pathname !== "/index")
+  ) {
+    setCurrentItem(
+      data.items.filter((item) => item.slug.current === pathname.slice(1))[0],
+    );
+  }
 
   return (
     <div className="p-4 text-dark dark:text-light">
