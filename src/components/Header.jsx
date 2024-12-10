@@ -9,7 +9,7 @@ export default function Header({ data, theme, setTheme }) {
 
   return (
     <header className="sticky top-0 flex items-center justify-between font-serif">
-      <h1 className="border-gray bg-light dark:bg-dark dark:text-light border px-1 py-1 text-sm">
+      <h1 className="border border-gray bg-light px-1 py-1 text-sm dark:bg-dark dark:text-light">
         <NavLink
           to="/"
           onClick={() =>
@@ -35,18 +35,18 @@ export default function Header({ data, theme, setTheme }) {
         </button>
         <NavLink
           to="/info"
-          className="bg-light dark:bg-dark dark:text-light border-darkGray size-6 rounded-full border p-1 text-center font-mono text-xs lowercase"
+          className="size-6 rounded-full border border-darkGray bg-light p-1 text-center font-mono text-xs lowercase dark:bg-dark dark:text-light"
         >
           ?
         </NavLink>
         <NavLink
-          to="/credits"
-          className="bg-light dark:bg-dark dark:text-light border-darkGray rounded-full border px-2 py-1 font-mono text-xs lowercase"
+          to="/index"
+          className="rounded-full border border-darkGray bg-light px-2 py-1 font-mono text-xs lowercase dark:bg-dark dark:text-light"
         >
           Index
         </NavLink>
         <button
-          className="bg-light dark:bg-dark dark:text-light border-darkGray size-6 rounded-full border p-1 pt-[2px] text-center font-mono text-xs lowercase"
+          className="size-6 rounded-full border border-darkGray bg-light p-1 pt-[2px] text-center font-mono text-xs lowercase dark:bg-dark dark:text-light"
           onClick={() => setLanguage(language === "es" ? "en" : "es")}
         >
           {language === "es" ? "EN" : "ES"}

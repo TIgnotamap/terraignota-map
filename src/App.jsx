@@ -4,7 +4,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 import useTheme from "./hooks/useTheme";
 import ProjectList from "./components/Map/ProjectList";
-import Credits from "./components/Credits";
+import Index from "./components/Index";
 import Info from "./components/Info";
 import ItemContainer from "./components/Map/Item/ItemContainer";
 
@@ -49,7 +49,7 @@ function App() {
         <Routes>
           <Route path="/" element={<></>} />
           <Route path="/info" element={<Info data={data?.settings} />} />
-          <Route path="/credits" element={<Credits people={data?.people} />} />
+          <Route path="/index" element={<Index people={data?.people} />} />
           <Route path="/:slug" element={<ItemContainer item={currentItem} />} />
         </Routes>
       </div>
