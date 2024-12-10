@@ -1,6 +1,6 @@
 import { useState, useEffect, useContext } from "react";
 import { fetchData } from "./sanity/sanity-utils";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
 
 import useTheme from "./hooks/useTheme";
 import ProjectList from "./components/Map/ProjectList";
@@ -37,22 +37,21 @@ function App() {
   if (error) return <div className="py-4 font-thin text-red-500">{error}</div>;
 
   return (
-    <BrowserRouter basename="/terraignota-map">
-      <div className="p-4 text-dark dark:text-light">
-        <Header data={data?.settings} theme={theme} setTheme={setTheme} />
-        <TerraIgnotaMap
-          data={data}
-          theme={theme}
-          setCurrentItem={setCurrentItem}
-        />
-        <Routes>
-          <Route path="/" element={<></>} />
-          <Route path="/info" element={<Info data={data?.settings} />} />
-          <Route path="/index" element={<Index people={data?.people} />} />
-          <Route path="/:slug" element={<ItemContainer item={currentItem} />} />
-        </Routes>
-      </div>
-    </BrowserRouter>
+    <div className="p-4 text-dark dark:text-light">
+      <Header data={data?.settings} theme={theme} setTheme={setTheme} />
+      <TerraIgnotaMap
+        data={data}
+        theme={theme}
+        setCurrentItem={setCurrentItem}
+      />
+
+      <Routes>
+        <Route path="/" element={<></>} />
+        <Route path="/info" element={<Info data={data?.settings} />} />
+        <Route path="/index" element={<Index people={data?.people} />} />
+        <Route path="/:slug" element={<ItemContainer item={currentItem} />} />
+      </Routes>
+    </div>
   );
 }
 
