@@ -10,7 +10,7 @@ export async function fetchData() {
       tags,
       people,
       // exhibitions,
-      // organizations,
+      organizations,
       references,
     ] = await Promise.all([
       getSettings(),
@@ -19,7 +19,7 @@ export async function fetchData() {
       getTags(),
       getPeople(),
       // getExhibitions(),
-      // getOrganizations(),
+      getOrganizations(),
       getReferences(),
     ]);
     return {
@@ -29,7 +29,7 @@ export async function fetchData() {
       tags,
       people,
       // exhibitions,
-      // organizations,
+      organizations,
       references,
     };
   } catch (error) {

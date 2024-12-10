@@ -37,6 +37,8 @@ function App() {
   if (loading) return <div className="py-4 font-thin">Loading...</div>;
   if (error) return <div className="py-4 font-thin text-red-500">{error}</div>;
 
+  console.log("data", data);
+
   return (
     <BrowserRouter basename="/terraignota-map">
       <div className="p-4 text-dark dark:text-light">
@@ -49,7 +51,16 @@ function App() {
         <Routes>
           <Route path="/" element={<></>} />
           <Route path="/info" element={<Info data={data?.settings} />} />
-          <Route path="/index" element={<Index people={data?.people} />} />
+          <Route
+            path="/index"
+            element={
+              <Index
+                people={data?.people}
+                orgs={data?.organizations}
+                refMaterials={data?.references}
+              />
+            }
+          />
           <Route path="/:slug" element={<ItemContainer item={currentItem} />} />
         </Routes>
       </div>
