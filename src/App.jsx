@@ -10,6 +10,7 @@ import ItemInfo from "./components/ItemInfo";
 
 import TerraIgnotaMap from "./components/Map/TerraIgnotaMap";
 import Header from "./components/Header";
+import ItemTitle from "./components/Map/ItemTitle";
 
 function App() {
   const [data, setData] = useState(null);
@@ -54,7 +55,9 @@ function App() {
         setCurrentItem={setCurrentItem}
         currentItem={currentItem}
       />
-
+      {currentItem && (
+        <ItemTitle currentItem={currentItem} setCurrentItem={setCurrentItem} />
+      )}
       <Routes>
         <Route path="/" element={<></>} />
         <Route path="/info" element={<Info data={data?.settings} />} />
