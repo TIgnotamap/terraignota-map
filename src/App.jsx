@@ -58,7 +58,16 @@ function App() {
       <Routes>
         <Route path="/" element={<></>} />
         <Route path="/info" element={<Info data={data?.settings} />} />
-        <Route path="/index" element={<Index people={data?.people} />} />
+        <Route
+          path="/index"
+          element={
+            <Index
+              people={data?.people}
+              orgs={data?.organizations}
+              refMaterials={data?.references}
+            />
+          }
+        />
         <Route path="/:slug" element={<ItemContainer item={currentItem} />} />
       </Routes>
     </div>
