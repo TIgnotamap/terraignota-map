@@ -31,10 +31,11 @@ export default function TerraIgnotaMap({
   }, [selectedTags, data.items]);
 
   useEffect(() => {
-    terraIgnotaMap?.flyTo({
-      center: [currentItem.long, currentItem.lat],
-      zoom: 8,
-    });
+    currentItem &&
+      terraIgnotaMap?.flyTo({
+        center: [currentItem.long, currentItem.lat],
+        zoom: 8,
+      });
   }, [currentItem, terraIgnotaMap]);
 
   return (
