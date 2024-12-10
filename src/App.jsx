@@ -1,4 +1,4 @@
-import { useState, useEffect, useContext } from "react";
+import { useState, useEffect } from "react";
 import { fetchData } from "./sanity/sanity-utils";
 import { Routes, Route, useLocation } from "react-router-dom";
 
@@ -11,7 +11,7 @@ import Info from "./components/Info";
 import ItemInfo from "./components/ItemInfo";
 
 import TerraIgnotaMap from "./components/Map/TerraIgnotaMap";
-import Header from "./components/Header";
+import Menu from "./components/Menu";
 import ItemTitle from "./components/ItemTitle";
 
 function App() {
@@ -64,7 +64,7 @@ function App() {
 
   return (
     <div className="p-4 text-dark dark:text-light">
-      <Header data={data?.settings} theme={theme} setTheme={setTheme} />
+      <Menu data={data?.settings} theme={theme} setTheme={setTheme} />
       <TerraIgnotaMap
         data={data}
         theme={theme}
