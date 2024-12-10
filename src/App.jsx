@@ -6,7 +6,7 @@ import useTheme from "./hooks/useTheme";
 import ProjectList from "./components/Map/ProjectList";
 import Index from "./components/Index";
 import Info from "./components/Info";
-import ItemContainer from "./components/Map/ItemContainer";
+import ItemInfo from "./components/ItemInfo";
 
 import TerraIgnotaMap from "./components/Map/TerraIgnotaMap";
 import Header from "./components/Header";
@@ -68,7 +68,7 @@ function App() {
             />
           }
         />
-        <Route path="/:slug" element={<ItemContainer item={currentItem} />} />
+        <Route path="/:slug" element={<ItemInfo item={currentItem} />} />
       </Routes>
     </div>
   );
