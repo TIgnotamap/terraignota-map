@@ -8,7 +8,6 @@ import Index from "./components/Index";
 import Info from "./components/Info";
 import ItemContainer from "./components/Map/Item/ItemContainer";
 
-import TagList from "./components/ui/TagList";
 import TerraIgnotaMap from "./components/Map/TerraIgnotaMap";
 import Header from "./components/Header";
 

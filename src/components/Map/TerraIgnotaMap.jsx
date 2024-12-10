@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { Map, ScaleControl, NavigationControl } from "@vis.gl/react-maplibre";
-import TagList from "../ui/TagList";
+import TagList from "./TagList";
 import ProjectList from "./ProjectList";
 import ItemMarker from "./ItemMarker";
 

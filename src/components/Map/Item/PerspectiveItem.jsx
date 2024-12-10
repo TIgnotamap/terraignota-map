@@ -1,7 +1,7 @@
 import { useContext } from "react";
 import { LanguageContext } from "../../../utils/LanguageContext";
 
-import TagList from "../../ui/TagList";
+import TagList from "../TagList";
 import Date from "../../ui/Date";
 import Video from "../../ui/Video";
 
