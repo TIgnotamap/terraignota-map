@@ -1,7 +1,7 @@
-import RockItem from "./RockItem";
-import OscItem from "./OscItem";
-import PerspectiveItem from "./PerspectiveItem";
-import DefaultItem from "./DefaultItem";
+import RockItem from "./Item/RockItem";
+import OscItem from "./Item/OscItem";
+import PerspectiveItem from "./Item/PerspectiveItem";
+import DefaultItem from "./Item/DefaultItem";
 
 export default function ItemContainer({ item }) {
   const renderTemplate = () => {
@@ -19,7 +19,7 @@ export default function ItemContainer({ item }) {
 
   return (
     <div
-      className={`bg-light dark:bg-dark fixed right-4 mt-2 h-[70vh] w-[400px] overflow-y-scroll border p-1 font-mono text-xs ${item?.isHighlighted ? "border-red-600" : "border-gray"}`}
+      className={`fixed right-4 mt-2 h-[70vh] w-[400px] overflow-y-scroll border bg-light p-1 font-mono text-xs dark:bg-dark ${item?.isHighlighted ? "border-red-600" : "border-gray"}`}
     >
       {renderTemplate()}
     </div>

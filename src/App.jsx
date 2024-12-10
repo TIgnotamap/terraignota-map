@@ -6,7 +6,7 @@ import useTheme from "./hooks/useTheme";
 import ProjectList from "./components/Map/ProjectList";
 import Index from "./components/Index";
 import Info from "./components/Info";
-import ItemContainer from "./components/Map/Item/ItemContainer";
+import ItemContainer from "./components/Map/ItemContainer";
 
 import TerraIgnotaMap from "./components/Map/TerraIgnotaMap";
 import Header from "./components/Header";
