@@ -17,10 +17,6 @@ export default function ItemMarker({ item, setCurrentItem }) {
         <div
           onClick={() => {
             setCurrentItem(item);
-            map.flyTo({
-              center: [item.long, item.lat],
-              zoom: 8,
-            });
           }}
           className="size-4 cursor-pointer border border-[#000] bg-[#0f0] p-[2px] text-xs text-[#00464F]"
         />
