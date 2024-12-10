@@ -64,7 +64,7 @@ export async function getProjects() {
 }
 
 export async function getItems() {
-  return client.fetch(`*[_type == "item"]{
+  return client.fetch(`*[_type == "item"] | order(date asc){
   _id,
   project->{
     _id,
@@ -148,7 +148,7 @@ export async function getTags() {
 }
 
 export async function getPeople() {
-  return client.fetch(`*[_type == "person"]{
+  return client.fetch(`*[_type == "person"] | order(lastName asc){
   _id,
   firstName,
   lastName,
@@ -174,7 +174,7 @@ export async function getExhibitions() {
 }
 
 export async function getOrganizations() {
-  return client.fetch(`*[_type == "organization"]{
+  return client.fetch(`*[_type == "organization"] | order(name.en asc){
   _id,
   name,
   info,
