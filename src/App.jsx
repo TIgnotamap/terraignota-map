@@ -12,7 +12,7 @@ import ItemInfo from "./components/ItemInfo";
 
 import TerraIgnotaMap from "./components/Map/TerraIgnotaMap";
 import Header from "./components/Header";
-import ItemTitle from "./components/Map/ItemTitle";
+import ItemTitle from "./components/ItemTitle";
 
 function App() {
   const [data, setData] = useState(null);
