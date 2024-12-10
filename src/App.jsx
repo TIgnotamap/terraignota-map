@@ -3,7 +3,9 @@ import { fetchData } from "./sanity/sanity-utils";
 import { Routes, Route, useLocation } from "react-router-dom";
 
 import useTheme from "./hooks/useTheme";
-import ProjectList from "./components/Map/ProjectList";
+import ProjectList from "./components/ProjectList";
+import ItemList from "./components/ItemList";
+import TagList from "./components/TagList";
 import Index from "./components/Index";
 import Info from "./components/Info";
 import ItemInfo from "./components/ItemInfo";
@@ -20,6 +22,9 @@ function App() {
   const [theme, setTheme] = useTheme();
   const { pathname } = useLocation();
 
+  const [selectedTags, setSelectedTags] = useState([]);
+  const [filteredItems, setFilteredItems] = useState(null);
+
   useEffect(() => {
     const loadData = async () => {
       try {
@@ -34,6 +39,17 @@ function App() {
     };
     loadData();
   }, []);
+
+  useEffect(() => {
+    if (selectedTags.length > 0) {
+      const filtered = data?.items?.filter((item) =>
+        item.tags?.some((tag) => selectedTags.includes(tag._id)),
+      );
+      setFilteredItems(filtered);
+    } else {
+      setFilteredItems(data?.items);
+    }
+  }, [selectedTags, data]);
 
   if (loading) return <div className="py-4 font-thin">Loading...</div>;
   if (error) return <div className="py-4 font-thin text-red-500">{error}</div>;
@@ -54,10 +70,24 @@ function App() {
         theme={theme}
         setCurrentItem={setCurrentItem}
         currentItem={currentItem}
+        filteredItems={filteredItems}
       />
       {currentItem && (
         <ItemTitle currentItem={currentItem} setCurrentItem={setCurrentItem} />
       )}
+
+      <ItemList
+        data={data && data}
+        filteredItems={filteredItems}
+        setCurrentItem={setCurrentItem}
+      />
+
+      <ProjectList projects={data?.projects} />
+      <TagList
+        tags={data?.tags}
+        selectedTags={selectedTags}
+        setSelectedTags={setSelectedTags}
+      />
       <Routes>
         <Route path="/" element={<></>} />
         <Route path="/info" element={<Info data={data?.settings} />} />

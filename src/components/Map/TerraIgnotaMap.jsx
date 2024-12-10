@@ -5,8 +5,6 @@ import {
   ScaleControl,
   NavigationControl,
 } from "@vis.gl/react-maplibre";
-import TagList from "./TagList";
-import ProjectList from "./ProjectList";
 import ItemMarker from "./ItemMarker";
 
 export default function TerraIgnotaMap({
@@ -14,21 +12,9 @@ export default function TerraIgnotaMap({
   theme,
   setCurrentItem,
   currentItem,
+  filteredItems,
 }) {
-  const [selectedTags, setSelectedTags] = useState([]);
-  const [filteredItems, setFilteredItems] = useState(data.items);
   const { terraIgnotaMap } = useMap();
-
-  useEffect(() => {
-    if (selectedTags.length > 0) {
-      const filtered = data.items?.filter((item) =>
-        item.tags?.some((tag) => selectedTags.includes(tag._id)),
-      );
-      setFilteredItems(filtered);
-    } else {
-      setFilteredItems(data.items);
-    }
-  }, [selectedTags, data.items]);
 
   useEffect(() => {
     currentItem &&
@@ -40,17 +26,6 @@ export default function TerraIgnotaMap({
 
   return (
     <div>
-      <TagList
-        tags={data?.tags}
-        selectedTags={selectedTags}
-        setSelectedTags={setSelectedTags}
-      />
-      <ProjectList
-        projects={data?.projects}
-        items={data?.items}
-        setCurrentItem={setCurrentItem}
-        filteredItems={filteredItems}
-      />
       <div className="fixed inset-0 -z-10 h-screen w-full bg-white dark:bg-black">
         <Map
           id="terraIgnotaMap"

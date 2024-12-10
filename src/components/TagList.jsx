@@ -1,5 +1,5 @@
 import { useContext } from "react";
-import { LanguageContext } from "../../utils/LanguageContext";
+import { LanguageContext } from "../utils/LanguageContext";
 import Tag from "./Tag";
 
 export default function TagList({ tags, selectedTags, setSelectedTags }) {
