@@ -8,7 +8,7 @@ export default function Index({ people, orgs, refMaterials }) {
 
   return (
     <div className="fixed right-6 top-16 flex items-start gap-2">
-      <NavLink to="/" className="border px-2 font-mono text-xs">
+      <NavLink to="/" className="border px-2 font-mono">
         X
       </NavLink>
       <div className="h-[60vh] w-[33vw] overflow-auto border bg-light dark:bg-dark">

@@ -13,6 +13,11 @@ export default {
         primary: "#00565f",
         secondary: "#e75d13",
       },
+      fontFamily: {
+        sans: ["Instrument Sans", "sans-serif"],
+        serif: ["Instrument Serif", "serif"],
+        mono: ["IBM Plex Mono", "monospace"],
+      },
     },
   },
   plugins: [],

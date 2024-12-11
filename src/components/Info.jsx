@@ -6,7 +6,7 @@ export default function Info({ data }) {
   const { language } = useContext(LanguageContext);
   return (
     <div className="fixed right-6 top-16 flex items-start gap-2">
-      <NavLink to="/" className="border px-2 font-mono text-xs">
+      <NavLink to="/" className="border px-2 font-mono">
         X
       </NavLink>
 
