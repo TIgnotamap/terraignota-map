@@ -13,6 +13,7 @@ import ItemInfo from "./components/ItemInfo";
 import TerraIgnotaMap from "./components/Map/TerraIgnotaMap";
 import Menu from "./components/Menu";
 import ItemTitle from "./components/ItemTitle";
+import Coordinates from "./components/Coordinates";
 
 function App() {
   const [data, setData] = useState(null);
@@ -85,10 +86,7 @@ function App() {
       />
 
       <div className="pointer-events-none fixed top-4 flex w-full flex-col items-center">
-        <div className="flex gap-4">
-          <span>52°54'03.4"S</span>
-          <span>17°15'50.6"W</span>
-        </div>
+        <Coordinates currentItem={currentItem} />
         {currentItem && (
           <ItemTitle
             currentItem={currentItem}
