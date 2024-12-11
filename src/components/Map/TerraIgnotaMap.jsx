@@ -13,6 +13,7 @@ export default function TerraIgnotaMap({
   setCurrentItem,
   currentItem,
   filteredItems,
+  setMapCenter,
 }) {
   const { terraIgnotaMap } = useMap();
 
@@ -45,6 +46,9 @@ export default function TerraIgnotaMap({
           dragRotate={false}
           touchZoomRotate={false}
           attributionControl={false}
+          onMove={() => {
+            setMapCenter(terraIgnotaMap?.getCenter());
+          }}
         >
           {filteredItems?.map((item) => (
             <ItemMarker

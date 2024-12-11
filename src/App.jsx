@@ -27,6 +27,8 @@ function App() {
   const [selectedProjects, setSelectedProjects] = useState([]);
   const [filteredItems, setFilteredItems] = useState(null);
 
+  const [mapCenter, setMapCenter] = useState({ lat: -67, long: -57 });
+
   useEffect(() => {
     const loadData = async () => {
       try {
@@ -83,10 +85,11 @@ function App() {
         setCurrentItem={setCurrentItem}
         currentItem={currentItem}
         filteredItems={filteredItems}
+        setMapCenter={setMapCenter}
       />
 
       <div className="pointer-events-none fixed top-4 flex w-full flex-col items-center">
-        <Coordinates currentItem={currentItem} />
+        <Coordinates currentItem={currentItem} mapCenter={mapCenter} />
         {currentItem && (
           <ItemTitle
             currentItem={currentItem}
