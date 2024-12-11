@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import {
   useMap,
   Map,
@@ -8,6 +8,7 @@ import {
 import ItemMarker from "./ItemMarker";
 import ItemTitle from "../ItemTitle";
 import Coordinates from "../Coordinates";
+import { throttle } from "lodash";
 
 export default function TerraIgnotaMap({
   data,
@@ -17,7 +18,10 @@ export default function TerraIgnotaMap({
   filteredItems,
 }) {
   const { terraIgnotaMap } = useMap();
-  const [mapCenter, setMapCenter] = useState({ lat: -67, lng: -57 });
+  const [mapCenter, setMapCenter] = useState({
+    lat: -56.89128362,
+    lng: -66.9918726,
+  });
 
   useEffect(() => {
     currentItem &&
@@ -27,14 +31,28 @@ export default function TerraIgnotaMap({
       });
   }, [currentItem, terraIgnotaMap]);
 
+  const updateCenter = useCallback(
+    throttle(() => {
+      if (terraIgnotaMap) {
+        const center = terraIgnotaMap.getCenter();
+        setMapCenter(center);
+      }
+    }, 250),
+    [terraIgnotaMap],
+  );
+
+  const handleMove = () => {
+    updateCenter();
+  };
+
   return (
     <div>
       <div className="fixed inset-0 -z-10 h-screen w-full bg-white dark:bg-black">
         <Map
           id="terraIgnotaMap"
           initialViewState={{
-            longitude: -67,
-            latitude: -57,
+            latitude: -56.89128362,
+            longitude: -66.9918726,
             zoom: 3.5,
             bearing: 90,
             minZoom: 3,
@@ -48,9 +66,7 @@ export default function TerraIgnotaMap({
           dragRotate={false}
           touchZoomRotate={false}
           attributionControl={false}
-          onMove={() => {
-            setMapCenter(terraIgnotaMap?.getCenter());
-          }}
+          onMove={handleMove}
         >
           {filteredItems?.map((item) => (
             <ItemMarker
