@@ -12,8 +12,6 @@ import ItemInfo from "./components/ItemInfo";
 
 import TerraIgnotaMap from "./components/Map/TerraIgnotaMap";
 import Menu from "./components/Menu";
-import ItemTitle from "./components/ItemTitle";
-import Coordinates from "./components/Coordinates";
 
 function App() {
   const [data, setData] = useState(null);
@@ -26,8 +24,6 @@ function App() {
   const [selectedTags, setSelectedTags] = useState([]);
   const [selectedProjects, setSelectedProjects] = useState([]);
   const [filteredItems, setFilteredItems] = useState(null);
-
-  const [mapCenter, setMapCenter] = useState({ lat: -67, long: -57 });
 
   useEffect(() => {
     const loadData = async () => {
@@ -85,18 +81,7 @@ function App() {
         setCurrentItem={setCurrentItem}
         currentItem={currentItem}
         filteredItems={filteredItems}
-        setMapCenter={setMapCenter}
       />
-
-      <div className="pointer-events-none fixed top-4 flex w-full flex-col items-center">
-        <Coordinates currentItem={currentItem} mapCenter={mapCenter} />
-        {currentItem && (
-          <ItemTitle
-            currentItem={currentItem}
-            setCurrentItem={setCurrentItem}
-          />
-        )}
-      </div>
 
       <div className="pointer-events-none fixed bottom-0 m-6 flex w-1/2 items-end gap-2">
         <div className="pointer-events-auto flex w-1/3 flex-col gap-2">

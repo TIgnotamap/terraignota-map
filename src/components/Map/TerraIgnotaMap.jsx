@@ -6,6 +6,8 @@ import {
   NavigationControl,
 } from "@vis.gl/react-maplibre";
 import ItemMarker from "./ItemMarker";
+import ItemTitle from "../ItemTitle";
+import Coordinates from "../Coordinates";
 
 export default function TerraIgnotaMap({
   data,
@@ -13,9 +15,9 @@ export default function TerraIgnotaMap({
   setCurrentItem,
   currentItem,
   filteredItems,
-  setMapCenter,
 }) {
   const { terraIgnotaMap } = useMap();
+  const [mapCenter, setMapCenter] = useState({ lat: -67, lng: -57 });
 
   useEffect(() => {
     currentItem &&
@@ -79,6 +81,16 @@ export default function TerraIgnotaMap({
             }}
           /> */}
         </Map>
+      </div>
+
+      <div className="pointer-events-none fixed top-4 flex w-full flex-col items-center font-serif">
+        <Coordinates currentItem={currentItem} mapCenter={mapCenter} />
+        {currentItem && (
+          <ItemTitle
+            currentItem={currentItem}
+            setCurrentItem={setCurrentItem}
+          />
+        )}
       </div>
     </div>
   );
