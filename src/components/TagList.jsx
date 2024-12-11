@@ -5,8 +5,6 @@ import Tag from "./Tag";
 export default function TagList({ tags, selectedTags, setSelectedTags }) {
   const { language } = useContext(LanguageContext);
 
-  console.log("selectedTags", selectedTags);
-
   return (
     <div className="flex flex-wrap items-center gap-1">
       {tags.map((tag, index) => (
