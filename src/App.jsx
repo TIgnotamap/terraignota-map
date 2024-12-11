@@ -59,16 +59,19 @@ function App() {
     setFilteredItems(filteredItems);
   }, [selectedTags, selectedProjects, data]);
 
+  useEffect(() => {
+    if (pathname === "/" || pathname === "/info" || pathname === "/index") {
+      setCurrentItem(null);
+    } else {
+      const matchedItem = data?.items?.find(
+        (item) => item.slug.current === pathname.slice(1),
+      );
+      setCurrentItem(matchedItem || null);
+    }
+  }, [pathname, data]);
+
   if (loading) return <div className="py-4 font-thin">Loading...</div>;
   if (error) return <div className="py-4 font-thin text-red-500">{error}</div>;
-  if (
-    currentItem === null &&
-    (pathname !== "/" || pathname !== "/info" || pathname !== "/index")
-  ) {
-    setCurrentItem(
-      data.items.filter((item) => item.slug.current === pathname.slice(1))[0],
-    );
-  }
 
   return (
     <div className="p-4 text-dark dark:text-light">
