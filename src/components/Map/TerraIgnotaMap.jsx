@@ -60,6 +60,8 @@ export default function TerraIgnotaMap({
               borderColor: theme === "dark" ? "white" : "black",
               backgroundColor: "transparent",
               color: theme === "dark" ? "white" : "black",
+              marginRight: "9.5rem",
+              marginBottom: "1.5rem",
             }}
           />
           {/* <NavigationControl

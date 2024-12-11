@@ -11,7 +11,7 @@ export default function ProjectList({
   const { language } = useContext(LanguageContext);
 
   return (
-    <div className="absolute bottom-2 w-[180px] border border-gray bg-light p-1 text-sm dark:bg-dark">
+    <div className="border border-gray bg-light p-1 text-sm dark:bg-dark">
       <ul>
         {projects?.map((project) => {
           const hasMatchingTags = items.some(

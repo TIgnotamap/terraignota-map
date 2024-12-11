@@ -6,7 +6,7 @@ export default function TagList({ tags, selectedTags, setSelectedTags }) {
   const { language } = useContext(LanguageContext);
 
   return (
-    <div className="flex flex-wrap items-center gap-1">
+    <div className="flex w-full flex-wrap items-center gap-1 border border-gray bg-light p-1 dark:bg-dark">
       {tags.map((tag, index) => (
         <span
           key={tag._id}

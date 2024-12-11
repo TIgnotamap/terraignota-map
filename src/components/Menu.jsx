@@ -6,7 +6,7 @@ export default function Menu({ data, theme, setTheme }) {
   const { language, setLanguage } = useContext(LanguageContext);
 
   return (
-    <nav className="fixed right-2 top-2 flex items-center gap-2">
+    <nav className="fixed right-6 top-4 flex items-center gap-2">
       <NavLink
         to="/info"
         className="size-6 rounded-full border border-darkGray bg-light p-1 text-center font-mono text-xs lowercase dark:bg-dark dark:text-light"

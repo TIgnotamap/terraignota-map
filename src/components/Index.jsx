@@ -9,12 +9,11 @@ export default function Index({ people, orgs, refMaterials }) {
   console.log("refs", refMaterials);
 
   return (
-    <div className="fixed inset-0 flex h-screen items-center justify-center">
-      <div className="flex h-2/3 w-2/3 flex-col gap-2 overflow-y-auto border border-gray bg-light p-1 font-serif text-sm dark:bg-dark">
-        <NavLink to="/" className="self-end border px-2 font-mono text-xs">
-          X
-        </NavLink>
-
+    <div className="fixed right-6 top-16 flex items-start gap-2">
+      <NavLink to="/" className="border px-2 font-mono text-xs">
+        X
+      </NavLink>
+      <div className="h-[60vh] w-[33vw] overflow-auto border bg-light dark:bg-dark">
         <h2 className="text-4xl">
           {language === "en" ? "People" : "Personas"}
         </h2>
@@ -49,7 +48,6 @@ export default function Index({ people, orgs, refMaterials }) {
             </div>
           </div>
         ))}
-
         <h2 className="text-4xl">
           {language === "en" ? "Organizations" : "Organizaciones"}
         </h2>
@@ -71,7 +69,6 @@ export default function Index({ people, orgs, refMaterials }) {
             </div>
           </div>
         ))}
-
         <h2 className="text-4xl">
           {language === "en" ? "References" : "Referencias"}
         </h2>

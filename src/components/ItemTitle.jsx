@@ -14,7 +14,7 @@ export default function ItemTitle({ currentItem, setCurrentItem }) {
           setCurrentItem(null);
           navigate("/");
         }}
-        className="cursor-pointer select-none"
+        className="pointer-events-auto cursor-pointer select-none"
       >
         x
       </div>

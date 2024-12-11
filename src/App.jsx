@@ -74,7 +74,7 @@ function App() {
   if (error) return <div className="py-4 font-thin text-red-500">{error}</div>;
 
   return (
-    <div className="p-4 text-dark dark:text-light">
+    <div className="text-dark dark:text-light">
       <Menu data={data?.settings} theme={theme} setTheme={setTheme} />
       <TerraIgnotaMap
         data={data}
@@ -83,28 +83,43 @@ function App() {
         currentItem={currentItem}
         filteredItems={filteredItems}
       />
-      {currentItem && (
-        <ItemTitle currentItem={currentItem} setCurrentItem={setCurrentItem} />
-      )}
 
-      <ItemList
-        data={data && data}
-        filteredItems={filteredItems}
-        setCurrentItem={setCurrentItem}
-      />
+      <div className="pointer-events-none fixed top-4 flex w-full flex-col items-center">
+        <div className="flex gap-4">
+          <span>52°54'03.4"S</span>
+          <span>17°15'50.6"W</span>
+        </div>
+        {currentItem && (
+          <ItemTitle
+            currentItem={currentItem}
+            setCurrentItem={setCurrentItem}
+          />
+        )}
+      </div>
 
-      <ProjectList
-        projects={data?.projects}
-        selectedProjects={selectedProjects}
-        setSelectedProjects={setSelectedProjects}
-        selectedTags={selectedTags}
-        items={data?.items}
-      />
-      <TagList
-        tags={data?.tags}
-        selectedTags={selectedTags}
-        setSelectedTags={setSelectedTags}
-      />
+      <div className="pointer-events-none fixed bottom-0 m-6 flex w-1/2 items-end gap-2">
+        <div className="pointer-events-auto flex w-1/3 flex-col gap-2">
+          <ItemList
+            data={data && data}
+            filteredItems={filteredItems}
+            setCurrentItem={setCurrentItem}
+          />
+          <ProjectList
+            projects={data?.projects}
+            selectedProjects={selectedProjects}
+            setSelectedProjects={setSelectedProjects}
+            selectedTags={selectedTags}
+            items={data?.items}
+          />
+        </div>
+        <div className="pointer-events-auto">
+          <TagList
+            tags={data?.tags}
+            selectedTags={selectedTags}
+            setSelectedTags={setSelectedTags}
+          />
+        </div>
+      </div>
       <Routes>
         <Route path="/" element={<></>} />
         <Route path="/info" element={<Info data={data?.settings} />} />
@@ -120,6 +135,9 @@ function App() {
         />
         <Route path="/:slug" element={<ItemInfo item={currentItem} />} />
       </Routes>
+      <footer className="fixed bottom-0 right-0 m-6 font-serif text-sm">
+        Terra Ignota Map
+      </footer>
     </div>
   );
 }
