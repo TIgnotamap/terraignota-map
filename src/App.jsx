@@ -12,6 +12,7 @@ import ItemInfo from "./components/ItemInfo";
 
 import TerraIgnotaMap from "./components/Map/TerraIgnotaMap";
 import Menu from "./components/Menu";
+import Ornaments from "./components/Ornaments";
 
 function App() {
   const [data, setData] = useState(null);
@@ -75,6 +76,7 @@ function App() {
   return (
     <div className="text-dark dark:text-light">
       <Menu data={data?.settings} theme={theme} setTheme={setTheme} />
+
       <TerraIgnotaMap
         data={data}
         theme={theme}
@@ -82,6 +84,8 @@ function App() {
         currentItem={currentItem}
         filteredItems={filteredItems}
       />
+
+      <Ornaments />
 
       <div className="pointer-events-none fixed bottom-0 m-6 flex w-1/2 items-end gap-2">
         <div className="pointer-events-auto flex w-1/3 flex-col gap-2">
