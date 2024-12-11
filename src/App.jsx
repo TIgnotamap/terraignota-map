@@ -23,6 +23,7 @@ function App() {
   const { pathname } = useLocation();
 
   const [selectedTags, setSelectedTags] = useState([]);
+  const [selectedProjects, setSelectedProjects] = useState([]);
   const [filteredItems, setFilteredItems] = useState(null);
 
   useEffect(() => {
@@ -41,15 +42,22 @@ function App() {
   }, []);
 
   useEffect(() => {
-    if (selectedTags.length > 0) {
-      const filtered = data?.items?.filter((item) =>
-        item.tags?.some((tag) => selectedTags.includes(tag._id)),
-      );
-      setFilteredItems(filtered);
-    } else {
-      setFilteredItems(data?.items);
-    }
-  }, [selectedTags, data]);
+    const filteredItems = data?.items?.filter((item) => {
+      const matchesTags = selectedTags.length
+        ? item.tags?.some((tag) => selectedTags.includes(tag._id))
+        : true;
+
+      const matchesProjects = selectedProjects.length
+        ? selectedProjects.some(
+            (selectedProject) => item.project?._id === selectedProject,
+          )
+        : true;
+
+      return matchesTags && matchesProjects;
+    });
+
+    setFilteredItems(filteredItems);
+  }, [selectedTags, selectedProjects, data]);
 
   if (loading) return <div className="py-4 font-thin">Loading...</div>;
   if (error) return <div className="py-4 font-thin text-red-500">{error}</div>;
@@ -82,7 +90,13 @@ function App() {
         setCurrentItem={setCurrentItem}
       />
 
-      <ProjectList projects={data?.projects} />
+      <ProjectList
+        projects={data?.projects}
+        selectedProjects={selectedProjects}
+        setSelectedProjects={setSelectedProjects}
+        selectedTags={selectedTags}
+        items={data?.items}
+      />
       <TagList
         tags={data?.tags}
         selectedTags={selectedTags}
