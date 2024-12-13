@@ -13,6 +13,7 @@ import ItemInfo from "./components/ItemInfo";
 import TerraIgnotaMap from "./components/Map/TerraIgnotaMap";
 import Menu from "./components/Menu";
 import VideoContainer from "./components/VideoContainer";
+import ImageSlideshow from "./components/ImageSlideshow";
 
 function App() {
   const [data, setData] = useState(null);
@@ -25,6 +26,8 @@ function App() {
   const [selectedTags, setSelectedTags] = useState([]);
   const [selectedProjects, setSelectedProjects] = useState([]);
   const [filteredItems, setFilteredItems] = useState(null);
+
+  const [isZoomed, setIsZoomed] = useState(false);
 
   useEffect(() => {
     const loadData = async () => {
@@ -70,6 +73,10 @@ function App() {
     }
   }, [pathname, data]);
 
+  const resizeImage = () => {
+    setIsZoomed(!isZoomed);
+  };
+
   if (loading) return <div className="py-4 font-thin">Loading...</div>;
   if (error) return <div className="py-4 font-thin text-red-500">{error}</div>;
 
@@ -108,6 +115,17 @@ function App() {
         </div>
       </div>
 
+      {currentItem?.template === "1" && currentItem?.images?.length > 0 && (
+        <div
+          className={`fixed ${isZoomed ? "left-0 top-0 z-10 flex h-screen w-full items-center justify-center bg-light dark:bg-dark" : "left-[20%] top-[20%] w-2/6"}`}
+        >
+          <ImageSlideshow images={currentItem.images} isZoomed={isZoomed} />
+          <div
+            className="absolute right-2 top-2 size-4 cursor-pointer border bg-white hover:size-5"
+            onClick={() => resizeImage()}
+          />
+        </div>
+      )}
       {currentItem?.template === "2" && (
         <>
           <div className="fixed left-[20%] top-[20%] w-2/6 px-6">
