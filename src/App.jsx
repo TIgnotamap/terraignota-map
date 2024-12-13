@@ -12,6 +12,7 @@ import ItemInfo from "./components/ItemInfo";
 
 import TerraIgnotaMap from "./components/Map/TerraIgnotaMap";
 import Menu from "./components/Menu";
+import VideoContainer from "./components/VideoContainer";
 
 function App() {
   const [data, setData] = useState(null);
@@ -106,6 +107,20 @@ function App() {
           />
         </div>
       </div>
+
+      {currentItem?.template === "2" && (
+        <>
+          <div className="fixed left-[20%] top-[20%] w-2/6 px-6">
+            <VideoContainer item={currentItem} />
+          </div>
+        </>
+      )}
+      {currentItem?.template === "3" && (
+        <div className="fixed right-0 top-[20%] w-5/6 px-6">
+          <VideoContainer item={currentItem} />
+        </div>
+      )}
+
       <Routes>
         <Route path="/" element={<></>} />
         <Route path="/info" element={<Info data={data?.settings} />} />
