@@ -9,13 +9,13 @@ export default function Menu({ data, theme, setTheme }) {
     <nav className="fixed right-6 top-4 flex items-center gap-2 font-serif text-sm">
       <NavLink
         to="/info"
-        className="size-6 rounded-full border border-darkGray bg-light pt-[2px] text-center lowercase dark:bg-dark dark:text-light"
+        className="size-6 rounded-full border border-gray bg-light pt-[2px] text-center lowercase dark:bg-dark dark:text-light"
       >
         ?
       </NavLink>
       <NavLink
         to="/index"
-        className="border border-darkGray bg-light px-2 dark:bg-dark dark:text-light"
+        className="border border-gray bg-light px-2 dark:bg-dark dark:text-light"
       >
         index
       </NavLink>

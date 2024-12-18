@@ -103,7 +103,6 @@ function App() {
           {isProjectsOpen && (
             <>
               <ItemList
-                data={data && data}
                 filteredItems={filteredItems}
                 setCurrentItem={setCurrentItem}
               />

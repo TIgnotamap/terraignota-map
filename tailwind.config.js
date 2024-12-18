@@ -6,10 +6,11 @@ export default {
   theme: {
     extend: {
       colors: {
-        light: "#fff",
-        dark: "#000",
+        light: "#f6f6f6",
+        dark: "#090909",
+        lightGray: "#e4e4e4",
         gray: "#aaa",
-        darkGray: "#666",
+        darkGray: "#1b1b1b",
         primary: "#00565f",
         secondary: "#e75d13",
       },

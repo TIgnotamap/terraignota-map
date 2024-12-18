@@ -13,14 +13,14 @@
   "layers": [
     {
       "id": "Water",
-      "type": "line",
+      "type": "fill",
       "source": "openmaptiles",
       "source-layer": "water",
       "layout": { "visibility": "visible" },
       "paint": {
-        "line-color": "#fafafa",
-        "line-opacity": ["match", ["get", "intermittent"], 1, 0.7, 1],
-        "line-width": 0.5
+        "fill-antialias": true,
+        "fill-color": "#1b1b1b",
+        "fill-outline-color": "#aaa"
       },
       "filter": ["all", ["!=", "brunnel", "tunnel"]]
     },

@@ -47,7 +47,7 @@ export default function TerraIgnotaMap({
 
   return (
     <div>
-      <div className="fixed inset-0 -z-10 h-screen w-full bg-white dark:bg-black">
+      <div className="fixed inset-0 -z-10 h-screen w-full bg-light dark:bg-dark">
         <Map
           id="terraIgnotaMap"
           initialViewState={{
