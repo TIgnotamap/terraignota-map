@@ -22,15 +22,18 @@ export default function ItemProperties({ properties }) {
 
   return (
     <div className="grid grid-cols-[1fr_2fr] gap-2">
-      {Object.entries(properties).map(([key, value]) => (
-        <PropertyRow
-          key={key}
-          propertyKey={key}
-          value={value}
-          translate={translate}
-          language={language}
-        />
-      ))}
+      {Object.entries(properties).map(
+        ([key, value]) =>
+          value.length > 0 && (
+            <PropertyRow
+              key={key}
+              propertyKey={key}
+              value={value}
+              translate={translate}
+              language={language}
+            />
+          ),
+      )}
     </div>
   );
 }
