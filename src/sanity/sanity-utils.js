@@ -50,7 +50,7 @@ export async function getSettings() {
 }
 
 export async function getProjects() {
-  return client.fetch(`*[_type == "project"]{
+  return client.fetch(`*[_type == "project"] | order(title.en asc){
   _id,
   title,
   slug,
@@ -64,7 +64,7 @@ export async function getProjects() {
 }
 
 export async function getItems() {
-  return client.fetch(`*[_type == "item"] | order(date asc){
+  return client.fetch(`*[_type == "item"] | order(code asc){
   _id,
   project->{
     _id,
@@ -140,7 +140,7 @@ export async function getItems() {
 }
 
 export async function getTags() {
-  return client.fetch(`*[_type == "tag"]{
+  return client.fetch(`*[_type == "tag"] | order(name.en asc){
   _id,
   name,
   description,
