@@ -1,5 +1,6 @@
 import { Marker, useMap } from "@vis.gl/react-maplibre";
 import { NavLink } from "react-router-dom";
+import chooseColor from "../../utils/chooseColor";
 
 export default function ItemMarker({ item, setCurrentItem }) {
   const { current: map } = useMap();
@@ -13,13 +14,20 @@ export default function ItemMarker({ item, setCurrentItem }) {
       anchor="bottom"
       mapStyle="/terraignota-map/styles/light.json"
     >
-      <NavLink to={`/${item.slug.current}`}>
+      <NavLink
+        className={() => "relative flex items-center justify-center"}
+        to={`/${item.slug.current}`}
+      >
         <div
           onClick={() => {
             setCurrentItem(item);
           }}
-          className="size-4 cursor-pointer border border-[#000] bg-[#0f0] p-[2px] text-xs text-[#00464F]"
+          style={{
+            background: `radial-gradient(circle, ${chooseColor(item.project.title.en)} 10%, #ffffff00 70%)`,
+          }}
+          className={`absolute size-8 cursor-pointer rounded-full text-xs`}
         />
+        <div className="absolute size-4 rounded-full border border-dark" />
       </NavLink>
     </Marker>
   );

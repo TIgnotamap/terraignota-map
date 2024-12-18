@@ -1,5 +1,6 @@
 import { useContext } from "react";
 import { LanguageContext } from "../utils/LanguageContext";
+import chooseColor from "../utils/chooseColor";
 
 export default function ProjectList({
   projects,
@@ -11,7 +12,7 @@ export default function ProjectList({
   const { language } = useContext(LanguageContext);
 
   return (
-    <div className="border border-gray bg-light p-1 dark:bg-dark">
+    <div className="border border-gray bg-light p-1 shadow-md dark:bg-dark">
       <ul>
         {projects?.map((project) => {
           const hasMatchingTags = items.some(
@@ -24,9 +25,6 @@ export default function ProjectList({
             <li key={project._id}>
               <div className="flex items-center gap-1 font-serif">
                 <div
-                  className={`${
-                    selectedProjects?.includes(project._id) ? "bg-primary" : ""
-                  } size-3 cursor-pointer border`}
                   onClick={() => {
                     if (selectedProjects?.includes(project._id)) {
                       setSelectedProjects(
@@ -36,7 +34,16 @@ export default function ProjectList({
                       setSelectedProjects([...selectedProjects, project._id]);
                     }
                   }}
-                />
+                  style={{
+                    backgroundColor: chooseColor(project.title[language]),
+                    boxShadow: `0 0 2px ${chooseColor(project.title[language])}`,
+                  }}
+                  className={`relative flex size-3 cursor-pointer items-center justify-center border`}
+                >
+                  {selectedProjects?.includes(project._id) && (
+                    <div className="absolute size-1.5 rounded-full bg-dark" />
+                  )}
+                </div>
                 <span
                   className={`${selectedTags.length > 0 && !hasMatchingTags ? "text-gray" : ""}`}
                 >

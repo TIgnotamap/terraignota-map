@@ -6,9 +6,9 @@ export default function TagList({ tags, selectedTags, setSelectedTags }) {
   const { language } = useContext(LanguageContext);
 
   return (
-    <div className="flex w-full flex-wrap items-center gap-1 border border-gray bg-light p-1 dark:bg-dark">
+    <div className="flex w-full flex-wrap items-center gap-2 border border-gray bg-light p-2 shadow-md dark:bg-dark">
       {tags.map((tag, index) => (
-        <span
+        <button
           key={tag._id}
           onClick={() => {
             if (selectedTags?.includes(tag._id)) {
@@ -17,14 +17,17 @@ export default function TagList({ tags, selectedTags, setSelectedTags }) {
               setSelectedTags([...selectedTags, tag._id]);
             }
           }}
-          className={`${selectedTags?.includes(tag._id) ? "bg-primary" : ""} cursor-pointer`}
+          className={`border border-gray px-1 font-mono text-xs lowercase ${selectedTags?.includes(tag._id) ? "bg-dark text-light dark:bg-light dark:text-dark" : "bg-light dark:bg-dark"}`}
         >
-          <Tag name={tag.name[language]} />
-        </span>
+          {tag.name[language]}
+        </button>
       ))}
-      <span onClick={() => setSelectedTags([])} className="cursor-pointer">
-        <Tag name="x" />
-      </span>
+      <button
+        onClick={() => setSelectedTags([])}
+        className={`border border-gray px-1 font-mono text-xs lowercase ${selectedTags?.length > 0 ? "bg-dark text-light dark:bg-light dark:text-dark" : "bg-light dark:bg-dark"}`}
+      >
+        x
+      </button>
     </div>
   );
 }
