@@ -30,6 +30,9 @@ function App() {
 
   const [isZoomed, setIsZoomed] = useState(false);
 
+  const [isProjectsOpen, setIsProjectsOpen] = useState(false);
+  const [isTagsOpen, setIsTagsOpen] = useState(false);
+
   useEffect(() => {
     const loadData = async () => {
       try {
@@ -95,27 +98,49 @@ function App() {
 
       <Ornaments />
 
-      <div className="pointer-events-none fixed bottom-0 m-6 flex w-1/2 items-end gap-2">
-        <div className="pointer-events-auto flex w-1/3 flex-col gap-2">
-          <ItemList
-            data={data && data}
-            filteredItems={filteredItems}
-            setCurrentItem={setCurrentItem}
-          />
-          <ProjectList
-            projects={data?.projects}
-            selectedProjects={selectedProjects}
-            setSelectedProjects={setSelectedProjects}
-            selectedTags={selectedTags}
-            items={data?.items}
-          />
+      <div className="pointer-events-none fixed bottom-0 m-6 flex w-2/3 items-end gap-2">
+        <div className="pointer-events-auto flex w-[220px] shrink-0 flex-col gap-2">
+          {isProjectsOpen && (
+            <>
+              <ItemList
+                data={data && data}
+                filteredItems={filteredItems}
+                setCurrentItem={setCurrentItem}
+              />
+              <ProjectList
+                projects={data?.projects}
+                selectedProjects={selectedProjects}
+                setSelectedProjects={setSelectedProjects}
+                selectedTags={selectedTags}
+                items={data?.items}
+              />
+            </>
+          )}
+
+          <div
+            onClick={() => setIsProjectsOpen(!isProjectsOpen)}
+            className="pointer-events-auto w-[220px] shrink-0 cursor-pointer border border-gray bg-light p-1 text-center text-xs shadow-md dark:bg-dark"
+          >
+            {isProjectsOpen ? "x" : "-"}
+          </div>
         </div>
-        <div className="pointer-events-auto">
-          <TagList
-            tags={data?.tags}
-            selectedTags={selectedTags}
-            setSelectedTags={setSelectedTags}
-          />
+
+        <div className="flex w-full flex-col gap-2">
+          {isTagsOpen && (
+            <div className="pointer-events-auto flex flex-col gap-2">
+              <TagList
+                tags={data?.tags}
+                selectedTags={selectedTags}
+                setSelectedTags={setSelectedTags}
+              />
+            </div>
+          )}
+          <div
+            onClick={() => setIsTagsOpen(!isTagsOpen)}
+            className="pointer-events-auto w-full cursor-pointer border border-gray bg-light p-1 text-center text-xs shadow-md dark:bg-dark"
+          >
+            {isTagsOpen ? "x" : "-"}
+          </div>
         </div>
       </div>
 
