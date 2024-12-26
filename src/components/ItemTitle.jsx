@@ -18,7 +18,7 @@ export default function ItemTitle({ currentItem, setCurrentItem }) {
           setCurrentItem(null);
           navigate("/");
         }}
-        className="pointer-events-auto cursor-pointer select-none font-mono"
+        className="pointer-events-auto cursor-pointer select-none font-mono dark:invert"
       >
         <svg
           xmlns="http://www.w3.org/2000/svg"
