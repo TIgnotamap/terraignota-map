@@ -26,7 +26,7 @@ export default function TerraIgnotaMap({
   useEffect(() => {
     currentItem &&
       terraIgnotaMap?.flyTo({
-        center: [currentItem.long, currentItem.lat],
+        center: [currentItem.long + 0.5, currentItem.lat],
         zoom: 8,
       });
   }, [currentItem, terraIgnotaMap]);
@@ -73,6 +73,7 @@ export default function TerraIgnotaMap({
               key={item._id}
               item={item}
               setCurrentItem={setCurrentItem}
+              currentItem={currentItem}
             />
           ))}
           <ScaleControl
