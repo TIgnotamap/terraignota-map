@@ -14,7 +14,10 @@ export default function ItemTitle({ currentItem, setCurrentItem }) {
       {currentItem.location && <div>{currentItem.location[language]}</div>}
       <div
         onClick={() => {
-          terraIgnotaMap?.flyTo({ center: [-67, -57], zoom: 3.5 });
+          terraIgnotaMap?.flyTo({
+            center: [-66.9918726, -56.89128362],
+            zoom: 3.5,
+          });
           setCurrentItem(null);
           navigate("/");
         }}
