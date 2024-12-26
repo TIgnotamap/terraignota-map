@@ -28,6 +28,31 @@ function App() {
 
   const [isZoomed, setIsZoomed] = useState(false);
 
+  const [enter, setEnter] = useState(false);
+  const [bgAudioIsPlaying, setBgAudioIsPlaying] = useState(false);
+
+  const toggleBgAudio = () => {
+    const audios = document.querySelectorAll("audio");
+    audios.forEach((audio) => {
+      if (!bgAudioIsPlaying) {
+        audio.volume = Math.random();
+        audio.play();
+      } else {
+        audio.pause();
+      }
+    });
+    setBgAudioIsPlaying(!bgAudioIsPlaying);
+  };
+
+  useEffect(() => {
+    const audios = document.querySelectorAll("audio");
+    audios.forEach((audio) => {
+      if (currentItem?.template === "2" || currentItem?.template === "3")
+        audio.volume = 0;
+      else if (currentItem === null) audio.volume = Math.random();
+    });
+  }, [currentItem]);
+
   useEffect(() => {
     const loadData = async () => {
       try {
@@ -81,7 +106,32 @@ function App() {
 
   return (
     <div className="text-dark dark:text-light">
-      <Menu data={data?.settings} theme={theme} setTheme={setTheme} />
+      {!enter && (
+        <div className="fixed z-[100] flex h-screen w-full items-center justify-center bg-white dark:bg-black">
+          <button
+            onClick={() => {
+              setEnter(true);
+              toggleBgAudio();
+            }}
+            className="underline"
+          >
+            start
+          </button>
+        </div>
+      )}
+
+      <Menu
+        data={data?.settings}
+        theme={theme}
+        setTheme={setTheme}
+        toggleBgAudio={toggleBgAudio}
+        bgAudioIsPlaying={bgAudioIsPlaying}
+      />
+
+      {data?.settings?.audios?.length > 0 &&
+        data.settings.audios.map((audio) => (
+          <audio key={audio.url} src={audio.url} loop preload="auto" />
+        ))}
 
       <TerraIgnotaMap
         data={data}

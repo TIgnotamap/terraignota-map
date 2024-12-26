@@ -43,7 +43,8 @@ export async function getSettings() {
   title,
   info,
   hideCredits,
-  audios,
+  audios[]{
+  'url': asset->url,},
   credits,
   links
 }`);
