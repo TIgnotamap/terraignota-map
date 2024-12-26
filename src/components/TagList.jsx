@@ -1,12 +1,11 @@
 import { useContext } from "react";
 import { LanguageContext } from "../utils/LanguageContext";
-import Tag from "./Tag";
 
 export default function TagList({ tags, selectedTags, setSelectedTags }) {
   const { language } = useContext(LanguageContext);
 
   return (
-    <div className="flex w-full flex-wrap items-center gap-2 border border-gray bg-light p-2 shadow-md dark:bg-dark">
+    <div className="pointer-events-auto flex h-auto w-full shrink-0 flex-wrap items-center gap-1 overflow-auto dark:bg-dark">
       {tags.map((tag, index) => (
         <button
           key={tag._id}
@@ -17,14 +16,14 @@ export default function TagList({ tags, selectedTags, setSelectedTags }) {
               setSelectedTags([...selectedTags, tag._id]);
             }
           }}
-          className={`border border-gray px-1 font-mono text-xs lowercase ${selectedTags?.includes(tag._id) ? "bg-dark text-light dark:bg-light dark:text-dark" : "bg-light dark:bg-dark"}`}
+          className={`rounded-full border border-gray px-2 font-mono text-xs lowercase shadow-lg ${selectedTags?.includes(tag._id) ? "bg-dark text-light dark:bg-light dark:text-dark" : "bg-light dark:bg-dark"}`}
         >
           {tag.name[language]}
         </button>
       ))}
       <button
         onClick={() => setSelectedTags([])}
-        className={`border border-gray px-1 font-mono text-xs lowercase ${selectedTags?.length > 0 ? "bg-dark text-light dark:bg-light dark:text-dark" : "bg-light dark:bg-dark"}`}
+        className={`rounded-full border border-gray px-2 font-mono text-xs lowercase shadow-lg ${selectedTags?.length > 0 ? "bg-dark text-light dark:bg-light dark:text-dark" : "bg-light dark:bg-dark"}`}
       >
         x
       </button>

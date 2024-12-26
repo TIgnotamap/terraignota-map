@@ -3,9 +3,6 @@ import { fetchData } from "./sanity/sanity-utils";
 import { Routes, Route, useLocation } from "react-router-dom";
 
 import useTheme from "./hooks/useTheme";
-import ProjectList from "./components/ProjectList";
-import ItemList from "./components/ItemList";
-import TagList from "./components/TagList";
 import Index from "./components/Index";
 import Info from "./components/Info";
 import ItemInfo from "./components/ItemInfo";
@@ -15,6 +12,7 @@ import Menu from "./components/Menu";
 import Ornaments from "./components/Ornaments";
 import VideoContainer from "./components/VideoContainer";
 import ImageSlideshow from "./components/ImageSlideshow";
+import Nav from "./components/Nav";
 
 function App() {
   const [data, setData] = useState(null);
@@ -29,9 +27,6 @@ function App() {
   const [filteredItems, setFilteredItems] = useState(null);
 
   const [isZoomed, setIsZoomed] = useState(false);
-
-  const [isProjectsOpen, setIsProjectsOpen] = useState(false);
-  const [isTagsOpen, setIsTagsOpen] = useState(false);
 
   useEffect(() => {
     const loadData = async () => {
@@ -98,50 +93,15 @@ function App() {
 
       <Ornaments />
 
-      <div className="pointer-events-none fixed bottom-0 m-6 flex w-2/3 items-end gap-2">
-        <div className="pointer-events-auto flex w-[220px] shrink-0 flex-col gap-2">
-          {isProjectsOpen && (
-            <>
-              <ItemList
-                filteredItems={filteredItems}
-                setCurrentItem={setCurrentItem}
-              />
-              <ProjectList
-                projects={data?.projects}
-                selectedProjects={selectedProjects}
-                setSelectedProjects={setSelectedProjects}
-                selectedTags={selectedTags}
-                items={data?.items}
-              />
-            </>
-          )}
-
-          <div
-            onClick={() => setIsProjectsOpen(!isProjectsOpen)}
-            className="pointer-events-auto w-[220px] shrink-0 cursor-pointer border border-gray bg-light p-1 text-center text-xs shadow-md dark:bg-dark"
-          >
-            {isProjectsOpen ? "x" : "-"}
-          </div>
-        </div>
-
-        <div className="flex w-full flex-col gap-2">
-          {isTagsOpen && (
-            <div className="pointer-events-auto flex flex-col gap-2">
-              <TagList
-                tags={data?.tags}
-                selectedTags={selectedTags}
-                setSelectedTags={setSelectedTags}
-              />
-            </div>
-          )}
-          <div
-            onClick={() => setIsTagsOpen(!isTagsOpen)}
-            className="pointer-events-auto w-full cursor-pointer border border-gray bg-light p-1 text-center text-xs shadow-md dark:bg-dark"
-          >
-            {isTagsOpen ? "x" : "-"}
-          </div>
-        </div>
-      </div>
+      <Nav
+        selectedProjects={selectedProjects}
+        setSelectedProjects={setSelectedProjects}
+        selectedTags={selectedTags}
+        setSelectedTags={setSelectedTags}
+        filteredItems={filteredItems}
+        setCurrentItem={setCurrentItem}
+        data={data}
+      />
 
       {currentItem?.template === "1" && currentItem?.images?.length > 0 && (
         <div
