@@ -105,11 +105,11 @@ function App() {
 
       {currentItem?.template === "1" && currentItem?.images?.length > 0 && (
         <div
-          className={`fixed ${isZoomed ? "left-0 top-0 z-10 flex h-screen w-full items-center justify-center bg-light dark:bg-dark" : "left-[20%] top-[20%] w-2/6"}`}
+          className={`fixed ${isZoomed ? "left-0 top-0 z-10 flex h-screen w-full items-center justify-center bg-light dark:bg-dark" : "left-[50%] top-36 w-2/6 -translate-x-1/2 drop-shadow-lg"}`}
         >
           <ImageSlideshow images={currentItem.images} isZoomed={isZoomed} />
           <div
-            className="absolute right-2 top-2 flex size-4 cursor-pointer items-center justify-center border bg-white hover:size-5"
+            className="absolute right-3 top-3 flex size-4 cursor-pointer items-center justify-center rounded-sm border bg-white hover:size-5"
             onClick={() => resizeImage()}
           >
             {isZoomed ? (
@@ -138,13 +138,13 @@ function App() {
       )}
       {currentItem?.template === "2" && (
         <>
-          <div className="fixed left-[20%] top-[20%] w-2/6 px-6">
+          <div className="fixed left-[50%] top-36 w-2/6 -translate-x-1/2 px-6 drop-shadow-lg">
             <VideoContainer item={currentItem} />
           </div>
         </>
       )}
       {currentItem?.template === "3" && (
-        <div className="fixed right-0 top-[20%] w-5/6 px-6">
+        <div className="fixed right-0 top-36 w-[calc(100%-224px)] px-6">
           <VideoContainer item={currentItem} />
         </div>
       )}

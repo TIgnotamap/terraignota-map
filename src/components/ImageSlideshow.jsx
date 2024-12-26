@@ -26,7 +26,7 @@ export default function ImageSlideshow({ images, isZoomed }) {
           key={image._key}
           className={`${
             index === activeIndex ? "opacity-100" : "opacity-0"
-          } absolute rounded-lg transition-opacity duration-[1500ms] ease-in-out`}
+          } absolute rounded-md border border-gray transition-opacity duration-[1500ms] ease-in-out`}
           onClick={() => handleClick()}
         />
       ))}
