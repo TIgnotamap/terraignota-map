@@ -23,7 +23,7 @@ export default function ItemMarker({ item, setCurrentItem, currentItem }) {
             setCurrentItem(item);
           }}
           style={{
-            background: `radial-gradient(circle, ${chooseColor(item.project.title.en)} 10%, #ffffff00 70%)`,
+            background: `radial-gradient(circle, ${chooseColor(item.project._id)} 10%, #ffffff00 70%)`,
           }}
           className={`absolute size-8 cursor-pointer rounded-full text-xs ${item == currentItem || currentItem == null ? "" : "opacity-40"}`}
         />

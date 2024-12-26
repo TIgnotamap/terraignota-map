@@ -17,8 +17,8 @@ export default function ItemList({ setCurrentItem, filteredItems }) {
               <h3>
                 <div
                   style={{
-                    backgroundColor: chooseColor(item.project.title.en),
-                    boxShadow: `0 0 1px ${chooseColor(item.project.title.en)}`,
+                    backgroundColor: chooseColor(item.project._id),
+                    boxShadow: `0 0 1px ${chooseColor(item.project._id)}`,
                   }}
                   className={`mb-1 mr-0.5 inline-block size-1 rounded-full`}
                 />

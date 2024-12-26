@@ -35,8 +35,8 @@ export default function ProjectList({
                     }
                   }}
                   style={{
-                    backgroundColor: chooseColor(project.title[language]),
-                    boxShadow: `0 0 2px ${chooseColor(project.title[language])}`,
+                    backgroundColor: chooseColor(project._id),
+                    boxShadow: `0 0 2px ${chooseColor(project._id)}`,
                   }}
                   className={`relative flex size-3 cursor-pointer items-center justify-center border`}
                 >

@@ -19,6 +19,13 @@ export default function ItemInfo({ item }) {
       : item.properties),
   };
 
+  const translations = {
+    condition: {
+      en: "condition",
+      es: "condición",
+    },
+  };
+
   const hasProperties = Object.keys(properties).length > 0;
   const hasNameOrText = item.name || item.text;
 
@@ -83,7 +90,7 @@ export default function ItemInfo({ item }) {
           <hr className="border-gray" />
           <div className={`py-8`}>
             <div className="font-mono text-xs">
-              Condition: {item.condition[language]}
+              {translations.condition[language]}: {item.condition[language]}
             </div>
           </div>
         </>
