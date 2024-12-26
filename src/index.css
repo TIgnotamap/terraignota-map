@@ -17,6 +17,11 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
+::selection {
+  background-color: #666;
+  color: #fff;
+}
+
 /* Firefox (uncomment to work in Firefox, although other properties will not work!)  */
 /** {
   scrollbar-width: thin;
