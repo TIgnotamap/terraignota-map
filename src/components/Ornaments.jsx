@@ -1,4 +1,4 @@
-export default function Ornaments() {
+export default function Ornaments({ currentItem }) {
   return (
     <div
       aria-hidden="true"
@@ -7,7 +7,9 @@ export default function Ornaments() {
       <div className="h-8 w-[1px] bg-dark dark:bg-light" />
       <div className="flex w-full items-center justify-between">
         <div className="h-[1px] w-8 bg-dark dark:bg-light" />
-        <div className="text-2xl">
+        <div
+          className={`text-2xl transition-opacity ${currentItem ? "opacity-0" : "opacity-100"}`}
+        >
           <svg
             xmlns="http://www.w3.org/2000/svg"
             height="24px"

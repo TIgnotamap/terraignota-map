@@ -91,7 +91,7 @@ function App() {
         filteredItems={filteredItems}
       />
 
-      <Ornaments />
+      <Ornaments currentItem={currentItem} />
 
       <Nav
         selectedProjects={selectedProjects}
