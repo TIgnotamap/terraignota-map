@@ -15,7 +15,7 @@ export default function Menu({
     <nav className="fixed right-6 top-4 flex items-center gap-2 font-serif text-sm">
       <button
         onClick={toggleBgAudio}
-        className={`${bgAudioIsPlaying ? "opacity-100" : "opacity-30"}`}
+        className={`${bgAudioIsPlaying ? "animate-pulse opacity-100" : "opacity-30"}`}
       >
         audio
       </button>
