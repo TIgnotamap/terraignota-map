@@ -20,7 +20,7 @@ export default function Menu({ data, theme, setTheme }) {
         index
       </NavLink>
       <button
-        className=""
+        className="w-3"
         onClick={() => setLanguage(language === "es" ? "en" : "es")}
       >
         {language === "es" ? "EN" : "ES"}
