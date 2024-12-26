@@ -21,7 +21,7 @@ export default function VideoContainer({ item }) {
         onLoadedData={() => {
           setIsVisible(true);
         }}
-        className={`${isVisible ? "scale-100" : "scale-0"} rounded-lg`}
+        className={`${isVisible ? "scale-100" : "scale-0"} rounded-md border border-gray drop-shadow-lg`}
       />
     </>
   );
