@@ -21,7 +21,7 @@ export default function ItemProperties({ properties }) {
   const translate = (key) => translations[key]?.[language] || key;
 
   return (
-    <div className="grid grid-cols-[1fr_2fr] gap-2">
+    <div className="grid grid-cols-[1fr_3fr] gap-2">
       {Object.entries(properties).map(
         ([key, value]) =>
           value.length > 0 && (

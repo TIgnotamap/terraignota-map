@@ -23,7 +23,7 @@ export default function ItemInfo({ item }) {
   const hasNameOrText = item.name || item.text;
 
   return (
-    <div className="fixed right-6 top-32 max-h-[60vh] w-2/6 overflow-auto border border-gray bg-light px-4 shadow-md dark:bg-dark">
+    <div className="fixed right-6 top-36 max-h-[60vh] w-[400px] overflow-auto border border-gray bg-light px-4 shadow-md dark:bg-dark">
       {hasProperties && (
         <div className={`py-8`}>
           <ItemProperties properties={properties} />
@@ -82,7 +82,7 @@ export default function ItemInfo({ item }) {
         <>
           <hr className="border-gray" />
           <div className={`py-8`}>
-            <div className="font-mono text-sm">
+            <div className="font-mono text-xs">
               Condition: {item.condition[language]}
             </div>
           </div>
