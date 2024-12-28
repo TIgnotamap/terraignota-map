@@ -53,60 +53,60 @@ function App() {
     });
   }, [currentItem]);
 
-  useEffect(() => {
-    const loadData = async () => {
-      try {
-        const fetchedData = await fetchData();
-        setData(fetchedData);
-      } catch (error) {
-        console.error("Error fetching data:", error);
-        setError(error.message);
-      } finally {
-        setLoading(false);
-      }
-    };
-    loadData();
-  }, []);
+  // useEffect(() => {
+  //   const loadData = async () => {
+  //     try {
+  //       const fetchedData = await fetchData();
+  //       setData(fetchedData);
+  //     } catch (error) {
+  //       console.error("Error fetching data:", error);
+  //       setError(error.message);
+  //     } finally {
+  //       setLoading(false);
+  //     }
+  //   };
+  //   loadData();
+  // }, []);
 
-  useEffect(() => {
-    const filteredItems = data?.items?.filter((item) => {
-      const matchesTags = selectedTags.length
-        ? item.tags?.some((tag) => selectedTags.includes(tag._id))
-        : true;
+  // useEffect(() => {
+  //   const filteredItems = data?.items?.filter((item) => {
+  //     const matchesTags = selectedTags.length
+  //       ? item.tags?.some((tag) => selectedTags.includes(tag._id))
+  //       : true;
 
-      const matchesProjects = selectedProjects.length
-        ? selectedProjects.some(
-            (selectedProject) => item.project?._id === selectedProject,
-          )
-        : true;
+  //     const matchesProjects = selectedProjects.length
+  //       ? selectedProjects.some(
+  //           (selectedProject) => item.project?._id === selectedProject,
+  //         )
+  //       : true;
 
-      return matchesTags && matchesProjects;
-    });
+  //     return matchesTags && matchesProjects;
+  //   });
 
-    setFilteredItems(filteredItems);
-  }, [selectedTags, selectedProjects, data]);
+  //   setFilteredItems(filteredItems);
+  // }, [selectedTags, selectedProjects, data]);
 
-  useEffect(() => {
-    if (pathname === "/" || pathname === "/info" || pathname === "/index") {
-      setCurrentItem(null);
-    } else {
-      const matchedItem = data?.items?.find(
-        (item) => item.slug.current === pathname.slice(1),
-      );
-      setCurrentItem(matchedItem || null);
-    }
-  }, [pathname, data]);
+  // useEffect(() => {
+  //   if (pathname === "/" || pathname === "/info" || pathname === "/index") {
+  //     setCurrentItem(null);
+  //   } else {
+  //     const matchedItem = data?.items?.find(
+  //       (item) => item.slug.current === pathname.slice(1),
+  //     );
+  //     setCurrentItem(matchedItem || null);
+  //   }
+  // }, [pathname, data]);
 
   const resizeImage = () => {
     setIsZoomed(!isZoomed);
   };
 
-  if (loading) return <div className="py-4 font-thin">Loading...</div>;
-  if (error) return <div className="py-4 font-thin text-red-500">{error}</div>;
+  // if (loading) return <div className="py-4 font-thin">Loading...</div>;
+  // if (error) return <div className="py-4 font-thin text-red-500">{error}</div>;
 
   return (
     <div className="text-dark dark:text-light">
-      {!enter && (
+      {/* {!enter && (
         <div className="fixed z-[100] flex h-screen w-full items-center justify-center bg-white dark:bg-black">
           <button
             onClick={() => {
@@ -215,6 +215,18 @@ function App() {
         <Route path="/:slug" element={<ItemInfo item={currentItem} />} />
       </Routes>
       <footer className="fixed bottom-0 right-0 m-6 font-serif text-sm">
+        Terra Ignota Map
+      </footer> */}
+
+      <div className="fixed inset-0 flex items-center justify-center">
+        <div
+          className={`size-8 animate-spin rounded-full transition-opacity duration-500 dark:invert`}
+          style={{
+            backgroundImage: `url("data:image/svg+xml,%3csvg width='100%25' height='100%25' xmlns='http://www.w3.org/2000/svg'%3e%3crect width='100%25' height='100%25' fill='none' rx='100' ry='100' stroke='black' stroke-width='1' stroke-dasharray='16%2c 2%2c 16' stroke-dashoffset='0' stroke-linecap='round'/%3e%3c/svg%3e")`,
+          }}
+        />
+      </div>
+      <footer className="fixed bottom-0 mb-6 w-full text-center font-serif text-sm">
         Terra Ignota Map
       </footer>
     </div>
