@@ -43,8 +43,7 @@ export async function getSettings() {
   title,
   info,
   hideCredits,
-  audios[]{
-  'url': asset->url,},
+  audios[],
   credits,
   links
 }`);
@@ -92,8 +91,7 @@ export async function getItems() {
   rockProperties,
   properties,
   video{
-    "url": url,
-    "fileUrl": file.asset->url
+    url,
   },
  text {
     es,

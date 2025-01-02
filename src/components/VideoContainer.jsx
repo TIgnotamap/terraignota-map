@@ -15,7 +15,7 @@ export default function VideoContainer({ item }) {
         </div>
       )}
       <video
-        src={item.video.url || item.video.fileUrl}
+        src={item.video.url}
         controls
         autoPlay
         onLoadedData={() => {

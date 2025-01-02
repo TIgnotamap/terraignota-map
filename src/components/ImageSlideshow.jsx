@@ -2,6 +2,10 @@ import { useState, useEffect } from "react";
 
 export default function ImageSlideshow({ images, isZoomed }) {
   const [activeIndex, setActiveIndex] = useState(0);
+  const size = {
+    small: "?h=500&fm=webp",
+    large: "?h=1080&fm=webp",
+  };
 
   useEffect(() => {
     if (!isZoomed) {
@@ -21,7 +25,7 @@ export default function ImageSlideshow({ images, isZoomed }) {
     <>
       {images.map((image, index) => (
         <img
-          src={image.url}
+          src={`${image.url}${isZoomed ? size.large : size.small}`}
           alt=""
           key={image._key}
           className={`${
