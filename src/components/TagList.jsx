@@ -10,7 +10,7 @@ export default function TagList({
   const { language } = useContext(LanguageContext);
 
   return (
-    <div className="pointer-events-auto flex h-auto w-full shrink-0 flex-wrap items-center gap-1 overflow-auto dark:bg-dark">
+    <div className="pointer-events-auto flex h-auto w-full shrink-0 flex-wrap items-center gap-1 overflow-auto">
       {tags.map((tag) => {
         const isRelevant = selectedTags.length
           ? items.some(
