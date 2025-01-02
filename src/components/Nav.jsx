@@ -39,6 +39,7 @@ export default function Nav({
               tags={data?.tags}
               selectedTags={selectedTags}
               setSelectedTags={setSelectedTags}
+              items={data?.items}
             />
           </div>
         </>
