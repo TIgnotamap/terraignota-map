@@ -18,7 +18,9 @@ export default function ProjectList({
           const hasMatchingTags = items.some(
             (item) =>
               item.project._id === project._id &&
-              item.tags?.some((tag) => selectedTags?.includes(tag._id)),
+              selectedTags.every((tag) =>
+                item.tags?.some((itemTag) => itemTag._id === tag),
+              ),
           );
 
           return (
@@ -45,7 +47,11 @@ export default function ProjectList({
                   )}
                 </div>
                 <span
-                  className={`${selectedTags.length > 0 && !hasMatchingTags ? "text-gray" : ""}`}
+                  className={`${
+                    selectedTags.length > 0 && !hasMatchingTags
+                      ? "text-gray"
+                      : ""
+                  }`}
                 >
                   {project.title[language]}
                 </span>
