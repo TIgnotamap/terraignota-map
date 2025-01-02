@@ -108,7 +108,7 @@ function App() {
             }}
             className="underline"
           >
-            start
+            Terra Ignota
           </button>
         </div>
       )}
