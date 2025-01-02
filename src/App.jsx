@@ -72,7 +72,7 @@ function App() {
         : true;
 
       const matchesProjects = selectedProjects.length
-        ? selectedProjects.every(
+        ? selectedProjects.some(
             (selectedProject) => item.project?._id === selectedProject,
           )
         : true;
@@ -108,7 +108,7 @@ function App() {
             }}
             className="underline"
           >
-            start
+            Terra Ignota
           </button>
         </div>
       )}
