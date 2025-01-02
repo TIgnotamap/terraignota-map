@@ -1,18 +1,15 @@
 import { useState, useEffect } from "react";
 import { fetchData } from "./sanity/sanity-utils";
 import { Routes, Route, useLocation } from "react-router-dom";
-
 import useTheme from "./hooks/useTheme";
-import Index from "./components/Index";
-import Info from "./components/Info";
-import ItemInfo from "./components/ItemInfo";
 
-import TerraIgnotaMap from "./components/Map/TerraIgnotaMap";
 import Menu from "./components/Menu";
+import TerraIgnotaMap from "./components/Map/TerraIgnotaMap";
 import Ornaments from "./components/Ornaments";
-import VideoContainer from "./components/VideoContainer";
-import ImageSlideshow from "./components/ImageSlideshow";
 import Nav from "./components/Nav";
+import Info from "./components/Info";
+import Index from "./components/Index";
+import Item from "./components/Item";
 
 function App() {
   const [data, setData] = useState(null);
@@ -25,8 +22,6 @@ function App() {
   const [selectedTags, setSelectedTags] = useState([]);
   const [selectedProjects, setSelectedProjects] = useState([]);
   const [filteredItems, setFilteredItems] = useState(null);
-
-  const [isZoomed, setIsZoomed] = useState(false);
 
   const [enter, setEnter] = useState(false);
   const [bgAudioIsPlaying, setBgAudioIsPlaying] = useState(false);
@@ -97,10 +92,6 @@ function App() {
     }
   }, [pathname, data]);
 
-  const resizeImage = () => {
-    setIsZoomed(!isZoomed);
-  };
-
   if (loading) return <div className="py-4 font-thin">Loading...</div>;
   if (error) return <div className="py-4 font-thin text-red-500">{error}</div>;
 
@@ -153,52 +144,6 @@ function App() {
         data={data}
       />
 
-      {currentItem?.template === "1" && currentItem?.images?.length > 0 && (
-        <div
-          className={`fixed ${isZoomed ? "left-0 top-0 z-10 flex h-screen w-full items-center justify-center bg-light dark:bg-dark" : "left-[50%] top-36 w-2/6 -translate-x-1/2 drop-shadow-lg"}`}
-        >
-          <ImageSlideshow images={currentItem.images} isZoomed={isZoomed} />
-          <div
-            className="absolute right-3 top-3 flex size-4 cursor-pointer items-center justify-center rounded-sm border bg-white hover:size-5"
-            onClick={() => resizeImage()}
-          >
-            {isZoomed ? (
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                height="0.75rem"
-                viewBox="0 -960 960 960"
-                width="0.75rem"
-                fill="undefined"
-              >
-                <path d="M296.92-160v-136.92H160v-40h176.92V-160h-40Zm326.93 0v-176.92h176.92v40H663.85V-160h-40ZM160-623.08v-40h136.92V-800h40v176.92H160Zm463.85 0V-800h40v136.92h136.92v40H623.85Z" />
-              </svg>
-            ) : (
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                height="0.75rem"
-                viewBox="0 -960 960 960"
-                width="0.75rem"
-                fill="undefined"
-              >
-                <path d="M160-160v-176.92h40V-200h136.92v40H160Zm463.85 0v-40h136.92v-136.92h40V-160H623.85ZM160-623.08V-800h176.92v40H200v136.92h-40Zm600.77 0V-760H623.85v-40h176.92v176.92h-40Z" />
-              </svg>
-            )}
-          </div>
-        </div>
-      )}
-      {currentItem?.template === "2" && (
-        <>
-          <div className="fixed left-[50%] top-36 w-2/6 -translate-x-1/2 px-6 drop-shadow-lg">
-            <VideoContainer item={currentItem} />
-          </div>
-        </>
-      )}
-      {currentItem?.template === "3" && (
-        <div className="fixed right-0 top-36 w-[calc(100%-224px)] px-6">
-          <VideoContainer item={currentItem} />
-        </div>
-      )}
-
       <Routes>
         <Route path="/" element={<></>} />
         <Route path="/info" element={<Info data={data?.settings} />} />
@@ -212,8 +157,9 @@ function App() {
             />
           }
         />
-        <Route path="/:slug" element={<ItemInfo item={currentItem} />} />
+        <Route path="/:slug" element={<Item currentItem={currentItem} />} />
       </Routes>
+
       <footer className="fixed bottom-0 right-0 m-6 font-serif text-sm">
         Terra Ignota Map
       </footer>
