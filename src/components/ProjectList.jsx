@@ -28,19 +28,23 @@ export default function ProjectList({
               <div className="flex items-center gap-1 font-serif">
                 <div
                   onClick={() => {
-                    if (selectedProjects?.includes(project._id)) {
-                      setSelectedProjects(
-                        selectedProjects.filter((p) => p !== project._id),
-                      );
-                    } else {
-                      setSelectedProjects([...selectedProjects, project._id]);
+                    if (hasMatchingTags) {
+                      if (selectedProjects?.includes(project._id)) {
+                        setSelectedProjects(
+                          selectedProjects.filter((p) => p !== project._id),
+                        );
+                      } else {
+                        setSelectedProjects([...selectedProjects, project._id]);
+                      }
                     }
                   }}
                   style={{
                     backgroundColor: chooseColor(project._id),
                     boxShadow: `0 0 2px ${chooseColor(project._id)}`,
                   }}
-                  className={`relative flex size-3 cursor-pointer items-center justify-center border`}
+                  className={`relative flex size-3 cursor-pointer items-center justify-center border ${
+                    !hasMatchingTags ? "cursor-not-allowed opacity-50" : ""
+                  }`}
                 >
                   {selectedProjects?.includes(project._id) && (
                     <div className="absolute size-1.5 rounded-full bg-dark" />
