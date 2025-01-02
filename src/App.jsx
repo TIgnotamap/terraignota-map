@@ -66,11 +66,13 @@ function App() {
   useEffect(() => {
     const filteredItems = data?.items?.filter((item) => {
       const matchesTags = selectedTags.length
-        ? item.tags?.some((tag) => selectedTags.includes(tag._id))
+        ? selectedTags.every((tag) =>
+            item.tags?.some((itemTag) => itemTag._id === tag),
+          )
         : true;
 
       const matchesProjects = selectedProjects.length
-        ? selectedProjects.some(
+        ? selectedProjects.every(
             (selectedProject) => item.project?._id === selectedProject,
           )
         : true;
