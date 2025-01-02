@@ -48,7 +48,9 @@ export default function ProjectList({
                 </div>
                 <span
                   className={`${
-                    selectedTags.length > 0 && !hasMatchingTags
+                    (selectedTags.length > 0 && !hasMatchingTags) ||
+                    (selectedProjects != 0 &&
+                      !selectedProjects.includes(project._id))
                       ? "text-gray"
                       : ""
                   }`}
