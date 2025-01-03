@@ -1,7 +1,11 @@
+import { useContext } from "react";
 import { NavLink } from "react-router-dom";
+import { LanguageContext } from "../utils/LanguageContext";
 import chooseColor from "../utils/chooseColor";
 
 export default function ItemList({ setCurrentItem, filteredItems }) {
+  const { language } = useContext(LanguageContext);
+
   return (
     <div className="pointer-events-auto h-full w-[calc((100vw-3rem)/6-1.5rem)] overflow-auto border border-gray bg-light p-1 shadow-md dark:bg-dark">
       <ul>
@@ -22,7 +26,7 @@ export default function ItemList({ setCurrentItem, filteredItems }) {
                   }}
                   className={`mb-1 mr-0.5 inline-block size-1 rounded-full`}
                 />
-                {item.code} {item.name?.en || item.name?.es || ""}
+                {item.code} {item.name ? item.name[language] : ""}
               </h3>
             </NavLink>
           </li>
