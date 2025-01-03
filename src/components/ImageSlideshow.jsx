@@ -30,7 +30,7 @@ export default function ImageSlideshow({ images }) {
 
   return (
     <>
-      <div className="fixed left-[50%] top-36 w-2/6 -translate-x-1/2 drop-shadow-lg">
+      <div className="drop-shadow-lg">
         {images.map((image, index) => (
           <img
             src={image.url + size.small}

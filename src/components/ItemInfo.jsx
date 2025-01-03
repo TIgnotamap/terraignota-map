@@ -30,7 +30,7 @@ export default function ItemInfo({ item }) {
   const hasNameOrText = item.name || item.text;
 
   return (
-    <div className="fixed right-6 top-36 max-h-[60vh] w-[400px] overflow-auto border border-gray bg-light px-4 shadow-md dark:bg-dark">
+    <div className="max-h-[60vh] overflow-auto border border-gray bg-light px-4 shadow-md dark:bg-dark">
       {hasProperties && (
         <div className={`py-8`}>
           <ItemProperties properties={properties} />

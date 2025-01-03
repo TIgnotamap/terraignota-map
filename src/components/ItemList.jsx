@@ -3,7 +3,7 @@ import chooseColor from "../utils/chooseColor";
 
 export default function ItemList({ setCurrentItem, filteredItems }) {
   return (
-    <div className="pointer-events-auto h-full w-[200px] overflow-auto border border-gray bg-light p-1 shadow-md dark:bg-dark">
+    <div className="pointer-events-auto h-full w-[calc((100vw-3rem)/6-1.5rem)] overflow-auto border border-gray bg-light p-1 shadow-md dark:bg-dark">
       <ul>
         {filteredItems?.map((item) => (
           <li className="font-serif" key={item._id}>
