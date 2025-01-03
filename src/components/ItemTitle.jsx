@@ -18,11 +18,11 @@ export default function ItemTitle({ currentItem, setCurrentItem }) {
       >
         {currentItem.code}
       </div>
-      {currentItem.location && (
-        <div className="drop-shadow-[0_0_2px_#fff] dark:drop-shadow-[0_0_2px_#000]">
-          {currentItem.location[language]}
-        </div>
-      )}
+
+      <div className="drop-shadow-[0_0_2px_#fff] dark:drop-shadow-[0_0_2px_#000]">
+        {currentItem.location[language] ? currentItem.location[language] : "."}
+      </div>
+
       <div
         onClick={() => {
           terraIgnotaMap?.flyTo({
