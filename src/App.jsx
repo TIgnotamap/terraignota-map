@@ -10,6 +10,7 @@ import Nav from "./components/Nav";
 import Info from "./components/Info";
 import Index from "./components/Index";
 import Item from "./components/Item";
+import Loading from "./components/ui/Loading";
 
 function App() {
   const [data, setData] = useState(null);
@@ -94,7 +95,7 @@ function App() {
     }
   }, [pathname, data]);
 
-  if (loading) return <div className="py-4 font-thin">Loading...</div>;
+  if (loading) return <Loading />;
   if (error) return <div className="py-4 font-thin text-red-500">{error}</div>;
 
   return (
