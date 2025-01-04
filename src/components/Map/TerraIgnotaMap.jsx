@@ -6,7 +6,6 @@ import {
   NavigationControl,
 } from "@vis.gl/react-maplibre";
 import ItemMarker from "./ItemMarker";
-import ItemTitle from "../ItemTitle";
 import Coordinates from "../Coordinates";
 import { throttle } from "lodash";
 
@@ -100,14 +99,8 @@ export default function TerraIgnotaMap({
         </Map>
       </div>
 
-      <div className="pointer-events-none fixed top-4 flex w-full flex-col items-center font-serif">
+      <div className="pointer-events-none fixed top-4 flex w-full flex-col items-center">
         <Coordinates currentItem={currentItem} mapCenter={mapCenter} />
-        {currentItem && (
-          <ItemTitle
-            currentItem={currentItem}
-            setCurrentItem={setCurrentItem}
-          />
-        )}
       </div>
     </div>
   );

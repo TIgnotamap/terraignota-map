@@ -160,7 +160,12 @@ function App() {
             />
           }
         />
-        <Route path="/:slug" element={<Item currentItem={currentItem} />} />
+        <Route
+          path="/:slug"
+          element={
+            <Item currentItem={currentItem} setCurrentItem={setCurrentItem} />
+          }
+        />
       </Routes>
 
       <footer className="fixed bottom-0 right-0 m-6 font-serif text-sm">
