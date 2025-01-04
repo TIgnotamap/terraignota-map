@@ -16,9 +16,10 @@ export default function Index({ people, orgs, refMaterials }) {
     <>
       <div className="pointer-events-none fixed top-11 flex w-full flex-col items-center">
         <Title title="Index" handleClose={handleClose} />
+        <div className="h-8 w-[1px] bg-gray" />
       </div>
-      <div className="fixed right-6 top-16 flex items-start gap-2">
-        <div className="h-[60vh] w-[33vw] overflow-auto border bg-light dark:bg-dark">
+      <div className="pointer-events-none fixed top-48 grid w-full grid-cols-12 items-start px-6">
+        <div className="pointer-events-auto col-span-6 col-start-4 h-[60vh] overflow-auto border border-gray bg-light px-4 shadow-md dark:bg-dark">
           <h2 className="text-4xl">
             {language === "en" ? "People" : "Personas"}
           </h2>
