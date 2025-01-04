@@ -1,13 +1,37 @@
+import { useContext } from "react";
+import { useNavigate } from "react-router-dom";
+import { useMap } from "@vis.gl/react-maplibre";
+import { LanguageContext } from "../utils/LanguageContext";
 import ImageSlideshow from "./ImageSlideshow";
 import VideoContainer from "./VideoContainer";
 import ItemInfo from "./ItemInfo";
 import Title from "./Title";
 
 export default function Item({ currentItem, setCurrentItem }) {
+  const { terraIgnotaMap } = useMap();
+  const navigate = useNavigate();
+  const { language } = useContext(LanguageContext);
+
+  function handleClose() {
+    terraIgnotaMap?.flyTo({
+      center: [-66.9918726, -56.89128362],
+      zoom: 3.5,
+    });
+    setCurrentItem(null);
+    navigate("/");
+  }
+
   return (
     <>
       <div className="pointer-events-none fixed top-11 flex w-full flex-col items-center">
-        <Title currentItem={currentItem} setCurrentItem={setCurrentItem} />
+        <Title
+          title={currentItem?.code}
+          subtitle={currentItem?.location?.[language]}
+          handleClose={handleClose}
+        />
+        {(currentItem?.video || currentItem?.images?.length > 0) && (
+          <div className="h-8 w-[1px] bg-gray" />
+        )}
       </div>
       <div className="pointer-events-none fixed top-48 grid w-full grid-cols-12 items-start px-6">
         {currentItem?.template === "1" && currentItem?.images?.length > 0 && (
