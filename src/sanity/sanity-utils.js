@@ -44,7 +44,18 @@ export async function getSettings() {
   info,
   hideCredits,
   audios[],
-  credits,
+  credits[] {
+    _key,
+    role,
+    subjects[]->{
+      _id,
+      _type,
+      name,
+      pseudonym,
+      firstName,
+      lastName
+    }
+  },
   links
 }`);
 }

@@ -1,6 +1,7 @@
 import { useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import { LanguageContext } from "../utils/LanguageContext";
+import { PortableText } from "@portabletext/react";
 import Title from "./Title";
 
 export default function Info({ data }) {
@@ -11,6 +12,8 @@ export default function Info({ data }) {
     navigate("/");
   }
 
+  console.log(data.credits);
+
   return (
     <>
       <div className="pointer-events-none fixed top-11 flex w-full flex-col items-center">
@@ -18,15 +21,75 @@ export default function Info({ data }) {
         <div className="h-8 w-[1px] bg-gray" />
       </div>
       <div className="pointer-events-none fixed top-48 grid w-full grid-cols-12 items-start px-6">
-        <div className="pointer-events-auto col-span-6 col-start-4 h-[60vh] overflow-auto border border-gray bg-light px-4 shadow-md dark:bg-dark">
-          <p>{data.info && data.info[language]}</p>
-          <p>{data.hideCredits}</p>
+        <div className="pointer-events-auto col-span-6 col-start-4 flex h-[60vh] flex-col items-start gap-4 overflow-auto border border-gray bg-light p-4 px-4 shadow-md dark:bg-dark">
+          {data.info && <PortableText value={data.info[language]} />}
+          {data.links && (
+            <div>
+              {data.links.map((link) => {
+                return (
+                  <a
+                    key={link._key}
+                    href={link.url}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="underline"
+                  >
+                    {link.text[language]}
+                  </a>
+                );
+              })}
+            </div>
+          )}
+          {data.credits && (
+            <div>
+              {data.credits.map((credit) => {
+                return (
+                  <div key={credit._key}>
+                    <span className="">{credit.role[language]}: </span>
+                    {credit.subjects?.length > 0 &&
+                      credit.subjects.map((subject, index) => {
+                        return (
+                          <span key={subject._id}>
+                            {subject.lastName && subject.firstName && (
+                              <span>
+                                {subject.firstName} {subject.lastName}
+                              </span>
+                            )}
+                            {subject.pseudonym && (
+                              <span> &quot;{subject.pseudonym}&quot;</span>
+                            )}
+                            {subject.name && (
+                              <span>
+                                {subject.name[language] || subject.name.en}
+                              </span>
+                            )}
+                            {index < credit.subjects.length - 1 && ", "}
+                          </span>
+                        );
+                      })}
+                  </div>
+                );
+              })}
+            </div>
+          )}
           <div>
-            <a href="https://maplibre.org/">MapLibre</a> |{" "}
-            <a href="https://openfreemap.org/">OpenFreeMap</a>{" "}
-            <a href="https://www.openmaptiles.org/">© OpenMapTiles</a> Data
-            from
-            <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>
+            <a href="https://maplibre.org/" className="underline">
+              MapLibre
+            </a>{" "}
+            |{" "}
+            <a href="https://openfreemap.org/" className="underline">
+              OpenFreeMap
+            </a>{" "}
+            <a href="https://www.openmaptiles.org/" className="underline">
+              © OpenMapTiles
+            </a>{" "}
+            data {language === "en" ? "from" : "de"}{" "}
+            <a
+              href="https://www.openstreetmap.org/copyright"
+              className="underline"
+            >
+              OpenStreetMap
+            </a>
           </div>
         </div>
       </div>
