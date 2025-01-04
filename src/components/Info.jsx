@@ -50,20 +50,54 @@ export default function Info({ data }) {
                       credit.subjects.map((subject, index) => {
                         return (
                           <span key={subject._id}>
-                            {subject.lastName && subject.firstName && (
-                              <span>
-                                {subject.firstName} {subject.lastName}
-                              </span>
+                            {subject.link ? (
+                              <>
+                                <a
+                                  href={subject.link}
+                                  className="underline"
+                                  target="_blank"
+                                  rel="noreferrer"
+                                >
+                                  {subject.lastName && subject.firstName && (
+                                    <span>
+                                      {subject.firstName} {subject.lastName}
+                                    </span>
+                                  )}
+                                  {subject.pseudonym && (
+                                    <span>
+                                      {" "}
+                                      &quot;{subject.pseudonym}&quot;
+                                    </span>
+                                  )}
+                                  {subject.name && (
+                                    <span>
+                                      {subject.name[language] ||
+                                        subject.name.en}
+                                    </span>
+                                  )}
+                                </a>
+                                <>
+                                  {index < credit.subjects.length - 1 && ", "}
+                                </>
+                              </>
+                            ) : (
+                              <>
+                                {subject.lastName && subject.firstName && (
+                                  <span>
+                                    {subject.firstName} {subject.lastName}
+                                  </span>
+                                )}
+                                {subject.pseudonym && (
+                                  <span> &quot;{subject.pseudonym}&quot;</span>
+                                )}
+                                {subject.name && (
+                                  <span>
+                                    {subject.name[language] || subject.name.en}
+                                  </span>
+                                )}
+                                {index < credit.subjects.length - 1 && ", "}
+                              </>
                             )}
-                            {subject.pseudonym && (
-                              <span> &quot;{subject.pseudonym}&quot;</span>
-                            )}
-                            {subject.name && (
-                              <span>
-                                {subject.name[language] || subject.name.en}
-                              </span>
-                            )}
-                            {index < credit.subjects.length - 1 && ", "}
                           </span>
                         );
                       })}

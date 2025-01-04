@@ -53,7 +53,8 @@ export async function getSettings() {
       name,
       pseudonym,
       firstName,
-      lastName
+      lastName,
+      link
     }
   },
   links
