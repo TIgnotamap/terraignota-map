@@ -109,7 +109,7 @@ function App() {
             }}
             className="underline"
           >
-            Terra Ignota
+            {data?.settings.title.en}
           </button>
         </div>
       )}
