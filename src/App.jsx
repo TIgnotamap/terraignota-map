@@ -143,6 +143,7 @@ function App() {
         selectedTags={selectedTags}
         setSelectedTags={setSelectedTags}
         filteredItems={filteredItems}
+        currentItem={currentItem}
         setCurrentItem={setCurrentItem}
         data={data}
       />

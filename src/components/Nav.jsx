@@ -10,6 +10,7 @@ export default function Nav({
   setSelectedTags,
   filteredItems,
   setCurrentItem,
+  currentItem,
   data,
 }) {
   const [isNavOpen, setIsNavOpen] = useState(false);
@@ -40,6 +41,7 @@ export default function Nav({
               selectedTags={selectedTags}
               setSelectedTags={setSelectedTags}
               items={data?.items}
+              currentItem={currentItem}
             />
           </div>
         </>
