@@ -151,10 +151,11 @@ export async function getItems() {
 }
 
 export async function getTags() {
-  return client.fetch(`*[_type == "tag"] | order(name.en asc){
+  return client.fetch(`*[_type == "tag"] | order(geographic asc, name.en asc){
   _id,
   name,
   description,
+  geographic
 }`);
 }
 
