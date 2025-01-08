@@ -22,7 +22,7 @@ export default function Item({ currentItem, setCurrentItem }) {
   }
 
   return (
-    <div className="fixed flex h-screen w-full flex-col items-center gap-6 overflow-scroll py-11 sm:pointer-events-none">
+    <div className="fixed flex h-screen w-full flex-col items-center gap-6 overflow-scroll pb-24 pt-11 sm:pointer-events-none">
       <div className="sticky top-0 z-10 sm:static">
         <Title
           title={currentItem?.code}
@@ -32,7 +32,7 @@ export default function Item({ currentItem, setCurrentItem }) {
       </div>
 
       {(currentItem?.video || currentItem?.images?.length > 0) && (
-        <svg className="fixed top-[151px] -z-10 h-96 w-[1px] bg-gray sm:h-[4.5rem] md:h-6">
+        <svg className="fixed top-[134px] -z-10 h-96 w-[1px] bg-gray sm:top-[151px] sm:h-[4.5rem] md:h-6">
           <line
             x1="0"
             y1="0"

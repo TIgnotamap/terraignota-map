@@ -17,7 +17,7 @@ export default function Title({ title, subtitle, handleClose }) {
   return (
     <div className="flex flex-col items-center bg-[radial-gradient(#fff_10%,_#ffffff00_70%)] font-serif drop-shadow-[0_0_2px_#fff] dark:bg-[radial-gradient(#000_0%,_#00000000_70%)] dark:drop-shadow-[0_0_2px_#000]">
       <div
-        className="text-[2.75rem] leading-tight drop-shadow-[0_0_2px_#fff] dark:drop-shadow-[0_0_2px_#000]"
+        className="text-3xl leading-tight drop-shadow-[0_0_2px_#fff] sm:text-[2.75rem] dark:drop-shadow-[0_0_2px_#000]"
         // style={{
         //   background: `radial-gradient(#fff 0%, #ffffff00 80%)`,
         // }}
