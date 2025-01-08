@@ -1,6 +1,7 @@
 import { useContext } from "react";
 import { NavLink } from "react-router-dom";
 import { LanguageContext } from "../utils/LanguageContext";
+import { StatusBarContext } from "../utils/StatusBarContext";
 import chooseColor from "../utils/chooseColor";
 
 export default function ItemList({
@@ -9,6 +10,7 @@ export default function ItemList({
   setHoveredItem,
 }) {
   const { language } = useContext(LanguageContext);
+  const { setStatus } = useContext(StatusBarContext);
 
   return (
     <div className="pointer-events-auto h-full w-[calc((100vw-3rem)/6-1.5rem)] overflow-auto border border-gray bg-light p-1 shadow-md dark:bg-dark">
@@ -18,8 +20,14 @@ export default function ItemList({
             <NavLink
               to={`/${item.slug.current}`}
               onClick={() => setCurrentItem(item)}
-              onMouseEnter={() => setHoveredItem(item)}
-              onMouseOut={() => setHoveredItem(null)}
+              onMouseEnter={() => {
+                setHoveredItem(item);
+                setStatus(item.code + " " + item.name[language]);
+              }}
+              onMouseOut={() => {
+                setHoveredItem(null);
+                setStatus(null);
+              }}
               className={({ isActive }) =>
                 isActive ? "underline" : "hover:underline"
               }

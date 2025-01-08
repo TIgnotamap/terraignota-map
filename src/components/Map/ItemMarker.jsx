@@ -1,6 +1,9 @@
 import { Marker, useMap } from "@vis.gl/react-maplibre";
 import { NavLink } from "react-router-dom";
 import chooseColor from "../../utils/chooseColor";
+import { useContext } from "react";
+import { StatusBarContext } from "../../utils/StatusBarContext";
+import { LanguageContext } from "../../utils/LanguageContext";
 
 export default function ItemMarker({
   item,
@@ -10,6 +13,8 @@ export default function ItemMarker({
   setHoveredItem,
 }) {
   const { current: map } = useMap();
+  const { setStatus } = useContext(StatusBarContext);
+  const { language } = useContext(LanguageContext);
 
   if (!map) return null;
 
@@ -23,8 +28,14 @@ export default function ItemMarker({
       <NavLink
         className={() => "relative flex items-center justify-center"}
         to={`/${item.slug.current}`}
-        onMouseEnter={() => setHoveredItem(item)}
-        onMouseLeave={() => setHoveredItem(null)}
+        onMouseEnter={() => {
+          setHoveredItem(item);
+          setStatus(item.code + " " + item.name[language]);
+        }}
+        onMouseLeave={() => {
+          setHoveredItem(null);
+          setStatus(null);
+        }}
       >
         <div
           onClick={() => {
