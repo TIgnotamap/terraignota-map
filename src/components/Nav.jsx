@@ -1,7 +1,9 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
 import ProjectList from "./ProjectList";
 import ItemList from "./ItemList";
 import TagList from "./TagList";
+import { StatusBarContext } from "../utils/StatusBarContext";
+import { LanguageContext } from "../utils/LanguageContext";
 
 export default function Nav({
   selectedProjects,
@@ -15,11 +17,32 @@ export default function Nav({
   data,
 }) {
   const [isNavOpen, setIsNavOpen] = useState(false);
+  const { setStatus } = useContext(StatusBarContext);
+  const { language } = useContext(LanguageContext);
+
+  const translations = {
+    showFilters: {
+      en: "Show filters",
+      es: "Mostrar filtros",
+    },
+    hideFilters: {
+      en: "Hide filters",
+      es: "Ocultar filtros",
+    },
+  };
+
+  console.log(translations.showFilters[language]);
 
   return (
-    <div className="pointer-events-none fixed inset-0 flex h-full w-1/2 flex-col justify-end px-6 pb-6 pt-4 transition-all">
+    <div className="pointer-events-none fixed inset-0 flex h-full w-1/2 flex-col justify-end px-6 pb-6 pt-12 transition-all">
       <div
         onClick={() => setIsNavOpen(!isNavOpen)}
+        onMouseOver={() => {
+          !isNavOpen
+            ? setStatus(translations.showFilters[language])
+            : setStatus(translations.hideFilters[language]);
+        }}
+        onMouseOut={() => setStatus(null)}
         className="pointer-events-auto flex size-10 shrink-0 cursor-pointer items-center justify-center border border-gray bg-light p-2 text-center text-xs shadow-md hover:invert dark:bg-dark"
       >
         {isNavOpen ? (
