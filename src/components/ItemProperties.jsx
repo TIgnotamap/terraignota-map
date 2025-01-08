@@ -22,26 +22,25 @@ export default function ItemProperties({ properties }) {
 
   return (
     <div className="grid grid-cols-[1fr_3fr] gap-2">
-      {Object.entries(properties).map(
-        ([key, value]) =>
-          value.length > 0 && (
-            <PropertyRow
-              key={key}
-              propertyKey={key}
-              value={value}
-              translate={translate}
-              language={language}
-            />
-          ),
-      )}
+      {Object.entries(properties).map(([key, value]) => {
+        return (
+          <PropertyRow
+            key={key}
+            propertyKey={key}
+            value={value}
+            translate={translate}
+            language={language}
+          />
+        );
+      })}
     </div>
   );
 }
 
 function PropertyRow({ propertyKey, value, translate, language }) {
-  if (!value) return null;
-
   const displayValue = typeof value === "object" ? value[language] : value;
+
+  if (displayValue == undefined) return null;
 
   return (
     <>
