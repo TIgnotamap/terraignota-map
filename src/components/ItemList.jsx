@@ -23,7 +23,9 @@ export default function ItemList({
               onMouseEnter={() => {
                 setHoveredItem(item);
                 setStatus(
-                  item.code + " " + (item.name ? item.name[language] : ""),
+                  item.code.toUpperCase() +
+                    " " +
+                    (item.name ? item.name[language] : ""),
                 );
               }}
               onMouseOut={() => {
@@ -42,7 +44,7 @@ export default function ItemList({
                   }}
                   className={`mb-1 mr-0.5 inline-block size-1 rounded-full`}
                 />
-                {item.code} {item.name ? item.name[language] : ""}
+                {item.code.toUpperCase()} {item.name ? item.name[language] : ""}
               </h3>
             </NavLink>
           </li>
