@@ -32,7 +32,16 @@ export default function Item({ currentItem, setCurrentItem }) {
       </div>
 
       {(currentItem?.video || currentItem?.images?.length > 0) && (
-        <div className="fixed top-[151px] -z-10 h-96 w-[1px] bg-gray opacity-100 sm:opacity-0 md:h-6 md:opacity-100" />
+        <svg className="fixed top-[151px] -z-10 h-96 w-[1px] bg-gray sm:h-[4.5rem] md:h-6">
+          <line
+            x1="0"
+            y1="0"
+            x2="100%"
+            y2="0"
+            stroke="gray"
+            strokeWidth="1px"
+          />
+        </svg>
       )}
 
       <div className="grid grid-cols-1 items-start gap-6 px-6 sm:grid-cols-2 md:grid-cols-12 lg:gap-0">
@@ -56,14 +65,14 @@ export default function Item({ currentItem, setCurrentItem }) {
 
         {(currentItem?.images?.length > 0 || currentItem?.video) &&
           currentItem.template != "3" && (
-            <svg className="mt-12 hidden lg:block" viewBox="0 0 100 1">
+            <svg className="absolute left-[calc(50%-0.75rem)] mt-12 w-6 md:left-[calc(100%/3*2-1rem)] lg:static lg:block lg:w-full">
               <line
                 x1="0"
                 y1="0"
                 x2="100%"
                 y2="0"
                 stroke="gray"
-                strokeWidth="2px"
+                strokeWidth="1px"
               />
             </svg>
           )}
