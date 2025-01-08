@@ -1,6 +1,7 @@
 import { useContext } from "react";
 import { LanguageContext } from "../utils/LanguageContext";
 import chooseColor from "../utils/chooseColor";
+import { StatusBarContext } from "../utils/StatusBarContext";
 
 export default function ProjectList({
   projects,
@@ -10,6 +11,14 @@ export default function ProjectList({
   items,
 }) {
   const { language } = useContext(LanguageContext);
+  const { setStatus } = useContext(StatusBarContext);
+
+  const translations = {
+    filter: {
+      en: "Filter",
+      es: "Filtrar",
+    },
+  };
 
   return (
     <div className="pointer-events-auto w-[calc((100vw-1.5rem)/3-1.5rem)] border border-gray bg-light p-1 shadow-md lg:w-[calc((100vw-3rem)/6-1.5rem)] dark:bg-dark">
@@ -27,6 +36,14 @@ export default function ProjectList({
             <li key={project._id}>
               <div className="flex items-center gap-1 font-serif">
                 <div
+                  onMouseEnter={() =>
+                    setStatus(
+                      translations.filter[language] +
+                        " " +
+                        project.title[language],
+                    )
+                  }
+                  onMouseLeave={() => setStatus(null)}
                   onClick={() => {
                     if (hasMatchingTags) {
                       if (selectedProjects?.includes(project._id)) {

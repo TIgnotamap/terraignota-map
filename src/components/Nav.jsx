@@ -31,19 +31,17 @@ export default function Nav({
     },
   };
 
-  console.log(translations.showFilters[language]);
-
   return (
-    <div className="pointer-events-none fixed inset-0 flex h-full w-1/2 flex-col justify-end px-6 pb-6 pt-12 transition-all">
+    <div className="pointer-events-none fixed inset-0 flex h-full w-1/2 flex-col px-6 pb-6 pt-4 transition-all">
       <div
         onClick={() => setIsNavOpen(!isNavOpen)}
-        onMouseOver={() => {
+        onMouseEnter={() => {
           !isNavOpen
             ? setStatus(translations.showFilters[language])
             : setStatus(translations.hideFilters[language]);
         }}
-        onMouseOut={() => setStatus(null)}
-        className="pointer-events-auto flex size-10 shrink-0 cursor-pointer items-center justify-center border border-gray bg-light p-2 text-center text-xs shadow-md hover:invert dark:bg-dark"
+        onMouseLeave={() => setStatus(null)}
+        className="pointer-events-auto flex size-10 shrink-0 cursor-pointer items-center justify-center rounded-full border border-gray bg-light p-2 text-center text-xs shadow-md hover:invert dark:bg-dark"
       >
         {isNavOpen ? (
           <svg
