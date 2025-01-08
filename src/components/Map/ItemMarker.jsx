@@ -30,7 +30,7 @@ export default function ItemMarker({
         to={`/${item.slug.current}`}
         onMouseEnter={() => {
           setHoveredItem(item);
-          setStatus(item.code + " " + item.name[language]);
+          setStatus(item.code + " " + (item.name ? item.name[language] : ""));
         }}
         onMouseLeave={() => {
           setHoveredItem(null);
