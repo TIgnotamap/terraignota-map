@@ -35,7 +35,7 @@ export default function TagList({
                 }
               }
             }}
-            className={`rounded-full border px-2 font-mono text-xs lowercase shadow-lg ${
+            className={`${tag.geographic ? "" : "rounded-full"} border px-2 font-mono text-xs lowercase shadow-lg ${
               selectedTags?.includes(tag._id)
                 ? "bg-dark text-light dark:bg-light dark:text-dark"
                 : "bg-light dark:bg-dark"
