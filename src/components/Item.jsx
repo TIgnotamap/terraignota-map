@@ -22,41 +22,56 @@ export default function Item({ currentItem, setCurrentItem }) {
   }
 
   return (
-    <>
-      <div className="pointer-events-none fixed top-11 flex w-full flex-col items-center">
+    <div className="fixed flex h-screen w-full flex-col items-center gap-6 overflow-scroll py-11 sm:pointer-events-none">
+      <div className="sticky top-0 z-10 sm:static">
         <Title
           title={currentItem?.code}
           subtitle={currentItem?.location?.[language]}
           handleClose={handleClose}
         />
-        {(currentItem?.video || currentItem?.images?.length > 0) && (
-          <div className="h-8 w-[1px] bg-gray" />
-        )}
       </div>
-      <div className="pointer-events-none fixed top-48 grid w-full grid-cols-12 items-start px-6">
+
+      {(currentItem?.video || currentItem?.images?.length > 0) && (
+        <div className="fixed top-[151px] -z-10 h-96 w-[1px] bg-gray opacity-100 sm:opacity-0 md:h-6 md:opacity-100" />
+      )}
+
+      <div className="grid grid-cols-1 items-start gap-6 px-6 sm:grid-cols-2 md:grid-cols-12 lg:gap-0">
         {currentItem?.template === "1" && currentItem?.images?.length > 0 && (
-          <div className="pointer-events-auto col-span-4 col-start-5">
+          <div className="pointer-events-auto md:col-span-4 md:col-start-5">
             <ImageSlideshow images={currentItem.images} />
           </div>
         )}
+
         {currentItem?.template === "2" && currentItem?.video && (
-          <div className="pointer-events-auto col-span-4 col-start-5">
+          <div className="pointer-events-auto md:col-span-4 md:col-start-5">
             <VideoContainer item={currentItem} />
           </div>
         )}
+
         {currentItem?.template === "3" && currentItem?.video && (
-          <div className="pointer-events-auto col-span-10 col-start-3">
+          <div className="pointer-events-auto md:col-span-8 md:col-start-5 lg:col-span-10 lg:col-start-3">
             <VideoContainer item={currentItem} />
           </div>
         )}
+
         {(currentItem?.images?.length > 0 || currentItem?.video) &&
           currentItem.template != "3" && (
-            <div className="mt-12 h-[1px] w-full bg-gray" />
+            <svg className="mt-12 hidden lg:block" viewBox="0 0 100 1">
+              <line
+                x1="0"
+                y1="0"
+                x2="100%"
+                y2="0"
+                stroke="gray"
+                strokeWidth="2px"
+              />
+            </svg>
           )}
-        <div className="pointer-events-auto col-span-3 col-start-10">
+
+        <div className="pointer-events-auto md:col-span-4 md:col-start-9 lg:col-span-3 lg:col-start-10">
           {currentItem && <ItemInfo item={currentItem} />}
         </div>
       </div>
-    </>
+    </div>
   );
 }

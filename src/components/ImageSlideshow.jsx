@@ -30,7 +30,7 @@ export default function ImageSlideshow({ images }) {
 
   return (
     <>
-      <div className="drop-shadow-lg">
+      <div className="relative flex h-[30vh] items-center justify-center drop-shadow-lg sm:block sm:h-auto">
         {images.map((image, index) => (
           <img
             src={image.url + size.small}
@@ -38,13 +38,13 @@ export default function ImageSlideshow({ images }) {
             key={image._key}
             className={`${
               index === activeIndex ? "opacity-100" : "opacity-0"
-            } absolute rounded-md border border-gray transition-opacity duration-[1500ms] ease-in-out`}
+            } absolute max-h-full max-w-full rounded-md border border-gray transition-opacity duration-[1500ms] ease-in-out sm:max-h-none`}
             onClick={handleClick}
           />
         ))}
 
         <div
-          className="absolute right-3 top-3 flex size-4 cursor-pointer items-center justify-center rounded-sm border bg-white hover:size-5"
+          className="absolute right-3 top-3 hidden size-4 cursor-pointer items-center justify-center rounded-sm border bg-white hover:size-5 sm:flex"
           onClick={resizeImage}
         >
           <svg

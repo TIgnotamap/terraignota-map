@@ -30,9 +30,9 @@ export default function ItemInfo({ item }) {
   const hasNameOrText = item.name || item.text;
 
   return (
-    <div className="max-h-[60vh] overflow-auto border border-gray bg-light px-4 shadow-md dark:bg-dark">
+    <div className="overflow-auto border border-gray bg-light px-4 shadow-md sm:max-h-[60vh] dark:bg-dark">
       {hasProperties && (
-        <div className={`py-8`}>
+        <div className="py-8">
           <ItemProperties properties={properties} />
         </div>
       )}
@@ -40,7 +40,7 @@ export default function ItemInfo({ item }) {
       {hasNameOrText && (
         <>
           {hasProperties && <hr className="border-gray" />}
-          <div className={`py-8`}>
+          <div className="py-8">
             {item.name && (
               <div className="pb-2 font-serif text-xl">
                 {item.name[language]}
@@ -54,7 +54,7 @@ export default function ItemInfo({ item }) {
       {item.references && item.references.length > 0 && (
         <>
           <hr className="border-gray" />
-          <div className={`py-8`}>
+          <div className="py-8">
             {item.references.map((reference) => (
               <PortableText
                 key={reference._id}
@@ -68,7 +68,7 @@ export default function ItemInfo({ item }) {
       {item.links && item.links.length > 0 && (
         <>
           <hr className="border-gray" />
-          <div className={`py-8`}>
+          <div className="py-8">
             {item.links.map((link, index) => (
               <p key={`${link.url}-${index}`}>
                 <a
@@ -88,7 +88,7 @@ export default function ItemInfo({ item }) {
       {item.condition && (
         <>
           <hr className="border-gray" />
-          <div className={`py-8`}>
+          <div className="py-8">
             <div className="font-mono text-xs">
               {translations.condition[language]}: {item.condition[language]}
             </div>

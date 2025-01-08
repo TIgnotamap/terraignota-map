@@ -21,7 +21,7 @@ export default function ItemProperties({ properties }) {
   const translate = (key) => translations[key]?.[language] || key;
 
   return (
-    <div className="grid grid-cols-[1fr_3fr] gap-2">
+    <div className="grid xl:grid-cols-[1fr_3fr] xl:gap-2">
       {Object.entries(properties).map(([key, value]) => {
         return (
           <PropertyRow
@@ -44,10 +44,10 @@ function PropertyRow({ propertyKey, value, translate, language }) {
 
   return (
     <>
-      <span className="text-right text-sm uppercase">
+      <span className="text-sm uppercase text-darkGray xl:text-right dark:text-gray">
         {translate(propertyKey)}
       </span>
-      <span>{displayValue}</span>
+      <span className="pb-4 xl:pb-0">{displayValue}</span>
     </>
   );
 }
