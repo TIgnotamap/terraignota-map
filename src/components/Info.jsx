@@ -4,6 +4,21 @@ import { LanguageContext } from "../utils/LanguageContext";
 import { PortableText } from "@portabletext/react";
 import Title from "./Title";
 
+const components = {
+  marks: {
+    link: ({ children, value }) => {
+      const rel = !value.href.startsWith("/")
+        ? "noreferrer noopener"
+        : undefined;
+      return (
+        <a href={value.href} rel={rel} className="underline" target="_blank">
+          {children}
+        </a>
+      );
+    },
+  },
+};
+
 export default function Info({ data }) {
   const { language } = useContext(LanguageContext);
   const navigate = useNavigate();
@@ -11,8 +26,6 @@ export default function Info({ data }) {
   function handleClose() {
     navigate("/");
   }
-
-  console.log(data.credits);
 
   return (
     <>
@@ -22,7 +35,9 @@ export default function Info({ data }) {
       </div>
       <div className="pointer-events-none fixed top-48 grid w-full grid-cols-12 items-start px-6">
         <div className="pointer-events-auto col-span-6 col-start-4 flex h-[60vh] flex-col items-start gap-4 overflow-auto border border-gray bg-light p-4 px-4 shadow-md dark:bg-dark">
-          {data.info && <PortableText value={data.info[language]} />}
+          {data.info && (
+            <PortableText value={data.info[language]} components={components} />
+          )}
           {data.links && (
             <div>
               {data.links.map((link) => {
@@ -42,6 +57,9 @@ export default function Info({ data }) {
           )}
           {data.credits && (
             <div>
+              <h1 className="font-black">
+                {language === "en" ? "Web application" : "Aplicacion web"}
+              </h1>
               {data.credits.map((credit) => {
                 return (
                   <div key={credit._key}>
