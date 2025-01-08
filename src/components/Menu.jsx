@@ -30,6 +30,10 @@ export default function Menu({
       en: "Change color mode",
       es: "Cambiar modo de color",
     },
+    openIndex: {
+      en: "Open index",
+      es: "Abrir index",
+    },
   };
 
   return (
@@ -51,6 +55,8 @@ export default function Menu({
         ?
       </NavLink>
       <NavLink
+        onMouseOver={() => setStatus(translations.openIndex[language])}
+        onMouseOut={() => setStatus(null)}
         to="/index"
         className="border border-gray bg-light px-2 dark:bg-dark dark:text-light"
       >
