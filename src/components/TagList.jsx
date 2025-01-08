@@ -1,6 +1,7 @@
 import { useContext } from "react";
 import { LanguageContext } from "../utils/LanguageContext";
 import chooseColor from "../utils/chooseColor";
+import { StatusBarContext } from "../utils/StatusBarContext";
 
 export default function TagList({
   tags,
@@ -10,6 +11,14 @@ export default function TagList({
   items,
 }) {
   const { language } = useContext(LanguageContext);
+  const { setStatus } = useContext(StatusBarContext);
+
+  const translations = {
+    clearAllFilters: {
+      en: "Clear all tag filters",
+      es: "Borrar todos los filtros por etiqueta",
+    },
+  };
 
   return (
     <div className="pointer-events-auto flex h-auto w-full shrink-0 flex-wrap items-center gap-1 overflow-auto">
@@ -26,6 +35,10 @@ export default function TagList({
         return (
           <button
             key={tag._id}
+            onMouseEnter={() =>
+              tag.description && setStatus(tag.description[language])
+            }
+            onMouseLeave={() => setStatus(null)}
             onClick={() => {
               if (isRelevant) {
                 if (selectedTags?.includes(tag._id)) {
@@ -51,6 +64,8 @@ export default function TagList({
       })}
       <button
         onClick={() => setSelectedTags([])}
+        onMouseEnter={() => setStatus(translations.clearAllFilters[language])}
+        onMouseLeave={() => setStatus(null)}
         className={`rounded-full border border-gray px-2 font-mono text-xs lowercase shadow-lg ${
           selectedTags?.length > 0
             ? "bg-dark text-light dark:bg-light dark:text-dark"

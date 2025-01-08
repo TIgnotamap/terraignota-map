@@ -22,7 +22,9 @@ export default function ItemList({
               onClick={() => setCurrentItem(item)}
               onMouseEnter={() => {
                 setHoveredItem(item);
-                setStatus(item.code + " " + item.name[language]);
+                setStatus(
+                  item.code + " " + (item.name ? item.name[language] : ""),
+                );
               }}
               onMouseOut={() => {
                 setHoveredItem(null);

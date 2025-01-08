@@ -1,4 +1,17 @@
+import { useContext } from "react";
+import { StatusBarContext } from "../utils/StatusBarContext";
+import { LanguageContext } from "../utils/LanguageContext";
+
 export default function Title({ title, subtitle, handleClose }) {
+  const { language } = useContext(LanguageContext);
+  const { setStatus } = useContext(StatusBarContext);
+  const translations = {
+    exit: {
+      en: "Exit",
+      es: "Salir",
+    },
+  };
+
   if (!title) return null;
 
   return (
@@ -17,7 +30,12 @@ export default function Title({ title, subtitle, handleClose }) {
       </div>
 
       <div
-        onClick={handleClose}
+        onClick={() => {
+          handleClose();
+          setStatus(null);
+        }}
+        onMouseEnter={() => setStatus(translations.exit[language])}
+        onMouseLeave={() => setStatus(null)}
         className="pointer-events-auto mt-4 cursor-pointer select-none border border-gray bg-light font-mono drop-shadow-md dark:invert"
       >
         <svg

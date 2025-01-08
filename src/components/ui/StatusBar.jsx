@@ -10,7 +10,7 @@ export default function StatusBar({ data }) {
   }, [data]);
 
   return (
-    <div className="fixed left-6 top-4 font-serif text-sm">
+    <div className="bo pointer-events-none fixed left-[5rem] top-4 max-w-[33vw] border border-gray bg-light px-1 font-serif text-sm dark:bg-dark">
       {status || defaultStatus}
     </div>
   );
