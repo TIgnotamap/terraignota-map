@@ -11,6 +11,7 @@ import Info from "./components/Info";
 import Index from "./components/Index";
 import Item from "./components/Item";
 import Loading from "./components/ui/Loading";
+import StatusBar from "./components/ui/StatusBar";
 
 function App() {
   const [data, setData] = useState(null);
@@ -114,7 +115,7 @@ function App() {
           </button>
         </div>
       )}
-
+      <StatusBar data={data} />
       <Menu
         data={data?.settings}
         theme={theme}
