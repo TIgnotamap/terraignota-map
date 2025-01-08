@@ -2,7 +2,13 @@ import { Marker, useMap } from "@vis.gl/react-maplibre";
 import { NavLink } from "react-router-dom";
 import chooseColor from "../../utils/chooseColor";
 
-export default function ItemMarker({ item, setCurrentItem, currentItem }) {
+export default function ItemMarker({
+  item,
+  setCurrentItem,
+  currentItem,
+  hoveredItem,
+  setHoveredItem,
+}) {
   const { current: map } = useMap();
 
   if (!map) return null;
@@ -17,6 +23,8 @@ export default function ItemMarker({ item, setCurrentItem, currentItem }) {
       <NavLink
         className={() => "relative flex items-center justify-center"}
         to={`/${item.slug.current}`}
+        onMouseEnter={() => setHoveredItem(item)}
+        onMouseLeave={() => setHoveredItem(null)}
       >
         <div
           onClick={() => {
@@ -25,10 +33,10 @@ export default function ItemMarker({ item, setCurrentItem, currentItem }) {
           style={{
             background: `radial-gradient(circle, ${chooseColor(item.project._id)} 10%, #ffffff00 70%)`,
           }}
-          className={`absolute size-8 cursor-pointer rounded-full text-xs transition-opacity duration-500 ${item == currentItem || currentItem == null ? "opacity-100" : "opacity-40"}`}
+          className={`absolute size-8 cursor-pointer rounded-full text-xs transition-opacity duration-500 ${item == currentItem || item == hoveredItem || (hoveredItem == null && currentItem == null) ? "z-[100] opacity-100" : "opacity-20"}`}
         />
         <div
-          className={`absolute size-4 rounded-full border border-dark transition-opacity duration-500 ${item == currentItem || currentItem == null ? "opacity-100" : "opacity-40"}`}
+          className={`absolute size-4 rounded-full border border-dark transition-opacity duration-500 ${item == currentItem || item == hoveredItem || (hoveredItem == null && currentItem == null) ? "z-[100] opacity-100" : "opacity-20"}`}
         />
         <div
           className={`absolute size-12 animate-spin rounded-full transition-opacity duration-500 dark:invert ${item == currentItem ? "opacity-100" : "opacity-0"}`}

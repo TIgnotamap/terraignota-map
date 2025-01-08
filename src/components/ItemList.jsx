@@ -3,7 +3,11 @@ import { NavLink } from "react-router-dom";
 import { LanguageContext } from "../utils/LanguageContext";
 import chooseColor from "../utils/chooseColor";
 
-export default function ItemList({ setCurrentItem, filteredItems }) {
+export default function ItemList({
+  setCurrentItem,
+  filteredItems,
+  setHoveredItem,
+}) {
   const { language } = useContext(LanguageContext);
 
   return (
@@ -14,6 +18,8 @@ export default function ItemList({ setCurrentItem, filteredItems }) {
             <NavLink
               to={`/${item.slug.current}`}
               onClick={() => setCurrentItem(item)}
+              onMouseEnter={() => setHoveredItem(item)}
+              onMouseOut={() => setHoveredItem(null)}
               className={({ isActive }) =>
                 isActive ? "underline" : "hover:underline"
               }

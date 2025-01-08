@@ -11,6 +11,7 @@ export default function Nav({
   filteredItems,
   setCurrentItem,
   currentItem,
+  setHoveredItem,
   data,
 }) {
   const [isNavOpen, setIsNavOpen] = useState(false);
@@ -59,6 +60,7 @@ export default function Nav({
             <ItemList
               filteredItems={filteredItems}
               setCurrentItem={setCurrentItem}
+              setHoveredItem={setHoveredItem}
             />
             <TagList
               tags={data?.tags}

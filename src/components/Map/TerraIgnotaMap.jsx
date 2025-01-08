@@ -15,6 +15,8 @@ export default function TerraIgnotaMap({
   setCurrentItem,
   currentItem,
   filteredItems,
+  hoveredItem,
+  setHoveredItem,
 }) {
   const { terraIgnotaMap } = useMap();
   const [mapCenter, setMapCenter] = useState({
@@ -73,6 +75,8 @@ export default function TerraIgnotaMap({
               item={item}
               setCurrentItem={setCurrentItem}
               currentItem={currentItem}
+              hoveredItem={hoveredItem}
+              setHoveredItem={setHoveredItem}
             />
           ))}
           <ScaleControl

@@ -17,6 +17,7 @@ function App() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [currentItem, setCurrentItem] = useState(null);
+  const [hoveredItem, setHoveredItem] = useState(null);
   const [theme, setTheme] = useTheme();
   const { pathname } = useLocation();
 
@@ -133,6 +134,8 @@ function App() {
         setCurrentItem={setCurrentItem}
         currentItem={currentItem}
         filteredItems={filteredItems}
+        hoveredItem={hoveredItem}
+        setHoveredItem={setHoveredItem}
       />
 
       <Ornaments currentItem={currentItem} />
@@ -145,6 +148,7 @@ function App() {
         filteredItems={filteredItems}
         currentItem={currentItem}
         setCurrentItem={setCurrentItem}
+        setHoveredItem={setHoveredItem}
         data={data}
       />
 
