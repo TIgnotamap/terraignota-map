@@ -28,7 +28,7 @@ export default function ItemList({
                     (item.name ? item.name[language] : ""),
                 );
               }}
-              onMouseOut={() => {
+              onMouseLeave={() => {
                 setHoveredItem(null);
                 setStatus(null);
               }}
