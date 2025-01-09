@@ -247,13 +247,13 @@ export function ItemButton({ item, setCurrentItem }) {
         {item.code.toUpperCase()} {item.name ? item.name[language] : ""}
       </h3> */}
       <div
-        className="max-w flex items-center justify-center border px-1 dark:border-0"
+        className="max-w flex items-center justify-center border px-1"
         // style={{
         //   backgroundColor: chooseColor(item.project._id),
         //   boxShadow: `0 0 1px ${chooseColor(item.project._id)}`,
         // }}
       >
-        <span className="text-xs text-dark">{item.code}</span>
+        <span className="text-xs text-dark dark:text-light">{item.code}</span>
       </div>
     </NavLink>
   );
