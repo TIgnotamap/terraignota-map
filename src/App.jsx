@@ -1,7 +1,8 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import { fetchData } from "./sanity/sanity-utils";
 import { Routes, Route, useLocation } from "react-router-dom";
 import useTheme from "./hooks/useTheme";
+import { StatusBarContext } from "./utils/StatusBarContext";
 
 import Menu from "./components/Menu";
 import TerraIgnotaMap from "./components/Map/TerraIgnotaMap";
@@ -28,6 +29,8 @@ function App() {
 
   const [enter, setEnter] = useState(false);
   const [bgAudioIsPlaying, setBgAudioIsPlaying] = useState(false);
+
+  const { setStatus } = useContext(StatusBarContext);
 
   const toggleBgAudio = () => {
     const audios = document.querySelectorAll("audio");
@@ -108,6 +111,7 @@ function App() {
             onClick={() => {
               setEnter(true);
               toggleBgAudio();
+              setStatus(null);
             }}
             className="underline"
           >
