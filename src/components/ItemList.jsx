@@ -13,7 +13,7 @@ export default function ItemList({
   const { setStatus } = useContext(StatusBarContext);
 
   return (
-    <div className="pointer-events-auto h-full w-[calc((100vw-1.5rem)/3-1.5rem)] overflow-auto border border-gray bg-light p-1 shadow-md lg:w-[calc((100vw-3rem)/6-1.5rem)] dark:bg-dark">
+    <div className="pointer-events-auto h-full w-full overflow-auto border border-gray bg-light p-1 shadow-md md:w-[calc((100vw-1.5rem)/3-1.5rem)] lg:w-[calc((100vw-3rem)/6-1.5rem)] dark:bg-dark">
       <ul>
         {filteredItems?.map((item) => (
           <li className="font-serif" key={item._id}>
