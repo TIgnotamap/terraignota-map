@@ -163,6 +163,8 @@ function App() {
               people={data?.people}
               orgs={data?.organizations}
               refMaterials={data?.references}
+              data={data}
+              setCurrentItem={setCurrentItem}
             />
           }
         />

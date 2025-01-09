@@ -139,6 +139,9 @@ export async function getItems() {
   references[]->{
     _id,
     apaReference,
+    authors[]->{
+    _id,
+    },
   },
   links[]{
     _key,
