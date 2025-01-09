@@ -115,7 +115,7 @@ function App() {
           </button>
         </div>
       )}
-      <StatusBar data={data} />
+      <StatusBar data={data} filteredItems={filteredItems} />
       <Menu
         data={data?.settings}
         theme={theme}
