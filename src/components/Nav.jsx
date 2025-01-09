@@ -1,9 +1,10 @@
-import { useState, useContext } from "react";
+import { useState, useContext, useEffect } from "react";
+import { StatusBarContext } from "../utils/StatusBarContext";
+import { LanguageContext } from "../utils/LanguageContext";
+import useIsMobile from "../hooks/useIsMobile";
 import ProjectList from "./ProjectList";
 import ItemList from "./ItemList";
 import TagList from "./TagList";
-import { StatusBarContext } from "../utils/StatusBarContext";
-import { LanguageContext } from "../utils/LanguageContext";
 
 export default function Nav({
   selectedProjects,
@@ -19,6 +20,13 @@ export default function Nav({
   const [isNavOpen, setIsNavOpen] = useState(false);
   const { setStatus } = useContext(StatusBarContext);
   const { language } = useContext(LanguageContext);
+  const isMobile = useIsMobile();
+
+  useEffect(() => {
+    if (isMobile && currentItem) {
+      setIsNavOpen(false);
+    }
+  }, [isMobile, currentItem]);
 
   const translations = {
     showFilters: {
@@ -32,7 +40,9 @@ export default function Nav({
   };
 
   return (
-    <div className="pointer-events-none fixed inset-0 flex h-full w-1/2 flex-col px-6 pb-6 pt-4 transition-all">
+    <div
+      className={`pointer-events-none fixed inset-0 z-10 flex h-full w-full flex-col px-6 pb-6 pt-4 transition-all md:w-1/2 ${isMobile && isNavOpen ? "bg-dark" : ""}`}
+    >
       <div
         onClick={() => setIsNavOpen(!isNavOpen)}
         onMouseEnter={() => {
@@ -69,8 +79,8 @@ export default function Nav({
       </div>
       {isNavOpen && (
         <>
-          <div className="ml-3 h-full w-[1px] border border-gray" />
-          <div className="flex h-2/3 shrink-0 flex-col gap-2">
+          <div className="ml-[1.2rem] h-full w-[1px] border border-gray" />
+          <div className="flex h-[calc(100%-4rem)] shrink-0 flex-col gap-6 md:h-2/3">
             <ProjectList
               projects={data?.projects}
               selectedProjects={selectedProjects}
