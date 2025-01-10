@@ -2,7 +2,7 @@ import { useContext } from "react";
 import { StatusBarContext } from "../utils/StatusBarContext";
 import { LanguageContext } from "../utils/LanguageContext";
 
-export default function Title({ title, subtitle, handleClose }) {
+export default function Title({ title, subtitle, details, handleClose }) {
   const { language } = useContext(LanguageContext);
   const { setStatus } = useContext(StatusBarContext);
   const translations = {
@@ -28,6 +28,12 @@ export default function Title({ title, subtitle, handleClose }) {
       <div className="bg-[radial-gradient(#fff_10%,_#ffffff00_70%)] font-serif drop-shadow-[0_0_2px_#fff] dark:bg-[radial-gradient(#000_0%,_#00000000_70%)] dark:drop-shadow-[0_0_2px_#000]">
         {subtitle ?? "."}
       </div>
+
+      {details && (
+        <div className="block font-serif text-sm drop-shadow-[0_0_5px_#fff] sm:hidden dark:drop-shadow-[0_0_5px_#000]">
+          {details.join(" ")}
+        </div>
+      )}
 
       <div
         onClick={() => {

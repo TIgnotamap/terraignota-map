@@ -27,6 +27,7 @@ export default function Item({ currentItem, setCurrentItem }) {
         <Title
           title={currentItem?.code}
           subtitle={currentItem?.location?.[language]}
+          details={[currentItem?.lat.toFixed(5), currentItem?.long.toFixed(5)]}
           handleClose={handleClose}
         />
       </div>
