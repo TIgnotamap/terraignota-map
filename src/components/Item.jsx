@@ -33,15 +33,8 @@ export default function Item({ currentItem, setCurrentItem }) {
       </div>
 
       {(currentItem?.video || currentItem?.images?.length > 0) && (
-        <svg className="fixed top-[134px] -z-10 h-96 w-[1px] bg-gray sm:top-[151px] sm:h-[4.5rem] md:h-6">
-          <line
-            x1="0"
-            y1="0"
-            x2="100%"
-            y2="0"
-            stroke="gray"
-            strokeWidth="1px"
-          />
+        <svg className="fixed top-[115px] -z-10 h-96 w-[1px] bg-gray sm:top-[150px] sm:h-[4.55rem] md:h-[1.55rem]">
+          <line x1="0" y1="0" x2="100%" y2="0" stroke="#aaa" strokeWidth="1" />
         </svg>
       )}
 
@@ -59,21 +52,21 @@ export default function Item({ currentItem, setCurrentItem }) {
         )}
 
         {currentItem?.template === "3" && currentItem?.video && (
-          <div className="pointer-events-auto md:col-span-8 md:col-start-5 lg:col-span-10 lg:col-start-3">
+          <div className="pointer-events-auto col-span-2 md:col-span-8 md:col-start-5 lg:col-span-10 lg:col-start-3">
             <VideoContainer item={currentItem} />
           </div>
         )}
 
         {(currentItem?.images?.length > 0 || currentItem?.video) &&
           currentItem.template != "3" && (
-            <svg className="absolute left-[calc(50%-0.75rem)] mt-12 w-6 md:left-[calc(100%/3*2-1rem)] lg:static lg:block lg:w-full">
+            <svg className="absolute left-[calc(50%-0.75rem)] -z-10 mt-12 hidden w-[calc(1.5rem+1px)] sm:block md:left-[calc(100%/3*2-1rem)] lg:static lg:block lg:w-full">
               <line
                 x1="0"
                 y1="0"
                 x2="100%"
                 y2="0"
-                stroke="gray"
-                strokeWidth="1px"
+                stroke="#aaa"
+                strokeWidth="1"
               />
             </svg>
           )}
