@@ -51,7 +51,7 @@ export default function Nav({
 
   return (
     <div
-      className={`pointer-events-none fixed inset-0 z-10 flex h-full w-full flex-col px-6 pb-6 pt-4 transition-all md:w-1/2 ${isMobile && isNavOpen ? "bg-lightGray dark:bg-darkGray" : ""}`}
+      className={`pointer-events-none fixed inset-0 z-10 flex h-full w-full flex-col px-6 pb-6 pt-4 transition-all md:w-2/3 lg:w-1/2 ${isMobile && isNavOpen ? "bg-lightGray dark:bg-darkGray" : ""}`}
     >
       <div
         onClick={() => setIsNavOpen(!isNavOpen)}

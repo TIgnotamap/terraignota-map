@@ -21,7 +21,7 @@ export default function ProjectList({
   };
 
   return (
-    <div className="pointer-events-auto w-full border border-gray bg-light p-1 shadow-md md:w-[calc((100vw-1.5rem)/3-1.5rem)] lg:w-[calc((100vw-3rem)/6-1.5rem)] dark:bg-dark">
+    <div className="pointer-events-auto w-full border border-gray bg-light p-1 shadow-md md:w-[calc((100vw-1.5rem)/12*3-1.5rem)] lg:w-[calc((100vw-3rem)/6-1.5rem)] dark:bg-dark">
       <ul>
         {projects?.map((project) => {
           const hasMatchingTags = items.some(
