@@ -1,13 +1,14 @@
 import { useState, useEffect, useCallback } from "react";
+import { throttle } from "lodash";
 import {
   useMap,
   Map,
   ScaleControl,
   NavigationControl,
 } from "@vis.gl/react-maplibre";
+import useIsMobile from "../../hooks/useIsMobile";
 import ItemMarker from "./ItemMarker";
 import Coordinates from "../Coordinates";
-import { throttle } from "lodash";
 
 export default function TerraIgnotaMap({
   data,
@@ -23,6 +24,7 @@ export default function TerraIgnotaMap({
     lat: -56.89128362,
     lng: -66.9918726,
   });
+  const isMobile = useIsMobile();
 
   useEffect(() => {
     currentItem &&
@@ -103,9 +105,11 @@ export default function TerraIgnotaMap({
         </Map>
       </div>
 
-      <div className="pointer-events-none fixed top-4 flex w-full flex-col items-center">
-        <Coordinates currentItem={currentItem} mapCenter={mapCenter} />
-      </div>
+      {((isMobile && !currentItem) || !isMobile) && (
+        <div className="pointer-events-none fixed z-10 flex h-screen w-full flex-col items-center justify-center px-6 text-xs sm:top-4 sm:h-auto sm:text-base">
+          <Coordinates currentItem={currentItem} mapCenter={mapCenter} />
+        </div>
+      )}
     </div>
   );
 }
