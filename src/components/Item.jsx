@@ -26,6 +26,7 @@ export default function Item({ currentItem, setCurrentItem }) {
       <div className="sticky top-0 z-10 sm:static">
         <Title
           title={currentItem?.code}
+          titlePartTwo={currentItem?.name?.[language]}
           subtitle={currentItem?.location?.[language]}
           details={[currentItem?.lat.toFixed(5), currentItem?.long.toFixed(5)]}
           handleClose={handleClose}

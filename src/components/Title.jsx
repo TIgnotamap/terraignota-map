@@ -2,7 +2,13 @@ import { useContext } from "react";
 import { StatusBarContext } from "../utils/StatusBarContext";
 import { LanguageContext } from "../utils/LanguageContext";
 
-export default function Title({ title, subtitle, details, handleClose }) {
+export default function Title({
+  title,
+  titlePartTwo,
+  subtitle,
+  details,
+  handleClose,
+}) {
   const { language } = useContext(LanguageContext);
   const { setStatus } = useContext(StatusBarContext);
   const translations = {
@@ -23,7 +29,7 @@ export default function Title({ title, subtitle, details, handleClose }) {
           //   background: `radial-gradient(#fff 0%, #ffffff00 80%)`,
           // }}
         >
-          {title}
+          {title} {titlePartTwo && titlePartTwo}
         </div>
         <div
           className={`font-serif text-xl drop-shadow-[0_0_5px_#fff] sm:text-base dark:drop-shadow-[0_0_5px_#000] ${subtitle ? "" : "hidden sm:block"}`}
