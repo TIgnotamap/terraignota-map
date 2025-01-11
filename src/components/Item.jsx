@@ -53,7 +53,7 @@ export default function Item({ currentItem, setCurrentItem }) {
         )}
 
         {currentItem?.template === "3" && currentItem?.video && (
-          <div className="pointer-events-auto col-span-2 md:col-span-8 md:col-start-5 lg:col-span-10 lg:col-start-3">
+          <div className="pointer-events-auto col-span-2 md:col-span-8 md:col-start-5 lg:col-span-8 lg:col-start-3">
             <VideoContainer item={currentItem} />
           </div>
         )}
