@@ -12,6 +12,24 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>terraignota-map</title>
 
+    <style>
+      html {
+        background-color: #f6f6f6;
+      }
+      html.dark {
+        background-color: #090909;
+      }
+    </style>
+
+    <script>
+      (function () {
+        const matchMedia = window.matchMedia("(prefers-color-scheme: dark)");
+        if (matchMedia.matches) {
+          document.documentElement.classList.add("dark");
+        }
+      })();
+    </script>
+
     <script type="text/javascript">
       // Single Page Apps for GitHub Pages
       // MIT License
