@@ -29,7 +29,7 @@ export default function TerraIgnotaMap({
   const location = useLocation();
 
   useEffect(() => {
-    currentItem &&
+    currentItem?._type == "item" &&
       terraIgnotaMap?.flyTo({
         center: [currentItem.long + 0.5, currentItem.lat],
         zoom: 8,

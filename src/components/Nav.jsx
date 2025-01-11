@@ -111,6 +111,7 @@ export default function Nav({
               setSelectedProjects={setSelectedProjects}
               selectedTags={selectedTags}
               items={data?.items}
+              setCurrentItem={setCurrentItem}
             />
             <ItemList
               filteredItems={filteredItems}

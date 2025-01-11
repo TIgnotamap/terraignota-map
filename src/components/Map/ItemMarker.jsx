@@ -36,7 +36,7 @@ export default function ItemMarker({
         <a
           href={item.link}
           target="_blank"
-          className={`cursor-alias border px-1 font-serif ${item == currentItem || item == hoveredItem || (hoveredItem == null && currentItem == null) ? "z-[100] opacity-100" : "opacity-20"}`}
+          className={`cursor-alias border px-1 font-serif ${currentItem?._type !== "item" || item == currentItem || item == hoveredItem || (hoveredItem == null && currentItem == null) ? "z-[100] opacity-100" : "opacity-20"}`}
           onMouseEnter={() => {
             setHoveredItem(item);
             setStatus(
@@ -85,10 +85,10 @@ export default function ItemMarker({
             style={{
               background: `radial-gradient(circle, ${chooseColor(item.project?._id)} 10%, #ffffff00 70%)`,
             }}
-            className={`absolute size-8 cursor-pointer rounded-full text-xs transition-opacity duration-500 ${item == currentItem || item == hoveredItem || (hoveredItem == null && currentItem == null) ? "z-[100] opacity-100" : "opacity-20"}`}
+            className={`absolute size-8 cursor-pointer rounded-full text-xs transition-opacity duration-500 ${currentItem?._type !== "item" || item == currentItem || item == hoveredItem || (hoveredItem == null && currentItem == null) ? "z-[100] opacity-100" : "opacity-20"}`}
           />
           <div
-            className={`absolute size-4 rounded-full border border-dark transition-opacity duration-500 ${item == currentItem || item == hoveredItem || (hoveredItem == null && currentItem == null) ? "z-[100] opacity-100" : "opacity-20"}`}
+            className={`absolute size-4 rounded-full border border-dark transition-opacity duration-500 ${currentItem?._type !== "item" || item == currentItem || item == hoveredItem || (hoveredItem == null && currentItem == null) ? "z-[100] opacity-100" : "opacity-20"}`}
           />
           <div
             className={`absolute size-12 animate-spin rounded-full transition-opacity duration-500 dark:invert ${item == currentItem ? "opacity-100" : "hidden opacity-0"}`}

@@ -64,6 +64,7 @@ export async function getSettings() {
 export async function getProjects() {
   return client.fetch(`*[_type == "project"] | order(title.en asc){
   _id,
+  _type,
   title,
   slug,
   date,
@@ -78,6 +79,7 @@ export async function getProjects() {
 export async function getItems() {
   return client.fetch(`*[_type == "item"] | order(code asc){
   _id,
+  _type,
   project->{
     _id,
     title,

@@ -10,10 +10,9 @@ import Ornaments from "./components/Ornaments";
 import Nav from "./components/Nav";
 import Info from "./components/Info";
 import Index from "./components/Index";
-import Item from "./components/Item";
 import Loading from "./components/ui/Loading";
 import StatusBar from "./components/ui/StatusBar";
-import ErrorPage from "./components/ErrorPage"; // Add this import
+import PageSelector from "./components/PageSelector";
 
 function App() {
   const [data, setData] = useState(null);
@@ -103,12 +102,15 @@ function App() {
       const matchedItem = data?.items?.find(
         (item) => item.slug.current === pathname.slice(1),
       );
-      setCurrentItem(matchedItem || null);
+      const matchedProject = data?.projects?.find(
+        (project) => project.slug.current === pathname.slice(1),
+      );
+      setCurrentItem(matchedItem || matchedProject || null);
     }
   }, [pathname, data]);
 
   if (loading) return <Loading />;
-  if (error) return <ErrorPage message={error} />; // Use ErrorPage component
+  if (error) return <div className="py-4 font-thin text-red-500">{error}</div>;
 
   return (
     <div className="text-dark dark:text-light">
@@ -182,10 +184,12 @@ function App() {
         <Route
           path="/:slug"
           element={
-            <Item currentItem={currentItem} setCurrentItem={setCurrentItem} />
+            <PageSelector
+              currentItem={currentItem}
+              setCurrentItem={setCurrentItem}
+            />
           }
         />
-        <Route path="*" element={<ErrorPage message="Page not found" />} />{" "}
       </Routes>
 
       <footer className="fixed bottom-0 right-0 m-6 font-serif text-sm">
