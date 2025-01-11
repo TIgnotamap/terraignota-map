@@ -13,6 +13,7 @@ import Index from "./components/Index";
 import Item from "./components/Item";
 import Loading from "./components/ui/Loading";
 import StatusBar from "./components/ui/StatusBar";
+import ErrorPage from "./components/ErrorPage"; // Add this import
 
 function App() {
   const [data, setData] = useState(null);
@@ -101,7 +102,7 @@ function App() {
   }, [pathname, data]);
 
   if (loading) return <Loading />;
-  if (error) return <div className="py-4 font-thin text-red-500">{error}</div>;
+  if (error) return <ErrorPage message={error} />; // Use ErrorPage component
 
   return (
     <div className="text-dark dark:text-light">
@@ -178,6 +179,7 @@ function App() {
             <Item currentItem={currentItem} setCurrentItem={setCurrentItem} />
           }
         />
+        <Route path="*" element={<ErrorPage message="Page not found" />} />{" "}
       </Routes>
 
       <footer className="fixed bottom-0 right-0 m-6 font-serif text-sm">
