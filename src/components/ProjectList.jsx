@@ -101,7 +101,6 @@ export default function ProjectList({
               }
               onMouseLeave={() => setStatus(null)}
               onClick={() => {
-                // setSelectedProjects(["exhibitions"]);
                 if (selectedProjects?.includes("exhibitions")) {
                   setSelectedProjects(
                     selectedProjects.filter((p) => p !== "exhibitions"),
@@ -126,7 +125,11 @@ export default function ProjectList({
             </div>
             <span
               className={`${
-                selectedProjects?.includes("exhibitions") ? "text-gray" : ""
+                selectedTags.length > 0 ||
+                (selectedProjects != 0 &&
+                  !selectedProjects?.includes("exhibitions"))
+                  ? "text-gray"
+                  : ""
               }`}
             >
               {translations.exhibitions[language]}
