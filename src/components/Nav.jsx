@@ -1,6 +1,7 @@
 import { useState, useContext, useEffect } from "react";
 import { StatusBarContext } from "../utils/StatusBarContext";
 import { LanguageContext } from "../utils/LanguageContext";
+import { useLocation, useNavigate } from "react-router-dom";
 import useIsMobile from "../hooks/useIsMobile";
 import ProjectList from "./ProjectList";
 import ItemList from "./ItemList";
@@ -20,7 +21,11 @@ export default function Nav({
   const [isNavOpen, setIsNavOpen] = useState(false);
   const { setStatus } = useContext(StatusBarContext);
   const { language } = useContext(LanguageContext);
+  const { pathname } = useLocation();
+  const navigate = useNavigate();
   const isMobile = useIsMobile();
+
+  console.log(pathname);
 
   useEffect(() => {
     if (isMobile && currentItem) {
@@ -46,15 +51,30 @@ export default function Nav({
   };
 
   useEffect(() => {
-    handleHover();
+    if (pathname !== "/index") {
+      handleHover();
+    }
   }, [isNavOpen]);
+
+  useEffect(() => {
+    if (pathname === "/index") {
+      setIsNavOpen(false);
+    }
+  }, [pathname]);
+
+  const handleNavClick = () => {
+    if (pathname === "/index") {
+      navigate("/");
+    }
+    setIsNavOpen(!isNavOpen);
+  };
 
   return (
     <div
       className={`pointer-events-none fixed inset-0 z-10 flex h-full w-full flex-col px-6 pb-6 pt-4 transition-all md:w-2/3 lg:w-1/2 ${isMobile && isNavOpen ? "bg-lightGray dark:bg-darkGray" : ""}`}
     >
       <div
-        onClick={() => setIsNavOpen(!isNavOpen)}
+        onClick={handleNavClick}
         onMouseEnter={handleHover}
         onMouseLeave={() => setStatus(null)}
         className="pointer-events-auto flex size-10 shrink-0 cursor-pointer items-center justify-center rounded-full border border-gray bg-light p-2 text-center text-xs shadow-md hover:invert dark:bg-dark"
