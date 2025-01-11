@@ -47,7 +47,7 @@ export default function Index({
     <div className="pointer-events-none fixed flex h-screen w-full flex-col px-6 pb-16 pt-11">
       <Title title="Index" handleClose={handleClose} />
 
-      <div className="mx-auto h-8 w-[1px] bg-gray" />
+      <div className="mx-auto h-6 w-[1px] bg-gray" />
 
       <div className="pointer-events-auto mx-auto flex h-full max-w-4xl flex-col gap-12 overflow-auto border border-gray bg-light p-4 shadow-md sm:h-[60vh] sm:w-2/3 dark:bg-dark">
         <div>

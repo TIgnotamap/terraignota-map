@@ -37,7 +37,7 @@ export default function Item({ currentItem, setCurrentItem }) {
       </div>
 
       {(currentItem?.video || currentItem?.images?.length > 0) && (
-        <svg className="fixed top-[115px] -z-10 h-96 w-[1px] bg-gray sm:top-[150px] sm:h-[4.55rem] md:h-[1.55rem]">
+        <svg className="fixed top-[115px] -z-10 h-96 w-[1px] bg-gray sm:top-[150.5px] sm:h-[4.55rem] md:h-6">
           <line x1="0" y1="0" x2="100%" y2="0" stroke="#aaa" strokeWidth="1" />
         </svg>
       )}
@@ -55,7 +55,7 @@ export default function Item({ currentItem, setCurrentItem }) {
           </div>
         )}
         {currentItem?.template === "3" && currentItem?.video && (
-          <div className="pointer-events-auto col-span-2 md:col-span-8 md:col-start-5 lg:col-span-8 lg:col-start-3">
+          <div className="pointer-events-none col-span-2 md:col-span-6 md:col-start-4 lg:col-span-8 lg:col-start-3">
             <VideoContainer item={currentItem} />
           </div>
         )}
