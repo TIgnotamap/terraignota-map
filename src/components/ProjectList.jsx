@@ -101,12 +101,14 @@ export default function ProjectList({
               }
               onMouseLeave={() => setStatus(null)}
               onClick={() => {
-                if (selectedProjects?.includes("exhibitions")) {
-                  setSelectedProjects(
-                    selectedProjects.filter((p) => p !== "exhibitions"),
-                  );
-                } else {
-                  setSelectedProjects([...selectedProjects, "exhibitions"]);
+                if (!selectedTags.length > 0) {
+                  if (selectedProjects?.includes("exhibitions")) {
+                    setSelectedProjects(
+                      selectedProjects.filter((p) => p !== "exhibitions"),
+                    );
+                  } else {
+                    setSelectedProjects([...selectedProjects, "exhibitions"]);
+                  }
                 }
               }}
               style={{
