@@ -180,6 +180,7 @@ export async function getExhibitions() {
   return client.fetch(`*[_type == "exhibition"]{
   _id,
   _type,
+  code,
   long,
   lat,
   title,
