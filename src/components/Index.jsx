@@ -68,7 +68,7 @@ export default function Index({
                 person.activity.map((act, index) => (
                   <span
                     key={index}
-                    className="text-base uppercase text-darkGray"
+                    className="text-base uppercase text-darkGray dark:text-gray"
                   >
                     {" "}
                     {act[language].charAt(0).toUpperCase() +
