@@ -28,42 +28,34 @@ export default function Info({ data }) {
   }
 
   return (
-    <>
-      <div className="pointer-events-none fixed top-11 flex w-full flex-col items-center">
-        <Title title={data?.title[language]} handleClose={handleClose} />
-        <div className="h-8 w-[1px] bg-gray" />
-      </div>
-      <div className="pointer-events-none fixed top-48 grid w-full grid-cols-12 items-start px-6">
-        <div className="pointer-events-auto col-span-6 col-start-4 flex h-[60vh] flex-col items-start gap-4 overflow-auto border border-gray bg-light p-4 px-4 shadow-md dark:bg-dark">
+    <div className="pointer-events-none fixed flex h-screen w-full flex-col items-center px-6 pb-16 pt-11">
+      <Title title={data?.title[language]} handleClose={handleClose} />
+
+      <div className="h-6 w-[1px] bg-gray" />
+
+      <div className="pointer-events-auto flex h-full max-w-prose flex-col gap-12 overflow-auto border border-gray bg-light p-4 shadow-md sm:h-[60vh] sm:w-2/3 dark:bg-dark">
+        <div>
+          {/* <h2 className="pb-6 text-center uppercase">About</h2> */}
           {data.info && (
-            <PortableText value={data.info[language]} components={components} />
-          )}
-          {data.links && (
-            <div>
-              {data.links.map((link) => {
-                return (
-                  <a
-                    key={link._key}
-                    href={link.url}
-                    target="_blank"
-                    rel="noreferrer"
-                    className="underline"
-                  >
-                    {link.text[language]}
-                  </a>
-                );
-              })}
+            <div className="flex flex-col gap-2">
+              <PortableText
+                value={data.info[language]}
+                components={components}
+              />
             </div>
           )}
-          {data.credits && (
-            <div>
-              <h1 className="font-black">
-                {language === "en" ? "Web application" : "Aplicacion web"}
-              </h1>
-              {data.credits.map((credit) => {
-                return (
-                  <div key={credit._key}>
-                    <span className="">{credit.role[language]}: </span>
+        </div>
+
+        {data.credits && (
+          <div className="flex flex-col gap-2">
+            {data.credits.map((credit) => {
+              return (
+                <div key={credit._key}>
+                  <span className="text-sm uppercase text-darkGray xl:text-right dark:text-gray">
+                    {credit.role[language]}
+                  </span>
+
+                  <div>
                     {credit.subjects?.length > 0 &&
                       credit.subjects.map((subject, index) => {
                         return (
@@ -120,22 +112,54 @@ export default function Info({ data }) {
                         );
                       })}
                   </div>
+                </div>
+              );
+            })}
+          </div>
+        )}
+
+        {data.links && (
+          <div>
+            <h2 className="text-sm uppercase text-darkGray">Links</h2>
+            <div className="flex flex-wrap gap-1">
+              {data.links.map((link) => {
+                return (
+                  <a
+                    key={link._key}
+                    href={link.url}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="underline"
+                  >
+                    {link.text[language]}
+                  </a>
                 );
               })}
             </div>
-          )}
+          </div>
+        )}
+
+        <div className="flex flex-wrap items-center gap-2 font-mono text-xs text-darkGray">
+          <a href="https://maplibre.org/" className="underline">
+            MapLibre
+          </a>
+
+          <div className="size-1 rounded-full bg-dark" />
+
+          <a href="https://openfreemap.org/" className="underline">
+            OpenFreeMap
+          </a>
+
+          <div className="size-1 rounded-full bg-dark" />
+
+          <a href="https://www.openmaptiles.org/" className="underline">
+            © OpenMapTiles
+          </a>
+
+          <div className="size-1 rounded-full bg-dark" />
+
           <div>
-            <a href="https://maplibre.org/" className="underline">
-              MapLibre
-            </a>{" "}
-            |{" "}
-            <a href="https://openfreemap.org/" className="underline">
-              OpenFreeMap
-            </a>{" "}
-            <a href="https://www.openmaptiles.org/" className="underline">
-              © OpenMapTiles
-            </a>{" "}
-            data {language === "en" ? "from" : "de"}{" "}
+            data {language === "en" ? "from " : "de "}
             <a
               href="https://www.openstreetmap.org/copyright"
               className="underline"
@@ -145,6 +169,6 @@ export default function Info({ data }) {
           </div>
         </div>
       </div>
-    </>
+    </div>
   );
 }
