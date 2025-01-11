@@ -28,7 +28,10 @@ export default function Item({ currentItem, setCurrentItem }) {
           title={currentItem?.code}
           name={currentItem?.name?.[language]}
           subtitle={currentItem?.location?.[language]}
-          details={[currentItem?.lat.toFixed(5), currentItem?.long.toFixed(5)]}
+          details={[
+            currentItem?.lat ? currentItem.lat.toFixed(5) : "...",
+            currentItem?.long ? currentItem.long.toFixed(5) : "...",
+          ]}
           handleClose={handleClose}
         />
       </div>
@@ -51,7 +54,6 @@ export default function Item({ currentItem, setCurrentItem }) {
             <VideoContainer item={currentItem} />
           </div>
         )}
-
         {currentItem?.template === "3" && currentItem?.video && (
           <div className="pointer-events-auto col-span-2 md:col-span-8 md:col-start-5 lg:col-span-8 lg:col-start-3">
             <VideoContainer item={currentItem} />
