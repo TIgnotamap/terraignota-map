@@ -59,8 +59,10 @@ export default function ProjectList({
                     backgroundColor: chooseColor(project._id),
                     boxShadow: `0 0 2px ${chooseColor(project._id)}`,
                   }}
-                  className={`relative flex size-3 cursor-pointer items-center justify-center border ${
-                    !hasMatchingTags ? "cursor-not-allowed opacity-50" : ""
+                  className={`relative flex size-3 items-center justify-center border ${
+                    !hasMatchingTags
+                      ? "cursor-not-allowed opacity-50"
+                      : "cursor-pointer"
                   }`}
                 >
                   {selectedProjects?.includes(project._id) && (
