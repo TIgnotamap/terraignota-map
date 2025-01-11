@@ -25,7 +25,7 @@ export default function ItemList({
                 setStatus(
                   item.code.toUpperCase() +
                     " " +
-                    (item.name ? item.name[language] : ""),
+                    (item.name ? `[${item.name[language]}]` : ""),
                 );
               }}
               onMouseLeave={() => {
@@ -44,7 +44,8 @@ export default function ItemList({
                   }}
                   className={`mb-1 mr-0.5 inline-block size-1 rounded-full`}
                 />
-                {item.code.toUpperCase()} {item.name ? item.name[language] : ""}
+                {item.code.toUpperCase()}{" "}
+                {item.name ? `[${item.name[language]}]` : ""}
               </h3>
             </NavLink>
           </li>
