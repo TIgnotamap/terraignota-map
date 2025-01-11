@@ -9,7 +9,7 @@ export async function fetchData() {
       items,
       tags,
       people,
-      // exhibitions,
+      exhibitions,
       organizations,
       references,
     ] = await Promise.all([
@@ -18,7 +18,7 @@ export async function fetchData() {
       getItems(),
       getTags(),
       getPeople(),
-      // getExhibitions(),
+      getExhibitions(),
       getOrganizations(),
       getReferences(),
     ]);
@@ -28,7 +28,7 @@ export async function fetchData() {
       items,
       tags,
       people,
-      // exhibitions,
+      exhibitions,
       organizations,
       references,
     };
@@ -179,6 +179,10 @@ export async function getPeople() {
 export async function getExhibitions() {
   return client.fetch(`*[_type == "exhibition"]{
   _id,
+  _type,
+  code,
+  long,
+  lat,
   title,
   slug,
   date,
