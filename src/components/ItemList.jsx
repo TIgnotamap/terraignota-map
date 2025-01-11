@@ -23,7 +23,9 @@ export default function ItemList({
               onMouseEnter={() => {
                 setHoveredItem(item);
                 setStatus(
-                  item.code.toUpperCase() +
+                  "[" +
+                    item.code?.toUpperCase() +
+                    "]" +
                     " " +
                     (item.name ? item.name[language] : ""),
                 );
@@ -39,12 +41,14 @@ export default function ItemList({
               <h3>
                 <div
                   style={{
-                    backgroundColor: chooseColor(item.project._id),
-                    boxShadow: `0 0 1px ${chooseColor(item.project._id)}`,
+                    backgroundColor: chooseColor(item.project?._id),
+                    boxShadow: `0 0 1px ${chooseColor(item.project?._id)}`,
                   }}
                   className={`mb-1 mr-0.5 inline-block size-1 rounded-full`}
                 />
-                {item.code.toUpperCase()} {item.name ? item.name[language] : ""}
+                {item.code && "[" + item.code?.toUpperCase() + "]"}{" "}
+                {item.name ? item.name[language] : ""}
+                {item.title ? item.title[language] : ""}
               </h3>
             </NavLink>
           </li>

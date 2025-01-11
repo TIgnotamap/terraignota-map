@@ -70,7 +70,10 @@ function App() {
   }, []);
 
   useEffect(() => {
-    const filteredItems = data?.items?.filter((item) => {
+    const filteredItems = [
+      ...(data?.items || []),
+      ...(data?.exhibitions || []),
+    ].filter((item) => {
       const matchesTags = selectedTags.length
         ? selectedTags.every((tag) =>
             item.tags?.some((itemTag) => itemTag._id === tag),
@@ -79,7 +82,9 @@ function App() {
 
       const matchesProjects = selectedProjects.length
         ? selectedProjects.some(
-            (selectedProject) => item.project?._id === selectedProject,
+            (selectedProject) =>
+              "exhibitions" === selectedProject ||
+              item.project?._id === selectedProject,
           )
         : true;
 

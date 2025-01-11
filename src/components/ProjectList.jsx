@@ -18,6 +18,10 @@ export default function ProjectList({
       en: "Filter",
       es: "Filtrar",
     },
+    exhibitions: {
+      en: "Exhibitions",
+      es: "Exhibiciones",
+    },
   };
 
   return (
@@ -84,6 +88,51 @@ export default function ProjectList({
             </li>
           );
         })}
+        <hr />
+        <li>
+          <div className="flex items-center gap-1 font-serif">
+            <div
+              onMouseEnter={() =>
+                setStatus(
+                  translations.filter[language] +
+                    " " +
+                    translations.exhibitions[language],
+                )
+              }
+              onMouseLeave={() => setStatus(null)}
+              onClick={() => {
+                // setSelectedProjects(["exhibitions"]);
+                if (selectedProjects?.includes("exhibitions")) {
+                  setSelectedProjects(
+                    selectedProjects.filter((p) => p !== "exhibitions"),
+                  );
+                } else {
+                  setSelectedProjects([...selectedProjects, "exhibitions"]);
+                }
+              }}
+              style={{
+                backgroundColor: "#fff",
+                boxShadow: `0 0 2px #fff`,
+              }}
+              className={`relative flex size-3 items-center justify-center border ${
+                selectedTags.length === 0
+                  ? "cursor-pointer"
+                  : "cursor-not-allowed opacity-50"
+              }`}
+            >
+              {selectedProjects?.includes("exhibitions") && (
+                <div className="absolute size-1.5 rounded-full bg-dark" />
+              )}
+            </div>
+            <span
+              className={`${
+                selectedProjects?.includes("exhibitions") ? "text-gray" : ""
+              }`}
+            >
+              {translations.exhibitions[language]}
+            </span>
+          </div>
+        </li>
       </ul>
     </div>
   );

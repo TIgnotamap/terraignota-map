@@ -42,7 +42,7 @@ export default function ItemMarker({
             setCurrentItem(item);
           }}
           style={{
-            background: `radial-gradient(circle, ${chooseColor(item.project._id)} 10%, #ffffff00 70%)`,
+            background: `radial-gradient(circle, ${chooseColor(item.project?._id)} 10%, #ffffff00 70%)`,
           }}
           className={`absolute size-8 cursor-pointer rounded-full text-xs transition-opacity duration-500 ${item == currentItem || item == hoveredItem || (hoveredItem == null && currentItem == null) ? "z-[100] opacity-100" : "opacity-20"}`}
         />
@@ -56,6 +56,9 @@ export default function ItemMarker({
           }}
         />
       </NavLink>
+      {item._type === "exhibition" && (
+        <div className="font-serif text-xl">EX</div>
+      )}
     </Marker>
   );
 }
