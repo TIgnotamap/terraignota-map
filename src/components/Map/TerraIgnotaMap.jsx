@@ -9,6 +9,7 @@ import {
 import useIsMobile from "../../hooks/useIsMobile";
 import ItemMarker from "./ItemMarker";
 import Coordinates from "../Coordinates";
+import { useLocation } from "react-router-dom";
 
 export default function TerraIgnotaMap({
   data,
@@ -25,6 +26,7 @@ export default function TerraIgnotaMap({
     lng: -66.9918726,
   });
   const isMobile = useIsMobile();
+  const location = useLocation();
 
   useEffect(() => {
     currentItem &&
@@ -105,7 +107,7 @@ export default function TerraIgnotaMap({
         </Map>
       </div>
 
-      {((isMobile && !currentItem) || !isMobile) && (
+      {((isMobile && location.pathname == "/") || !isMobile) && (
         <div className="pointer-events-none fixed z-10 flex h-screen w-full flex-col items-center justify-center px-6 text-xs sm:top-4 sm:h-auto sm:text-base">
           <Coordinates currentItem={currentItem} mapCenter={mapCenter} />
         </div>
