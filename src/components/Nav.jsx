@@ -49,19 +49,17 @@ export default function Nav({
   };
 
   useEffect(() => {
-    if (pathname !== "/index") {
-      handleHover();
-    }
+    handleHover();
   }, [isNavOpen]);
 
   useEffect(() => {
-    if (pathname === "/index") {
+    if (pathname === "/index" || pathname === "/info") {
       setIsNavOpen(false);
     }
   }, [pathname]);
 
   const handleNavClick = () => {
-    if (pathname === "/index") {
+    if (pathname === "/index" || pathname === "/info") {
       navigate("/");
     }
     setIsNavOpen(!isNavOpen);
