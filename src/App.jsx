@@ -81,10 +81,14 @@ function App() {
         : true;
 
       const matchesProjects = selectedProjects.length
-        ? selectedProjects.some(
+        ? item._type === "exhibition" ||
+          selectedProjects.some(
             (selectedProject) =>
-              "exhibitions" === selectedProject ||
-              item.project?._id === selectedProject,
+              // Allow items with project IDs to match
+              item.project?._id === selectedProject ||
+              // Also allow exhibitions when their project is selected
+              (item._type === "exhibition" &&
+                item.project?._id === selectedProject),
           )
         : true;
 
