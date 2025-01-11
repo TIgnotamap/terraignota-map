@@ -25,8 +25,6 @@ export default function Nav({
   const navigate = useNavigate();
   const isMobile = useIsMobile();
 
-  console.log(pathname);
-
   useEffect(() => {
     if (isMobile && currentItem) {
       setIsNavOpen(false);
