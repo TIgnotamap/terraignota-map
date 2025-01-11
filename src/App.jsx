@@ -187,6 +187,7 @@ function App() {
             <PageSelector
               currentItem={currentItem}
               setCurrentItem={setCurrentItem}
+              setSelectedProjects={setSelectedProjects}
             />
           }
         />

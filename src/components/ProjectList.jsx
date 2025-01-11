@@ -104,7 +104,10 @@ export default function ProjectList({
                 {hoveredProject == project._id && (
                   <NavLink
                     to={`/${project.slug.current}`}
-                    onClick={() => setCurrentItem(project)}
+                    onClick={() => {
+                      setCurrentItem(project);
+                      setSelectedProjects([project._id]);
+                    }}
                     onMouseEnter={() => {
                       setStatus(
                         translations.moreInfo[language] +

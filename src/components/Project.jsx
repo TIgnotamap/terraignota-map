@@ -4,13 +4,18 @@ import { LanguageContext } from "../utils/LanguageContext";
 import { PortableText } from "@portabletext/react";
 import Title from "./Title";
 
-export default function Project({ currentItem, setCurrentItem }) {
+export default function Project({
+  currentItem,
+  setCurrentItem,
+  setSelectedProjects,
+}) {
   const { language } = useContext(LanguageContext);
   const navigate = useNavigate();
 
   function handleClose() {
     setCurrentItem(null);
     navigate("/");
+    setSelectedProjects([]);
   }
 
   return (
