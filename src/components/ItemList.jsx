@@ -41,8 +41,11 @@ export default function ItemList({
               <h3>
                 <div
                   style={{
-                    backgroundColor: chooseColor(item.project?._id),
-                    boxShadow: `0 0 1px ${chooseColor(item.project?._id)}`,
+                    backgroundColor:
+                      item._type === "exhibition"
+                        ? "#fff"
+                        : chooseColor(item.project?._id),
+                    boxShadow: `0 0 1px ${item._type === "exhibition" ? "#fff" : chooseColor(item.project?._id)}`,
                   }}
                   className={`mb-1 mr-0.5 inline-block size-1 rounded-full`}
                 />
