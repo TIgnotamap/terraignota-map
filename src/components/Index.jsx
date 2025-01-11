@@ -35,185 +35,92 @@ export default function Index({
     navigate("/");
   }
 
+  const authors = people.filter((person) => person.projectAuthor);
+
+  const blockComponents = {
+    block: {
+      normal: ({ children }) => <span className="">{children}</span>,
+    },
+  };
+
   return (
-    <>
-      <div className="pointer-events-none fixed top-11 flex w-full flex-col items-center">
-        <Title title="Index" handleClose={handleClose} />
-        <div className="h-8 w-[1px] bg-gray" />
-      </div>
-      <div className="pointer-events-none fixed top-48 grid w-full grid-cols-12 items-start px-6">
-        <div className="pointer-events-auto col-span-6 col-start-4 flex h-[60vh] flex-col gap-4 overflow-auto border border-gray bg-light p-4 shadow-md dark:bg-dark">
-          <div>
-            <h2 className="text-4xl">
-              {language === "en" ? "People" : "Personas"}
-            </h2>
-            {people.map((person, index) => (
-              <div key={person._id} className="my-2 flex items-center gap-2">
-                <div className="shrink-0">
-                  <span className="">
-                    {person.lastName && <span>{person.lastName}</span>}
-                    {person.lastName && person.firstName && <span>, </span>}
-                    {person.firstName && <span>{person.firstName}</span>}
-                    {person.pseudonym && (
-                      <span> &quot;{person.pseudonym}&quot;</span>
-                    )}
+    <div className="pointer-events-none fixed flex h-screen w-full flex-col px-6 pb-16 pt-11">
+      <Title title="Index" handleClose={handleClose} />
+
+      <div className="mx-auto h-8 w-[1px] bg-gray" />
+
+      <div className="pointer-events-auto mx-auto flex h-full max-w-4xl flex-col gap-12 overflow-auto border border-gray bg-light p-4 shadow-md sm:h-[60vh] sm:w-2/3 dark:bg-dark">
+        <div>
+          <h2 className="pb-6 text-center uppercase">
+            {language === "en" ? "Authors" : "Autores"}
+          </h2>
+
+          {authors.map((person, index) => (
+            <span className="text-xl" key={person._id}>
+              <span>
+                {person.lastName && person.lastName}
+                {person.lastName && person.firstName && ", "}
+                {person.firstName && person.firstName}
+                {person.pseudonym && ` "${person.pseudonym}"`}
+              </span>
+
+              {person.activity &&
+                person.activity.map((act, index) => (
+                  <span
+                    key={index}
+                    className="text-base uppercase text-darkGray"
+                  >
+                    {" "}
+                    {act[language].charAt(0).toUpperCase() +
+                      act[language].slice(1)}
+                    {person.activity.length > index + 1 ? ", " : ""}
                   </span>
-                  {person.activity && (
-                    <span className="italic">
-                      {" - "}
-                      {person.activity.map((act, index) => (
-                        <span>
-                          {act[language].charAt(0).toUpperCase() +
-                            act[language].slice(1)}
-                          {person.activity.length > index + 1 ? ", " : ""}
-                        </span>
-                      ))}
-                    </span>
-                  )}
-                </div>
-                <div className="flex shrink-0 flex-wrap gap-2 font-mono text-xs opacity-80">
-                  {person.participant && (
-                    <span className="border border-gray px-1">
-                      {translations.participant[language]}
-                    </span>
-                  )}
-                  {person.referenceAuthor && (
-                    <span className="border border-gray px-1">
-                      {translations.refAuthor[language]}
-                    </span>
-                  )}
-                  {person.projectAuthor && (
-                    <span className="border border-gray px-1">
-                      {translations.projAuthor[language]}
-                    </span>
-                  )}
-                </div>
-                <div className="my-1 flex flex-wrap gap-1">
-                  {data.items
-                    .filter((item) =>
-                      item.text?.authors?.some(
-                        (author) => author._id === person._id,
-                      ),
-                    )
-                    .map((item) => (
-                      <div key={item._id}>
-                        <ItemButton
-                          item={item}
-                          setCurrentItem={setCurrentItem}
-                        />
-                      </div>
-                    ))}
-                  {data.items
-                    .filter((item) =>
-                      item.references?.some((reference) =>
-                        reference.authors?.some(
-                          (author) => author._id === person._id,
-                        ),
-                      ),
-                    )
-                    .map((item) => (
-                      <div key={item._id}>
-                        <ItemButton
-                          item={item}
-                          setCurrentItem={setCurrentItem}
-                        />
-                      </div>
-                    ))}
-                </div>
-              </div>
-            ))}
-          </div>
-          <div>
-            <h2 className="text-4xl">
-              {language === "en" ? "Organizations" : "Organizaciones"}
-            </h2>
-            {orgs.map((org, index) => (
-              <div key={org._id} className="my-2 flex items-center gap-2">
-                <div>
-                  <span className="">{org.name[language] || org.name.en}</span>
-                </div>
-                <div className="flex flex-wrap gap-2 font-mono text-xs opacity-80">
-                  {org.participant && (
-                    <span className="border border-gray px-1">
-                      {translations.participant[language]}
-                    </span>
-                  )}
-                  {org.referenceAuthor && (
-                    <span className="border border-gray px-1">
-                      {" "}
-                      {translations.refAuthor[language]}
-                    </span>
-                  )}
-                  {org.projectAuthor && (
-                    <span className="border border-gray px-1">
-                      {translations.projAuthor[language]}
-                    </span>
-                  )}
-                </div>
-                <div className="my-1 flex gap-1">
-                  {data.items
-                    .filter((item) =>
-                      item.text?.authors?.some(
-                        (author) => author._id === org._id,
-                      ),
-                    )
-                    .map((item) => (
-                      <div key={item._id}>
-                        <ItemButton
-                          item={item}
-                          setCurrentItem={setCurrentItem}
-                        />
-                      </div>
-                    ))}
-                  {data.items
-                    .filter((item) =>
-                      item.references?.some((reference) =>
-                        reference.authors?.some(
-                          (author) => author._id === org._id,
-                        ),
-                      ),
-                    )
-                    .map((item) => (
-                      <div key={item._id}>
-                        <ItemButton
-                          item={item}
-                          setCurrentItem={setCurrentItem}
-                        />
-                      </div>
-                    ))}
-                </div>
-              </div>
-            ))}
-          </div>
-          <div>
-            <h2 className="text-4xl">
-              {language === "en" ? "References" : "Referencias"}
-            </h2>
+                ))}
+
+              {data.items
+                .filter((item) =>
+                  item.text?.authors?.some(
+                    (author) => author._id === person._id,
+                  ),
+                )
+                .map((item) => (
+                  <span key={item._id}>
+                    <ItemButton item={item} setCurrentItem={setCurrentItem} />
+                  </span>
+                ))}
+            </span>
+          ))}
+        </div>
+
+        <div>
+          <h2 className="pb-6 text-center uppercase">
+            {language === "en" ? "References" : "Referencias"}
+          </h2>
+
+          <div className="flex flex-col gap-2">
             {refMaterials.map((ref, index) => (
-              <div key={ref._id} className="my-2">
-                <PortableText value={ref.apaReference} />
-                <div className="my-1 flex gap-1">
-                  {data.items
-                    .filter((item) =>
-                      item.references?.some(
-                        (reference) => reference._id === ref._id,
-                      ),
-                    )
-                    .map((item) => (
-                      <div key={item._id}>
-                        <ItemButton
-                          item={item}
-                          setCurrentItem={setCurrentItem}
-                        />
-                      </div>
-                    ))}
-                </div>
+              <div key={ref._id}>
+                <PortableText
+                  value={ref.apaReference}
+                  components={blockComponents}
+                />
+                {data.items
+                  .filter((item) =>
+                    item.references?.some(
+                      (reference) => reference._id === ref._id,
+                    ),
+                  )
+                  .map((item) => (
+                    <span key={item._id}>
+                      <ItemButton item={item} setCurrentItem={setCurrentItem} />
+                    </span>
+                  ))}
               </div>
             ))}
           </div>
         </div>
       </div>
-    </>
+    </div>
   );
 }
 
@@ -235,26 +142,9 @@ export function ItemButton({ item, setCurrentItem }) {
       onMouseLeave={() => {
         setStatus(null);
       }}
+      className={`inline-block -translate-y-1 px-0.5 hover:underline`}
     >
-      {/* <h3>
-        <div
-          style={{
-            backgroundColor: chooseColor(item.project._id),
-            boxShadow: `0 0 1px ${chooseColor(item.project._id)}`,
-          }}
-          className={`mb-1 mr-0.5 inline-block size-1 rounded-full`}
-        />
-        {item.code.toUpperCase()} {item.name ? item.name[language] : ""}
-      </h3> */}
-      <div
-        className="max-w flex items-center justify-center border px-1"
-        // style={{
-        //   backgroundColor: chooseColor(item.project._id),
-        //   boxShadow: `0 0 1px ${chooseColor(item.project._id)}`,
-        // }}
-      >
-        <span className="text-xs text-dark dark:text-light">{item.code}</span>
-      </div>
+      <div className="font-serif text-sm leading-tight">({item.code})</div>
     </NavLink>
   );
 }
