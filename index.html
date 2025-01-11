@@ -12,6 +12,24 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>terraignota-map</title>
 
+    <style>
+      html {
+        background-color: #f6f6f6;
+      }
+      html.dark {
+        background-color: #090909;
+      }
+    </style>
+
+    <script>
+      (function () {
+        const matchMedia = window.matchMedia("(prefers-color-scheme: dark)");
+        if (matchMedia.matches) {
+          document.documentElement.classList.add("dark");
+        }
+      })();
+    </script>
+
     <script type="text/javascript">
       // Single Page Apps for GitHub Pages
       // MIT License
@@ -40,9 +58,9 @@
         }
       })(window.location);
     </script>
-    <script type="module" crossorigin src="/terraignota-map/assets/index-C9CoY_q9.js"></script>
+    <script type="module" crossorigin src="/terraignota-map/assets/index-GpTk2egw.js"></script>
     <link rel="modulepreload" crossorigin href="/terraignota-map/assets/maplibre-DzMbv-Px.js">
-    <link rel="stylesheet" crossorigin href="/terraignota-map/assets/index-B5EaViT-.css">
+    <link rel="stylesheet" crossorigin href="/terraignota-map/assets/index-BEtc-4L_.css">
   </head>
   <body>
     <div id="root"></div>
