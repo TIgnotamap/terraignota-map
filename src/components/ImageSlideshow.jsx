@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 export default function ImageSlideshow({ images }) {
   const [isZoomed, setIsZoomed] = useState(false);
   const [activeIndex, setActiveIndex] = useState(0);
+  const [loadedImages, setLoadedImages] = useState({});
 
   const resizeImage = () => {
     setIsZoomed(!isZoomed);
@@ -15,32 +16,51 @@ export default function ImageSlideshow({ images }) {
   };
 
   useEffect(() => {
-    if (!isZoomed) {
+    const firstImageKey = images[0]?._key;
+    if (!isZoomed && firstImageKey && loadedImages[firstImageKey]) {
       const interval = setInterval(() => {
         setActiveIndex((prevIndex) => (prevIndex + 1) % images.length);
       }, 4000);
 
       return () => clearInterval(interval);
     }
-  }, [images, activeIndex, isZoomed]);
+  }, [images, activeIndex, isZoomed, loadedImages]);
 
   const handleClick = () => {
     setActiveIndex((prevIndex) => (prevIndex + 1) % images.length);
   };
 
+  const handleImageLoad = (imageKey) => {
+    setLoadedImages((prev) => ({
+      ...prev,
+      [imageKey]: true,
+    }));
+  };
+
   return (
     <>
-      <div className="relative flex h-[30vh] items-center justify-center drop-shadow-lg sm:block sm:h-auto">
+      <div className="relative flex h-[30vh] items-center justify-center drop-shadow-lg sm:h-auto">
+        <div
+          style={{
+            aspectRatio: images[activeIndex]?.dimensions?.aspectRatio || "3/2",
+          }}
+          className={`absolute inset-0 mx-auto max-h-full max-w-full rounded-md border border-gray bg-lightGray sm:max-h-none sm:w-full dark:bg-darkGray`}
+        />
         {images.map((image, index) => (
-          <img
-            src={image.url + size.small}
-            alt=""
+          <div
+            className={`${loadedImages[image._key] ? "opacity-100" : "opacity-0"} transition-opacity duration-[1500ms] ease-in-out`}
             key={image._key}
-            className={`${
-              index === activeIndex ? "opacity-100" : "opacity-0"
-            } absolute max-h-full max-w-full rounded-md border border-gray transition-opacity duration-[1500ms] ease-in-out sm:max-h-none`}
-            onClick={handleClick}
-          />
+          >
+            <img
+              src={image.url + size.small}
+              alt=""
+              className={`${
+                index === activeIndex ? "opacity-100" : "opacity-0"
+              } absolute inset-0 mx-auto max-h-full max-w-full rounded-md border border-gray transition-opacity duration-[1500ms] ease-in-out sm:max-h-none`}
+              onClick={handleClick}
+              onLoad={() => handleImageLoad(image._key)}
+            />
+          </div>
         ))}
 
         <div
@@ -76,6 +96,7 @@ export default function ImageSlideshow({ images }) {
                   index === activeIndex ? "opacity-100" : "opacity-0"
                 } absolute transition-opacity duration-[1500ms] ease-in-out`}
                 onClick={handleClick}
+                onLoad={() => handleImageLoad(image._key)}
               />
             ))}
 
