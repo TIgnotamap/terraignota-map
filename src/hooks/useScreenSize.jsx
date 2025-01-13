@@ -6,10 +6,6 @@ const breakpoints = {
   lg: 1024,
 };
 
-sm: 640px
-md: 768px
-lg: 1024px
-
 const useScreenSize = () => {
   const [screenSize, setScreenSize] = useState(getScreenSize());
 
