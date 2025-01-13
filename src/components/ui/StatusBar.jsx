@@ -35,7 +35,7 @@ export default function StatusBar({ data, filteredItems }) {
   }, [data, filteredItems, language]);
 
   return (
-    <div className="pointer-events-none fixed left-[5rem] top-4 z-10 max-w-[33vw] select-none rounded-md border border-lightGray bg-light px-2 py-0.5 font-mono text-xs text-darkGray dark:border-darkGray dark:bg-dark dark:text-gray">
+    <div className="pointer-events-none fixed bottom-3 left-6 top-auto z-20 w-[calc(100%-3rem)] select-none rounded-md border border-lightGray bg-light px-2 py-0.5 text-center font-mono text-xs text-darkGray sm:bottom-auto sm:left-[5rem] sm:top-4 sm:w-auto sm:max-w-[33vw] dark:border-darkGray dark:bg-dark dark:text-gray">
       {status || defaultStatus}
     </div>
   );
