@@ -42,7 +42,7 @@ export default function Menu({
     <nav className="fixed right-6 top-4 z-10 flex select-none items-center gap-2 font-serif text-sm">
       <button
         onClick={toggleBgAudio}
-        className={`${bgAudioIsPlaying ? "animate-pulse opacity-100" : "opacity-30"}`}
+        className={`sm:hover:underline ${bgAudioIsPlaying ? "animate-pulse opacity-100" : "opacity-30"}`}
         onMouseOver={() =>
           !isMobile && setStatus(translations.toggleBgAudio[language])
         }
@@ -52,7 +52,7 @@ export default function Menu({
       </button>
       <NavLink
         to="/info"
-        className="size-6 rounded-full border border-gray bg-light pt-[2px] text-center lowercase dark:bg-dark dark:text-light"
+        className="size-6 rounded-full border border-gray bg-light pt-[2px] text-center lowercase sm:hover:bg-lightGray dark:bg-dark dark:text-light dark:sm:hover:bg-darkGray"
         onMouseOver={() =>
           !isMobile && setStatus(translations.showInfo[language])
         }
@@ -66,12 +66,12 @@ export default function Menu({
         }
         onMouseOut={() => !isMobile && setStatus(null)}
         to="/index"
-        className="border border-gray bg-light px-2 dark:bg-dark dark:text-light"
+        className="border border-gray bg-light px-2 sm:hover:bg-lightGray dark:bg-dark dark:text-light dark:sm:hover:bg-darkGray"
       >
         index
       </NavLink>
       <button
-        className="w-3"
+        className="w-3 sm:hover:underline"
         onClick={() => setLanguage(language === "es" ? "en" : "es")}
         onMouseOver={() =>
           !isMobile && setStatus(translations.changeLanguage[language])
@@ -81,7 +81,7 @@ export default function Menu({
         {language === "es" ? "EN" : "ES"}
       </button>
       <button
-        className="pb-0.5"
+        className="size-3 transform rounded-full bg-dark pb-0.5 transition-transform duration-200 sm:hover:scale-125 dark:bg-light"
         onMouseEnter={() =>
           !isMobile && setStatus(translations.changeMode[language])
         }
@@ -95,9 +95,7 @@ export default function Menu({
             document.documentElement.classList.toggle("dark");
           }
         }}
-      >
-        ●
-      </button>
+      />
     </nav>
   );
 }

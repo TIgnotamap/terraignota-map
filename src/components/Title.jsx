@@ -48,7 +48,7 @@ export default function Title({ title, name, subtitle, details, handleClose }) {
         }}
         onMouseEnter={() => !isMobile && setStatus(translations.exit[language])}
         onMouseLeave={() => !isMobile && setStatus(null)}
-        className="pointer-events-auto mt-2 cursor-pointer select-none border border-gray bg-light font-mono drop-shadow-md sm:mt-4 dark:invert"
+        className="pointer-events-auto mt-2 cursor-pointer select-none border border-gray bg-light font-mono drop-shadow-md sm:mt-4 sm:hover:bg-lightGray dark:bg-dark dark:sm:hover:bg-darkGray"
       >
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -56,6 +56,7 @@ export default function Title({ title, name, subtitle, details, handleClose }) {
           viewBox="0 -960 960 960"
           width="24px"
           fill="undefined"
+          className="dark:invert"
         >
           <path d="M256-227.69 227.69-256l224-224-224-224L256-732.31l224 224 224-224L732.31-704l-224 224 224 224L704-227.69l-224-224-224 224Z" />
         </svg>

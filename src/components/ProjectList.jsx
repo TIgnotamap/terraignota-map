@@ -121,7 +121,7 @@ export default function ProjectList({
                         );
                     }}
                     onMouseLeave={() => !isMobile && setStatus(null)}
-                    className="ml-auto dark:invert"
+                    className="ml-auto mr-1 transition-transform duration-200 sm:hover:scale-125 dark:invert"
                   >
                     <svg
                       xmlns="http://www.w3.org/2000/svg"

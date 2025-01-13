@@ -65,7 +65,7 @@ export default function ImageSlideshow({ images }) {
 
         {loadedImages[images[0]?._key] && (
           <div
-            className="absolute right-3 top-3 hidden size-6 cursor-pointer items-center justify-center rounded-full border border-gray bg-light hover:invert sm:flex dark:bg-dark"
+            className="absolute right-3 top-3 hidden size-6 cursor-pointer items-center justify-center rounded-full border border-gray bg-light sm:flex sm:hover:bg-lightGray dark:bg-dark dark:sm:hover:bg-darkGray"
             onClick={resizeImage}
           >
             <svg
@@ -104,7 +104,7 @@ export default function ImageSlideshow({ images }) {
             ))}
 
             <div
-              className="absolute right-3 top-3 hidden size-6 cursor-pointer items-center justify-center rounded-full border border-gray bg-dark hover:invert sm:flex dark:bg-light"
+              className="absolute right-3 top-3 hidden size-6 cursor-pointer items-center justify-center rounded-full border border-gray bg-dark sm:flex sm:hover:bg-darkGray dark:bg-light dark:sm:hover:bg-lightGray"
               onClick={resizeImage}
             >
               <svg

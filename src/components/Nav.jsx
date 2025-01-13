@@ -74,7 +74,7 @@ export default function Nav({
         onClick={handleNavClick}
         onMouseEnter={handleHover}
         onMouseLeave={() => setStatus(null)}
-        className="pointer-events-auto flex size-10 shrink-0 cursor-pointer items-center justify-center rounded-full border border-gray bg-light p-2 text-center text-xs shadow-md sm:hover:invert dark:bg-dark"
+        className="pointer-events-auto flex size-10 shrink-0 cursor-pointer items-center justify-center rounded-full border border-gray bg-light p-2 text-center text-xs shadow-md sm:hover:bg-lightGray dark:bg-dark dark:sm:hover:bg-darkGray"
       >
         {isNavOpen ? (
           <svg
