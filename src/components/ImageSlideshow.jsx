@@ -1,10 +1,24 @@
 import { motion, AnimatePresence } from "framer-motion";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
+import { StatusBarContext } from "../utils/StatusBarContext";
+import { LanguageContext } from "../utils/LanguageContext";
+import useIsMobile from "../hooks/useIsMobile";
 
 export default function ImageSlideshow({ images }) {
   const [isZoomed, setIsZoomed] = useState(false);
   const [activeIndex, setActiveIndex] = useState(0);
   const [loadedImages, setLoadedImages] = useState({});
+
+  const { language } = useContext(LanguageContext);
+  const { setStatus } = useContext(StatusBarContext);
+  const isMobile = useIsMobile();
+
+  const translations = {
+    fullScreen: {
+      en: "View image in full screen",
+      es: "Ver imágen en pantalla completa",
+    },
+  };
 
   const resizeImage = () => {
     setIsZoomed(!isZoomed);
@@ -67,6 +81,10 @@ export default function ImageSlideshow({ images }) {
           <div
             className="absolute right-3 top-3 hidden size-6 cursor-pointer items-center justify-center rounded-full border border-gray bg-light sm:flex sm:hover:bg-lightGray dark:bg-dark dark:sm:hover:bg-darkGray"
             onClick={resizeImage}
+            onMouseEnter={() =>
+              !isMobile && setStatus(translations.fullScreen[language])
+            }
+            onMouseLeave={() => !isMobile && setStatus(null)}
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"
