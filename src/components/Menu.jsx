@@ -2,6 +2,7 @@ import { LanguageContext } from "../utils/LanguageContext";
 import { useContext } from "react";
 import { NavLink } from "react-router-dom";
 import { StatusBarContext } from "../utils/StatusBarContext";
+import useIsMobile from "../hooks/useIsMobile";
 
 export default function Menu({
   data,
@@ -12,6 +13,7 @@ export default function Menu({
 }) {
   const { language, setLanguage } = useContext(LanguageContext);
   const { setStatus } = useContext(StatusBarContext);
+  const isMobile = useIsMobile();
 
   const translations = {
     toggleBgAudio: {
@@ -41,22 +43,28 @@ export default function Menu({
       <button
         onClick={toggleBgAudio}
         className={`${bgAudioIsPlaying ? "animate-pulse opacity-100" : "opacity-30"}`}
-        onMouseOver={() => setStatus(translations.toggleBgAudio[language])}
-        onMouseOut={() => setStatus(null)}
+        onMouseOver={() =>
+          !isMobile && setStatus(translations.toggleBgAudio[language])
+        }
+        onMouseOut={() => !isMobile && setStatus(null)}
       >
         audio
       </button>
       <NavLink
         to="/info"
         className="size-6 rounded-full border border-gray bg-light pt-[2px] text-center lowercase dark:bg-dark dark:text-light"
-        onMouseOver={() => setStatus(translations.showInfo[language])}
-        onMouseOut={() => setStatus(null)}
+        onMouseOver={() =>
+          !isMobile && setStatus(translations.showInfo[language])
+        }
+        onMouseOut={() => !isMobile && setStatus(null)}
       >
         ?
       </NavLink>
       <NavLink
-        onMouseOver={() => setStatus(translations.openIndex[language])}
-        onMouseOut={() => setStatus(null)}
+        onMouseOver={() =>
+          !isMobile && setStatus(translations.openIndex[language])
+        }
+        onMouseOut={() => !isMobile && setStatus(null)}
         to="/index"
         className="border border-gray bg-light px-2 dark:bg-dark dark:text-light"
       >
@@ -65,15 +73,19 @@ export default function Menu({
       <button
         className="w-3"
         onClick={() => setLanguage(language === "es" ? "en" : "es")}
-        onMouseOver={() => setStatus(translations.changeLanguage[language])}
-        onMouseOut={() => setStatus(null)}
+        onMouseOver={() =>
+          !isMobile && setStatus(translations.changeLanguage[language])
+        }
+        onMouseOut={() => !isMobile && setStatus(null)}
       >
         {language === "es" ? "EN" : "ES"}
       </button>
       <button
         className="pb-0.5"
-        onMouseEnter={() => setStatus(translations.changeMode[language])}
-        onMouseLeave={() => setStatus(null)}
+        onMouseEnter={() =>
+          !isMobile && setStatus(translations.changeMode[language])
+        }
+        onMouseLeave={() => !isMobile && setStatus(null)}
         onClick={() => {
           if (theme === "dark") {
             setTheme("light");

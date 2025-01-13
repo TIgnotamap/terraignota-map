@@ -2,6 +2,7 @@ import { useContext } from "react";
 import { LanguageContext } from "../utils/LanguageContext";
 import chooseColor from "../utils/chooseColor";
 import { StatusBarContext } from "../utils/StatusBarContext";
+import useIsMobile from "../hooks/useIsMobile";
 
 export default function TagList({
   tags,
@@ -12,6 +13,7 @@ export default function TagList({
 }) {
   const { language } = useContext(LanguageContext);
   const { setStatus } = useContext(StatusBarContext);
+  const isMobile = useIsMobile();
 
   const translations = {
     clearAllFilters: {
@@ -42,9 +44,11 @@ export default function TagList({
             <button
               key={tag._id}
               onMouseEnter={() =>
-                tag.description && setStatus(tag.description[language])
+                !isMobile &&
+                tag.description &&
+                setStatus(tag.description[language])
               }
-              onMouseLeave={() => setStatus(null)}
+              onMouseLeave={() => !isMobile && setStatus(null)}
               onClick={() => {
                 if (isRelevant) {
                   if (selectedTags?.includes(tag._id)) {
@@ -70,8 +74,10 @@ export default function TagList({
         })}
       <button
         onClick={() => setSelectedTags([])}
-        onMouseEnter={() => setStatus(translations.clearAllFilters[language])}
-        onMouseLeave={() => setStatus(null)}
+        onMouseEnter={() =>
+          !isMobile && setStatus(translations.clearAllFilters[language])
+        }
+        onMouseLeave={() => !isMobile && setStatus(null)}
         className={`rounded-full border border-gray px-2 font-mono text-xs lowercase shadow-lg ${
           selectedTags?.length > 0
             ? "bg-dark text-light dark:bg-light dark:text-dark"

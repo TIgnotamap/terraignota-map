@@ -4,6 +4,7 @@ import chooseColor from "../../utils/chooseColor";
 import { useContext } from "react";
 import { StatusBarContext } from "../../utils/StatusBarContext";
 import { LanguageContext } from "../../utils/LanguageContext";
+import useIsMobile from "../../hooks/useIsMobile";
 
 export default function ItemMarker({
   item,
@@ -15,6 +16,7 @@ export default function ItemMarker({
   const { current: map } = useMap();
   const { setStatus } = useContext(StatusBarContext);
   const { language } = useContext(LanguageContext);
+  const isMobile = useIsMobile();
 
   const translations = {
     link: {
@@ -38,22 +40,26 @@ export default function ItemMarker({
           target="_blank"
           className={`cursor-alias border px-1 font-serif ${(currentItem && currentItem?._type !== "item") || item == currentItem || item == hoveredItem || (hoveredItem == null && currentItem == null) ? "z-[100] opacity-100" : "opacity-20"}`}
           onMouseEnter={() => {
-            setHoveredItem(item);
-            setStatus(
-              "[" +
-                item.code?.toUpperCase() +
-                "]" +
-                " " +
-                (item.name ? item.name[language] : "") +
-                (item.title ? item.title[language] : "") +
-                " (" +
-                translations.link[language].toLowerCase() +
-                ")",
-            );
+            if (!isMobile) {
+              setHoveredItem(item);
+              setStatus(
+                "[" +
+                  item.code?.toUpperCase() +
+                  "]" +
+                  " " +
+                  (item.name ? item.name[language] : "") +
+                  (item.title ? item.title[language] : "") +
+                  " (" +
+                  translations.link[language].toLowerCase() +
+                  ")",
+              );
+            }
           }}
           onMouseLeave={() => {
-            setHoveredItem(null);
-            setStatus(null);
+            if (!isMobile) {
+              setHoveredItem(null);
+              setStatus(null);
+            }
           }}
         >
           {item.code && item.code}
@@ -63,19 +69,23 @@ export default function ItemMarker({
           className={() => "relative flex items-center justify-center"}
           to={`/${item.slug.current}`}
           onMouseEnter={() => {
-            setHoveredItem(item);
-            setStatus(
-              "[" +
-                item.code?.toUpperCase() +
-                "]" +
-                " " +
-                (item.name ? item.name[language] : "") +
-                (item.title ? item.title[language] : ""),
-            );
+            if (!isMobile) {
+              setHoveredItem(item);
+              setStatus(
+                "[" +
+                  item.code?.toUpperCase() +
+                  "]" +
+                  " " +
+                  (item.name ? item.name[language] : "") +
+                  (item.title ? item.title[language] : ""),
+              );
+            }
           }}
           onMouseLeave={() => {
-            setHoveredItem(null);
-            setStatus(null);
+            if (!isMobile) {
+              setHoveredItem(null);
+              setStatus(null);
+            }
           }}
         >
           <div

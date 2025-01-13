@@ -3,6 +3,7 @@ import { NavLink } from "react-router-dom";
 import { LanguageContext } from "../utils/LanguageContext";
 import { StatusBarContext } from "../utils/StatusBarContext";
 import chooseColor from "../utils/chooseColor";
+import useIsMobile from "../hooks/useIsMobile";
 
 export default function ItemList({
   setCurrentItem,
@@ -11,6 +12,7 @@ export default function ItemList({
 }) {
   const { language } = useContext(LanguageContext);
   const { setStatus } = useContext(StatusBarContext);
+  const isMobile = useIsMobile();
 
   const translations = {
     link: {
@@ -29,22 +31,26 @@ export default function ItemList({
                 href={item.link}
                 target="_blank"
                 onMouseEnter={() => {
-                  setHoveredItem(item);
-                  setStatus(
-                    "[" +
-                      item.code?.toUpperCase() +
-                      "]" +
-                      " " +
-                      (item.name ? item.name[language] : "") +
-                      (item.title ? item.title[language] : "") +
-                      " (" +
-                      translations.link[language].toLowerCase() +
-                      ")",
-                  );
+                  if (!isMobile) {
+                    setHoveredItem(item);
+                    setStatus(
+                      "[" +
+                        item.code?.toUpperCase() +
+                        "]" +
+                        " " +
+                        (item.name ? item.name[language] : "") +
+                        (item.title ? item.title[language] : "") +
+                        " (" +
+                        translations.link[language].toLowerCase() +
+                        ")",
+                    );
+                  }
                 }}
                 onMouseLeave={() => {
-                  setHoveredItem(null);
-                  setStatus(null);
+                  if (!isMobile) {
+                    setHoveredItem(null);
+                    setStatus(null);
+                  }
                 }}
                 className="flex cursor-alias items-center gap-1 hover:underline"
               >
@@ -75,22 +81,26 @@ export default function ItemList({
                 to={`/${item.slug.current}`}
                 onClick={() => setCurrentItem(item)}
                 onMouseEnter={() => {
-                  setHoveredItem(item);
-                  setStatus(
-                    "[" +
-                      item.code?.toUpperCase() +
-                      "]" +
-                      " " +
-                      (item.name ? item.name[language] : "") +
-                      (item.title ? item.title[language] : ""),
-                  );
+                  if (!isMobile) {
+                    setHoveredItem(item);
+                    setStatus(
+                      "[" +
+                        item.code?.toUpperCase() +
+                        "]" +
+                        " " +
+                        (item.name ? item.name[language] : "") +
+                        (item.title ? item.title[language] : ""),
+                    );
+                  }
                 }}
                 onMouseLeave={() => {
-                  setHoveredItem(null);
-                  setStatus(null);
+                  if (!isMobile) {
+                    setHoveredItem(null);
+                    setStatus(null);
+                  }
                 }}
                 className={({ isActive }) =>
-                  isActive ? "underline" : "hover:underline"
+                  isActive ? "underline" : "sm:hover:underline"
                 }
               >
                 <h3>
