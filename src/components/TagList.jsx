@@ -62,7 +62,7 @@ export default function TagList({
                 selectedTags?.includes(tag._id)
                   ? "bg-dark text-light sm:hover:bg-darkGray dark:bg-light dark:text-dark dark:sm:hover:bg-lightGray"
                   : !isRelevant
-                    ? "cursor-auto bg-light text-gray sm:hover:bg-light dark:bg-dark dark:sm:hover:bg-dark"
+                    ? "cursor-auto opacity-30"
                     : "sm:text bg-light sm:hover:bg-lightGray dark:bg-dark dark:sm:hover:bg-darkGray"
               }`}
               disabled={!isRelevant}
@@ -83,7 +83,7 @@ export default function TagList({
         className={`rounded-full border border-gray px-2 font-mono text-xs lowercase shadow-lg ${
           selectedTags?.length > 0
             ? "bg-dark text-light sm:hover:bg-darkGray dark:bg-light dark:text-dark dark:sm:hover:bg-lightGray"
-            : "cursor-auto bg-light text-gray sm:hover:bg-light dark:bg-dark dark:sm:hover:bg-dark"
+            : "cursor-auto opacity-30"
         }`}
       >
         x
