@@ -37,7 +37,9 @@ export default function Item({ currentItem, setCurrentItem }) {
       </div>
 
       {(currentItem?.video || currentItem?.images?.length > 0) && (
-        <svg className="fixed top-[115px] -z-10 h-96 w-[1px] bg-gray sm:top-[150.5px] sm:h-[4.55rem] md:h-6">
+        <svg
+          className={`fixed top-[115px] -z-10 w-[1px] bg-gray sm:top-[150.5px] ${currentItem?.template === "3" ? "h-6" : "h-96 sm:h-[4.55rem] md:h-6"}`}
+        >
           <line x1="0" y1="0" x2="100%" y2="0" stroke="#aaa" strokeWidth="1" />
         </svg>
       )}
