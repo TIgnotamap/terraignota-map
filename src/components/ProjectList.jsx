@@ -48,14 +48,18 @@ export default function ProjectList({
           return (
             <li key={project._id}>
               <div
-                className="flex items-center gap-1"
+                className={`flex w-full items-center gap-1 ${hasMatchingTags ? "sm:hover:bg-lightGray dark:sm:hover:bg-darkGray" : ""}`}
                 onMouseEnter={() => {
                   !isMobile && setHoveredProject(project._id);
                 }}
                 onMouseLeave={() => !isMobile && setHoveredProject(null)}
               >
                 <div
-                  className="flex items-center gap-1 font-serif"
+                  className={`w-full ${
+                    !hasMatchingTags
+                      ? "cursor-auto opacity-30"
+                      : "cursor-pointer"
+                  } flex items-center gap-1 font-serif`}
                   onMouseEnter={() => {
                     !isMobile &&
                       setStatus(
@@ -82,11 +86,7 @@ export default function ProjectList({
                       backgroundColor: chooseColor(project._id),
                       boxShadow: `0 0 2px ${chooseColor(project._id)}`,
                     }}
-                    className={`relative flex size-3 items-center justify-center border ${
-                      !hasMatchingTags
-                        ? "cursor-not-allowed opacity-50"
-                        : "cursor-pointer"
-                    }`}
+                    className={`relative flex size-3 items-center justify-center border`}
                   >
                     {selectedProjects?.includes(project._id) && (
                       <div className="absolute size-1.5 rounded-full bg-dark" />
@@ -94,9 +94,10 @@ export default function ProjectList({
                   </div>
                   <span
                     className={`${
-                      (selectedTags.length > 0 && !hasMatchingTags) ||
-                      (selectedProjects != 0 &&
-                        !selectedProjects.includes(project._id))
+                      !hasMatchingTags ? "cursor-auto" : "cursor-pointer"
+                    } ${
+                      selectedProjects != 0 &&
+                      !selectedProjects.includes(project._id)
                         ? "text-gray"
                         : ""
                     }`}
@@ -120,7 +121,7 @@ export default function ProjectList({
                         );
                     }}
                     onMouseLeave={() => !isMobile && setStatus(null)}
-                    className="dark:invert"
+                    className="ml-auto dark:invert"
                   >
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
@@ -140,7 +141,11 @@ export default function ProjectList({
         <hr />
         <li>
           <div
-            className="flex items-center gap-1 font-serif"
+            className={` ${
+              selectedTags.length === 0
+                ? "cursor-pointer sm:hover:bg-lightGray dark:sm:hover:bg-darkGray"
+                : "cursor-auto opacity-30"
+            } flex items-center gap-1 font-serif`}
             onMouseEnter={() =>
               !isMobile &&
               setStatus(
@@ -167,11 +172,7 @@ export default function ProjectList({
                 backgroundColor: "#fff",
                 boxShadow: `0 0 2px #fff`,
               }}
-              className={`relative flex size-3 items-center justify-center border ${
-                selectedTags.length === 0
-                  ? "cursor-pointer"
-                  : "cursor-not-allowed opacity-50"
-              }`}
+              className={`relative flex size-3 items-center justify-center border`}
             >
               {selectedProjects?.includes("exhibitions") && (
                 <div className="absolute size-1.5 rounded-full bg-dark" />
@@ -179,9 +180,8 @@ export default function ProjectList({
             </div>
             <span
               className={`${
-                selectedTags.length > 0 ||
-                (selectedProjects != 0 &&
-                  !selectedProjects?.includes("exhibitions"))
+                selectedProjects != 0 &&
+                !selectedProjects?.includes("exhibitions")
                   ? "text-gray"
                   : ""
               }`}
