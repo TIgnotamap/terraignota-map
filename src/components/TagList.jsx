@@ -60,9 +60,11 @@ export default function TagList({
               }}
               className={`${tag.geographic ? "" : "rounded-full"} border px-2 font-mono text-xs lowercase shadow-lg ${
                 selectedTags?.includes(tag._id)
-                  ? "bg-dark text-light dark:bg-light dark:text-dark"
-                  : "bg-light dark:bg-dark"
-              } ${!isRelevant ? "cursor-not-allowed text-gray" : ""}`}
+                  ? "bg-dark text-light sm:hover:bg-darkGray dark:bg-light dark:text-dark dark:sm:hover:bg-lightGray"
+                  : !isRelevant
+                    ? "cursor-auto bg-light text-gray sm:hover:bg-light dark:bg-dark dark:sm:hover:bg-dark"
+                    : "sm:text bg-light sm:hover:bg-lightGray dark:bg-dark dark:sm:hover:bg-darkGray"
+              }`}
               disabled={!isRelevant}
               style={{
                 borderColor: `${currentItem?.tags?.some((itemTag) => itemTag._id === tag._id) ? chooseColor(currentItem?.project._id) : "gray"}`,
@@ -80,8 +82,8 @@ export default function TagList({
         onMouseLeave={() => !isMobile && setStatus(null)}
         className={`rounded-full border border-gray px-2 font-mono text-xs lowercase shadow-lg ${
           selectedTags?.length > 0
-            ? "bg-dark text-light dark:bg-light dark:text-dark"
-            : "bg-light dark:bg-dark"
+            ? "bg-dark text-light sm:hover:bg-darkGray dark:bg-light dark:text-dark dark:sm:hover:bg-lightGray"
+            : "cursor-auto bg-light text-gray sm:hover:bg-light dark:bg-dark dark:sm:hover:bg-dark"
         }`}
       >
         x
