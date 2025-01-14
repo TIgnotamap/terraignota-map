@@ -13,6 +13,7 @@ import Index from "./components/Index";
 import Loading from "./components/ui/Loading";
 import StatusBar from "./components/ui/StatusBar";
 import PageSelector from "./components/PageSelector";
+import useIsMobile from "./hooks/useIsMobile";
 
 function App() {
   const [data, setData] = useState(null);
@@ -31,6 +32,8 @@ function App() {
   const [bgAudioIsPlaying, setBgAudioIsPlaying] = useState(false);
 
   const { setStatus } = useContext(StatusBarContext);
+
+  const isMobile = useIsMobile();
 
   const toggleBgAudio = () => {
     const audios = document.querySelectorAll("audio");
@@ -193,9 +196,11 @@ function App() {
         />
       </Routes>
 
-      <footer className="fixed bottom-0 right-0 m-6 font-serif text-sm">
-        Terra Ignota Map
-      </footer>
+      {!isMobile && (
+        <footer className="fixed bottom-0 right-0 m-6 font-serif text-sm">
+          Terra Ignota Map
+        </footer>
+      )}
     </div>
   );
 }
