@@ -23,7 +23,7 @@ export default function TagList({
   };
 
   return (
-    <div className="pointer-events-auto flex h-auto w-full shrink-0 flex-wrap items-center gap-1 overflow-auto">
+    <div className="pointer-events-auto flex h-auto w-full shrink-0 flex-wrap items-center gap-1 overflow-auto text-xs">
       {tags
         .filter((tag) =>
           items.some((item) =>
@@ -58,7 +58,7 @@ export default function TagList({
                   }
                 }
               }}
-              className={`${tag.geographic ? "" : "rounded-full"} border px-2 font-mono text-xs lowercase shadow-lg ${
+              className={`${tag.geographic ? "" : "rounded-full"} border px-2 font-mono lowercase shadow-lg ${
                 selectedTags?.includes(tag._id)
                   ? "bg-dark text-light sm:hover:bg-darkGray dark:bg-light dark:text-dark dark:sm:hover:bg-lightGray"
                   : !isRelevant
@@ -80,7 +80,7 @@ export default function TagList({
           !isMobile && setStatus(translations.clearAllFilters[language])
         }
         onMouseLeave={() => !isMobile && setStatus(null)}
-        className={`rounded-full border border-gray px-2 font-mono text-xs lowercase shadow-lg ${
+        className={`rounded-full border border-gray px-2 font-mono lowercase shadow-lg ${
           selectedTags?.length > 0
             ? "bg-dark text-light sm:hover:bg-darkGray dark:bg-light dark:text-dark dark:sm:hover:bg-lightGray"
             : "cursor-auto opacity-30"
