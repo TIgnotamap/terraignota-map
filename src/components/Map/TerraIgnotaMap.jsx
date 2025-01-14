@@ -69,7 +69,6 @@ export default function TerraIgnotaMap({
           }
           cursor="crosshair"
           dragRotate={false}
-          touchZoomRotate={false}
           attributionControl={false}
           onMove={handleMove}
         >
