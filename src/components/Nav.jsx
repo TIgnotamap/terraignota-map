@@ -3,6 +3,7 @@ import { StatusBarContext } from "../utils/StatusBarContext";
 import { LanguageContext } from "../utils/LanguageContext";
 import { useLocation, useNavigate } from "react-router-dom";
 import useIsMobile from "../hooks/useIsMobile";
+import useScreenSize from "../hooks/useScreenSize";
 import ProjectList from "./ProjectList";
 import ItemList from "./ItemList";
 import TagList from "./TagList";
@@ -24,12 +25,7 @@ export default function Nav({
   const { pathname } = useLocation();
   const navigate = useNavigate();
   const isMobile = useIsMobile();
-
-  useEffect(() => {
-    if (isMobile && currentItem) {
-      setIsNavOpen(false);
-    }
-  }, [isMobile, currentItem]);
+  const screenSize = useScreenSize();
 
   const translations = {
     showFilters: {
@@ -40,6 +36,26 @@ export default function Nav({
       en: "Hide filters",
       es: "Ocultar filtros",
     },
+  };
+
+  useEffect(() => {
+    if (
+      ((screenSize === "small" || screenSize === "medium") && currentItem) ||
+      ((pathname === "/index" || pathname === "/info") &&
+        screenSize !== "desktop")
+    ) {
+      setIsNavOpen(false);
+    }
+  }, [screenSize, currentItem, pathname]);
+
+  const handleNavClick = () => {
+    if (
+      (pathname === "/index" || pathname === "/info") &&
+      screenSize !== "desktop"
+    ) {
+      navigate("/");
+    }
+    setIsNavOpen(!isNavOpen);
   };
 
   const handleHover = () => {
@@ -53,22 +69,9 @@ export default function Nav({
     handleHover();
   }, [isNavOpen]);
 
-  useEffect(() => {
-    if (pathname === "/index" || pathname === "/info") {
-      setIsNavOpen(false);
-    }
-  }, [pathname]);
-
-  const handleNavClick = () => {
-    if (pathname === "/index" || pathname === "/info") {
-      navigate("/");
-    }
-    setIsNavOpen(!isNavOpen);
-  };
-
   return (
     <div
-      className={`pointer-events-none fixed inset-0 z-10 flex h-full w-full select-none flex-col px-6 pb-6 pt-4 transition-all md:w-2/3 lg:w-1/2 ${isMobile && isNavOpen ? "bg-lightGray dark:bg-darkGray" : ""}`}
+      className={`pointer-events-none fixed inset-0 z-10 flex h-full w-full select-none flex-col px-6 pb-6 pt-4 transition-all md:w-2/3 md:bg-transparent lg:w-1/2 ${isNavOpen ? "bg-lightGray dark:bg-darkGray" : ""}`}
     >
       <div
         onClick={handleNavClick}
