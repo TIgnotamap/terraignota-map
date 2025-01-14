@@ -120,7 +120,9 @@ export default function Info({ data }) {
 
         {data.links && (
           <div>
-            <h2 className="text-sm uppercase text-darkGray">Links</h2>
+            <h2 className="text-sm uppercase text-darkGray dark:text-gray">
+              Links
+            </h2>
             <div className="flex flex-wrap gap-1">
               {data.links.map((link) => {
                 return (
@@ -139,24 +141,24 @@ export default function Info({ data }) {
           </div>
         )}
 
-        <div className="flex flex-wrap items-center gap-2 font-mono text-xs text-darkGray">
+        <div className="flex flex-wrap items-center gap-2 font-mono text-xs text-darkGray dark:text-gray">
           <a href="https://maplibre.org/" className="underline">
             MapLibre
           </a>
 
-          <div className="size-1 rounded-full bg-dark" />
+          <div className="size-1 rounded-full bg-dark dark:bg-gray" />
 
           <a href="https://openfreemap.org/" className="underline">
             OpenFreeMap
           </a>
 
-          <div className="size-1 rounded-full bg-dark" />
+          <div className="size-1 rounded-full bg-dark dark:bg-gray" />
 
           <a href="https://www.openmaptiles.org/" className="underline">
             © OpenMapTiles
           </a>
 
-          <div className="size-1 rounded-full bg-dark" />
+          <div className="size-1 rounded-full bg-dark dark:bg-gray" />
 
           <div>
             data {language === "en" ? "from " : "de "}
