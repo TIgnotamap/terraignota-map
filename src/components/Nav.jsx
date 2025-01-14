@@ -77,7 +77,7 @@ export default function Nav({
         onClick={handleNavClick}
         onMouseEnter={handleHover}
         onMouseLeave={() => setStatus(null)}
-        className="pointer-events-auto flex size-10 shrink-0 cursor-pointer items-center justify-center rounded-full border border-gray bg-light p-2 text-center text-xs shadow-md sm:hover:bg-lightGray dark:bg-dark dark:sm:hover:bg-darkGray"
+        className="pointer-events-auto flex size-12 shrink-0 cursor-pointer items-center justify-center rounded-full border border-gray bg-light p-2 text-center text-xs shadow-md sm:size-10 sm:hover:bg-lightGray dark:bg-dark dark:sm:hover:bg-darkGray"
       >
         {isNavOpen ? (
           <svg
@@ -106,7 +106,7 @@ export default function Nav({
       {isNavOpen && (
         <>
           <div className="ml-[1.2rem] h-full w-[1px] border border-gray" />
-          <div className="flex h-[calc(100%-4rem)] shrink-0 flex-col gap-6 md:h-2/3">
+          <div className="flex h-[calc(100%-4rem)] shrink-0 flex-col gap-6 text-lg sm:text-base md:h-2/3">
             <ProjectList
               projects={data?.projects}
               selectedProjects={selectedProjects}

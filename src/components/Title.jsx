@@ -19,7 +19,7 @@ export default function Title({ title, name, subtitle, details, handleClose }) {
 
   return (
     <div className="flex select-none flex-col items-center">
-      <div className="flex items-center gap-1 sm:flex-col sm:gap-0">
+      <div className="flex flex-wrap items-center justify-center gap-1 sm:flex-col sm:gap-0">
         <div
           className="font-serif text-xl leading-tight drop-shadow-[0_0_5px_#fff] sm:text-[2.75rem] dark:drop-shadow-[0_0_5px_#000]"
           // style={{

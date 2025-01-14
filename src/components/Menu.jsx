@@ -39,7 +39,7 @@ export default function Menu({
   };
 
   return (
-    <nav className="fixed right-6 top-4 z-10 flex select-none items-center gap-2 font-serif text-sm">
+    <nav className="fixed right-6 top-4 z-10 flex select-none items-center gap-2 font-serif text-base sm:text-sm">
       <button
         onClick={toggleBgAudio}
         className={`sm:hover:underline ${bgAudioIsPlaying ? "animate-pulse opacity-100" : "opacity-30"}`}
@@ -52,7 +52,7 @@ export default function Menu({
       </button>
       <NavLink
         to="/info"
-        className="size-6 rounded-full border border-gray bg-light pt-[2px] text-center lowercase sm:hover:bg-lightGray dark:bg-dark dark:text-light dark:sm:hover:bg-darkGray"
+        className="flex size-6 items-center justify-center rounded-full border border-gray bg-light pt-[2px] text-center lowercase sm:hover:bg-lightGray dark:bg-dark dark:text-light dark:sm:hover:bg-darkGray"
         onMouseOver={() =>
           !isMobile && setStatus(translations.showInfo[language])
         }
@@ -81,7 +81,7 @@ export default function Menu({
         {language === "es" ? "EN" : "ES"}
       </button>
       <button
-        className="size-3 transform rounded-full bg-dark pb-0.5 transition-transform duration-200 sm:hover:scale-125 dark:bg-light"
+        className="size-4 transform rounded-full bg-dark pb-0.5 transition-transform duration-200 sm:size-3 sm:hover:scale-125 dark:bg-light"
         onMouseEnter={() =>
           !isMobile && setStatus(translations.changeMode[language])
         }

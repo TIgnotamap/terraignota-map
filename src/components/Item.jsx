@@ -22,7 +22,7 @@ export default function Item({ currentItem, setCurrentItem }) {
   }
 
   return (
-    <div className="fixed flex h-screen w-full flex-col items-center gap-6 overflow-scroll pb-24 pt-11 sm:pointer-events-none md:z-50">
+    <div className="fixed flex h-screen w-full flex-col items-center gap-6 overflow-scroll pb-24 pt-16 sm:pointer-events-none sm:pt-11 md:z-50">
       <div className="sticky top-0 z-10 sm:static">
         <Title
           title={currentItem?.code}
