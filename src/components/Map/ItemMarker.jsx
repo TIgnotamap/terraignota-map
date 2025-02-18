@@ -32,7 +32,7 @@ export default function ItemMarker({
       latitude={item.lat}
       longitude={item.long}
       anchor="bottom"
-      mapStyle="/terraignota-map/styles/light.json"
+      mapStyle="/styles/light.json"
     >
       {item._type == "exhibition" ? (
         <a

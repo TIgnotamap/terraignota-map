@@ -63,9 +63,7 @@ export default function TerraIgnotaMap({
             minZoom: 3,
           }}
           mapStyle={
-            theme === "dark"
-              ? "/terraignota-map/styles/dark.json"
-              : "/terraignota-map/styles/light.json"
+            theme === "dark" ? "/styles/dark.json" : "/styles/light.json"
           }
           cursor="crosshair"
           dragRotate={false}
