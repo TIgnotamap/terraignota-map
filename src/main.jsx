@@ -10,7 +10,7 @@ import { StatusBarProvider } from "./utils/StatusBarContext.jsx";
 
 createRoot(document.getElementById("root")).render(
   <StrictMode>
-    <BrowserRouter basename="/terraignota-map">
+    <BrowserRouter basename="/">
       <LanguageProvider>
         <StatusBarProvider>
           <MapProvider>
