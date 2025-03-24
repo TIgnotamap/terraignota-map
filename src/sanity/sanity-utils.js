@@ -141,6 +141,11 @@ export async function getItems() {
   references[]->{
     _id,
     apaReference,
+    links,
+    files[]{
+      _key,
+      'url': asset->{url},
+    },
     authors[]->{
     _id,
     },

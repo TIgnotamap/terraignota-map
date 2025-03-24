@@ -115,6 +115,43 @@ export default function Index({
                       <ItemButton item={item} setCurrentItem={setCurrentItem} />
                     </span>
                   ))}
+                <div className="flex gap-2 pb-2">
+                  {(ref.files || ref.links) && ": "}
+                  {ref.files &&
+                    ref.files.map((file) => (
+                      <div key={file._key}>
+                        <a href={file.url} target="_blank">
+                          <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            height="18px"
+                            viewBox="0 -960 960 960"
+                            width="18px"
+                            fill="#fff"
+                            className="invert hover:scale-110 dark:invert-0"
+                          >
+                            <path d="M320-240h320v-80H320v80Zm0-160h320v-80H320v80ZM240-80q-33 0-56.5-23.5T160-160v-640q0-33 23.5-56.5T240-880h320l240 240v480q0 33-23.5 56.5T720-80H240Zm280-520v-200H240v640h480v-440H520ZM240-800v200-200 640-640Z" />
+                          </svg>
+                        </a>
+                      </div>
+                    ))}
+                  {ref.links &&
+                    ref.links.map((link, index) => (
+                      <div key={ref._id + index + link}>
+                        <a href={link} target="_blank">
+                          <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            height="18px"
+                            viewBox="0 -960 960 960"
+                            width="18px"
+                            fill="#fff"
+                            className="invert hover:scale-110 dark:invert-0"
+                          >
+                            <path d="M440-280H280q-83 0-141.5-58.5T80-480q0-83 58.5-141.5T280-680h160v80H280q-50 0-85 35t-35 85q0 50 35 85t85 35h160v80ZM320-440v-80h320v80H320Zm200 160v-80h160q50 0 85-35t35-85q0-50-35-85t-85-35H520v-80h160q83 0 141.5 58.5T880-480q0 83-58.5 141.5T680-280H520Z" />
+                          </svg>
+                        </a>
+                      </div>
+                    ))}
+                </div>
               </div>
             ))}
           </div>
