@@ -115,6 +115,15 @@ export default function Info({ data }) {
                 </div>
               );
             })}
+            <div>
+              <a
+                href="https://i10-studio.github.io"
+                target="_blank"
+                className="underline"
+              >
+                INSTRUMENTO
+              </a>
+            </div>
           </div>
         )}
 
